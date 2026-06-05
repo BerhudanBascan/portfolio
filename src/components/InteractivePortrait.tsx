@@ -76,7 +76,7 @@ export default function InteractivePortrait() {
     }
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
-  }, [mouseX, mouseY])
+  }, [mouseX, mouseY, isVisible])
 
   return (
     <Magnet padding={150} strength={2.5} activeTransition="transform 0.3s ease-out" inactiveTransition="transform 0.7s ease-in-out">
