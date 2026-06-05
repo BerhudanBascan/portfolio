@@ -1,0 +1,438 @@
+{
+  "nav": {
+    "about": "Hakkımda",
+    "experience": "Deneyim",
+    "skills": "Yetenekler",
+    "services": "Hizmetler",
+    "projects": "Projeler",
+    "contact": "İletişim"
+  },
+  "loading": {
+    "hey": "Hey."
+  },
+  "contact_btn": "İletişime Geç",
+  "hero": {
+    "tagline": "Ölçeklenebilir backend'ler geliştiriyor, gerçek ürünler çıkarıyor ve çalışan koda önem veriyorum.",
+    "name": "Merhaba, Ben Berhudan"
+  },
+  "about": {
+    "heading": "Hakkımda",
+    "bio": "2001 doğumlu, Sakarya Üniversitesi Bilgisayar Mühendisliği mezunu bir yazılım mühendisiyim. 3+ yıllık production sistemi geliştirme deneyimime sahip olarak RESTful API'lardan otomasyon araçlarına, çok platformlu mobil uygulamalardan veri pipeline'larına kadar pek çok sistem kurdum — her seferinde temiz mimariye ve gerçek dünya etkisine odaklanarak. Mükemmeliyetçi yapım ve yeni fırsatlara her zaman açığım.",
+    "stats": {
+      "years": "3+",
+      "years_label": "Yıl Deneyim",
+      "projects": "14+",
+      "projects_label": "Teslim Edilen Proje",
+      "gpa": "3.02",
+      "gpa_label": "Not Ortalaması",
+      "graduated": "2025",
+      "graduated_label": "Mezuniyet"
+    },
+    "hobbies": [
+      "Yazılım",
+      "Muay Thai",
+      "Fitness",
+      "Oyun",
+      "Müzik",
+      "Seyahat",
+      "Fotoğrafçılık",
+      "Kahve"
+    ]
+  },
+  "experience": {
+    "heading": "Deneyim",
+    "tabs": {
+      "work": "İş",
+      "intern": "Stajlar",
+      "certs": "Sertifikalar"
+    },
+    "work": [
+      {
+        "role": "Yazılım Mühendisi",
+        "company": "MKG Elektromekanik",
+        "period": "Ara 2025 – Günümüz",
+        "location": "İstanbul, Türkiye",
+        "bullets": [
+          "Şirketin dijital dönüşümüne liderlik ettim ve tüm iç sistemleri sıfırdan kurdum",
+          "Tedarikçi ürün verilerini işleyen otomatik bir faturalama sistemi geliştirdim",
+          "Günlük üretimde aktif olarak kullanılan bir personel takip uygulaması inşa ettim"
+        ],
+        "stack": [
+          "Python",
+          "TypeScript",
+          "Flutter",
+          "Supabase",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "role": "Yazılım Mühendisi",
+        "company": "Future Wave",
+        "period": "Şub 2024 – Günümüz",
+        "location": "Uzaktan",
+        "bullets": [
+          "Uluslararası müşteriler için backend servisleri ve RESTful API'lar geliştirdim",
+          "Kimlik doğrulama akışları ve veritabanı entegrasyonları kurdum",
+          "Production uygulamalarını uçtan uca konuşlandırdım ve yönettim"
+        ],
+        "stack": [
+          "Node.js",
+          "Python",
+          "React",
+          "MongoDB",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "role": "Satın Alma & Envanter",
+        "company": "Hyatt Regency",
+        "period": "Haz 2022 – Eki 2022",
+        "location": "Bellevue, ABD",
+        "bullets": [
+          "Hyatt Regency Bellevue'da satın alma ve envanter operasyonlarını destekledim",
+          "İngilizce konuşulan hızlı tempolu uluslararası bir ortamda çalıştım"
+        ],
+        "stack": [
+          "Operasyon",
+          "Envanter Yönetimi"
+        ]
+      },
+      {
+        "role": "Yazılım Geliştirici",
+        "company": "FairMount Quasar",
+        "period": "Eki 2022 – Şub 2024",
+        "location": "İstanbul, Türkiye",
+        "bullets": [
+          "Backend odaklı web uygulamaları ve iç araçlar geliştirdim",
+          "Yazdığım otomasyon scriptleri manuel iş yükünü ~%30 azalttı",
+          "Müşterilerle doğrudan iş birliği yaparak özelleştirilmiş çözümler sundum"
+        ],
+        "stack": [
+          "Node.js",
+          "Python",
+          "MongoDB",
+          "PostgreSQL"
+        ]
+      }
+    ],
+    "internships": [
+      {
+        "role": "Yazılım Geliştirici Stajyeri",
+        "company": "TÜBİTAK BİLGEM",
+        "type": "Zorunlu",
+        "location": "Gebze / Kocaeli",
+        "desc": "Agrobot Ar-Ge projesi kapsamında, backend servislerinden çekilen tarımsal insansız hava aracı verilerini otomatik olarak görüntüleyen ve izleyen frontend sistemini baştan sona ben kurdum.",
+        "stack": [
+          "React",
+          "TypeScript",
+          "REST API"
+        ]
+      },
+      {
+        "role": "Veri Bilimi Stajyeri",
+        "company": "Bosphorus Analytica",
+        "type": "Gönüllü",
+        "location": "İstanbul",
+        "desc": "Python kullanarak veri analizi ve ön işleme süreçlerinde destek sağladım; devam eden araştırma projeleri için keşifsel veri analizi görevlerini yürüttüm.",
+        "stack": [
+          "Python",
+          "Pandas",
+          "NumPy"
+        ]
+      },
+      {
+        "role": "Otomasyon Geliştirici Stajyeri",
+        "company": "Oraklar Software",
+        "type": "Zorunlu",
+        "location": "İstanbul",
+        "desc": "Otomasyon ve kontrol yazılımı projelerine katkıda bulundum; donanım-yazılım etkileşimi ve endüstriyel otomasyon sistemleri konusunda uygulamalı deneyim kazandım.",
+        "stack": [
+          "Python",
+          "Otomasyon",
+          "Kontrol Sistemleri"
+        ]
+      }
+    ],
+    "certs": [
+      {
+        "title": "Full-Stack Web Geliştirme Bootcamp",
+        "issuer": "Udemy — The London App Brewery",
+        "instructor": "Dr. Angela Yu",
+        "year": "2025",
+        "link": "https://www.udemy.com/certificate/UC-3571ac3d-f2eb-450c-8bfb-f20307b67fe5/"
+      },
+      {
+        "title": "100 Günde Kod: Python Pro Bootcamp",
+        "issuer": "Udemy — The London App Brewery",
+        "instructor": "Dr. Angela Yu",
+        "year": "2025",
+        "link": "https://www.udemy.com/certificate/UC-a5f188de-ca1a-4d3e-bac3-bdfcf29fee17/"
+      },
+      {
+        "title": "İngilizce Yeterlilik Sertifikası",
+        "issuer": "English Time",
+        "instructor": "",
+        "year": "2017",
+        "link": "https://drive.google.com/file/d/1dZ47TxvbpzkLV7CSKtXfNUwBS5oJLT86/view"
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Yetenekler",
+    "hint": "her kartın bir sırrı var — üzerine gel ve gör",
+    "services_heading": "Hizmetler",
+    "stacks": {
+      "languages": "Programlama Dilleri",
+      "backend": "Backend",
+      "databases": "Veritabanları",
+      "frontend": "Frontend",
+      "data": "Veri & Analitik",
+      "devops": "Araçlar & DevOps"
+    },
+    "services": [
+      {
+        "number": "01",
+        "name": "Backend Muhendisligi",
+        "description": "Node.js, Express.js ve Python kullanarak olceklenebilir RESTful API'lar ve sunucu tarafli sistemler gelistiriyorum — kimlik dogrulama, veritabani tasarimi ve production konuslandirma konusunda guclu bir deneyimim var.",
+        "tags": [
+          "Node.js",
+          "Express.js",
+          "Python",
+          "REST API"
+        ]
+      },
+      {
+        "number": "02",
+        "name": "Frontend & Web",
+        "description": "React.js, Next.js ve TypeScript ile modern, duyarli arayuzler tasarliyorum. Temiz komponent mimarisine ve kesintisiz kullanici deneyimine odaklaniyorum.",
+        "tags": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "number": "03",
+        "name": "Mobil Uygulamalar",
+        "description": "Flutter ile cok platformlu mobil uygulamalar gelistiriyorum — yerel entegrasyonlar, uygulama ici satin alma ve cok dil destegi dahil, hepsi production'da konuslandirilmis.",
+        "tags": [
+          "Flutter",
+          "Dart",
+          "iOS",
+          "Android"
+        ]
+      },
+      {
+        "number": "04",
+        "name": "Veri & Otomasyon",
+        "description": "Python, Pandas ve NumPy kullanarak veri analizi ve otomasyon scriptleri yaziyorum — production ortamlarinda manuel is yukunu yaklasik %30 azalttim.",
+        "tags": [
+          "Pandas",
+          "NumPy",
+          "Python",
+          "Otomasyon"
+        ]
+      },
+      {
+        "number": "05",
+        "name": "Veritabanlari & DevOps",
+        "description": "MongoDB, PostgreSQL, MySQL ve Supabase ile uygulamali calisiyorum. Ayrica Docker, Git is akislari, Firebase Functions ve CI/CD pipeline'larini yonetiyorum.",
+        "tags": [
+          "PostgreSQL",
+          "MongoDB",
+          "Docker",
+          "GitHub Actions"
+        ]
+      }
+    ],
+    "cards": {
+      "c1": "Full-stack gelistirme icin birincil dil. <span class=\"hl\">React, Next.js, Node.js</span> ve <span class=\"hl\">Express</span> kod tabanlarini tip guvenli, olceklenebilir mimaryle destekliyor.",
+      "c2": "<span class=\"hl\">Node.js, Express.js</span>, RESTful API'lar ve Firebase Functions ile backend sistemleri. Uretimde konuslandirilmis performansli sunucu tarafi servisler.",
+      "c3": "<span class=\"hl\">React.js</span> ve <span class=\"hl\">Next.js</span> ile komponent tabanli UI. Tailwind CSS, HTML5 ve CSS3 ile duyarli, yuksek performansli web uygulamalari.",
+      "c4": "Scripting, veri pipeline'lari ve otomasyon. Analiz icin <span class=\"hl\">Pandas</span> ve <span class=\"hl\">NumPy</span>; backend icin <span class=\"hl\">FastAPI</span>; yapay zeka is akislari icin LangChain.",
+      "c5": "Uctan uca urun muhendisligi — <span class=\"hl\">Python, TypeScript, React, Node.js</span>, PostgreSQL, MongoDB, Docker ve Flutter. Mimariden canli konuslandirmaya.",
+      "c6": "<span class=\"hl\">MongoDB, PostgreSQL, MySQL</span> ve <span class=\"hl\">Supabase</span> genelinde veritabani tasarimi. Satir duzeyinde guvenlik, gercek zamanli abonelikler ve uretim kaliteli migrasyonlar.",
+      "c7": "MKG'de uretimde Flutter uygulamasi. <span class=\"hl\">Supabase backend</span>, iOS widget, 17 dil ile gercek zamanli personel takibi — sahada gunluk kullanim.",
+      "c8": "<span class=\"hl\">Docker</span> konteyner orkestrasyon, CI/CD pipeline'lari, Git is akislari ve bulut konuslandirmalari. Yerel gelistirmeden canli uretime.",
+      "c9": "<span class=\"hl\">React Native</span> ile cok platformlu mobil, MobX durum yonetimi, IAP monetizasyon, Google Reklamlari ve yerel <span class=\"hl\">Node.js</span> kopru entegrasyonlari."
+    },
+    "hint_mobile": "her kartın bir sırrı var — köşelere dokun ve gör"
+  },
+  "projects": {
+    "heading": "Projeler",
+    "labels": {
+      "overview": "Genel Bakış",
+      "highlights": "Öne Çıkanlar"
+    },
+    "status": {
+      "Production": "Üretimde",
+      "Active": "Aktif",
+      "Completed": "Tamamlandı"
+    },
+    "det": {
+      "01": {
+        "desc": "Turk kargo firmalarini tek API altinda toplayan lojistik MVP. Tek istekte tum firmalardan sirali fiyat/sure doner. Musteri secer, sistem otomatik rezervasyon yapar.",
+        "hi": [
+          "Paralel firma sorgulari, normalize yanit semasi",
+          "Onay akisiyla otomatik rezervasyon pipeline",
+          "Tum firmalar arasi birlesik GPS takibi",
+          "Firma yonetimi ve gecmis admin paneli",
+          "Kurumsal coklu gonderi Excel aktarma"
+        ]
+      },
+      "02": {
+        "desc": "OpenRouter yapay zeka destekli gelismis guvenlik acigi tarayicisi. 150+ istek/sn, %3.2 yanlis pozitif. WAF atlama ve adaptif gizlilikle 10+ zafiyet sinifinda kapsamli tespit.",
+        "hi": [
+          "833-payload WAF bypass mutasyon motoru",
+          "GPT-4 / Claude / Llama 3 yapay zeka triyaji",
+          "SQLi, XSS, CSRF, SSRF, LFI, XXE tespiti",
+          "CT log sayimiyla alt alan adi kesfi",
+          "%75+ test kapsami, 320+ senaryo"
+        ]
+      },
+      "03": {
+        "desc": "Tibbi urun ve ticaret sirketleri icin tam CRM — musteri yonetimi, satis hatti, envanter, faturalandirma, finansal analitik ve is akisi otomasyonu. Gercek zamanli WebSocket bildirimler.",
+        "hi": [
+          "5 izin seviyesiyle rol tabanli erisim",
+          "Gercek zamanli KPI panosu ve satis hunisi",
+          "PDF/Excel ciktili otomatik faturalandirma",
+          "WebSocket canli bildirimler",
+          "Zamana dayali is akisi otomasyonu"
+        ]
+      },
+      "04": {
+        "desc": "Gercek zamanli Firebase senkronizasyonu, Three.js 3D molekuler gorsellestirimler ve tam RTL destekli cok dilli sertifika yonetimi iceren kimyasal urun platformu.",
+        "hi": [
+          "Three.js WebGL ile 3D molekuler gorsellestirme",
+          "onSnapshot ile Firestore senkronizasyon",
+          "Cok dilli SDS/COA/MSDS sertifika yonetimi",
+          "CAS no, SKU, formul, marka aramalari",
+          "Guvenli rol tabanli admin paneli"
+        ]
+      },
+      "05": {
+        "desc": "Cihazda JIMP goruntu isleme icin yerel Node.js koprusu olan iOS/Android depolama temizleyici. Yinelenen fotograflari tespit eder, IAP premium paketler, 17+ dil, Google Reklam, iOS widget.",
+        "hi": [
+          "GPU goruntu analizi icin yerel Node.js koprusu",
+          "Paylasilan App Group depolu iOS widget",
+          "6 sehir temali premium IAP paket",
+          "Google Mobile Ads odul ve gecis",
+          "Her yerde Lottie animasyonlari"
+        ]
+      },
+      "06": {
+        "desc": "Cok borsali kripto icin dusuk gecikmeli otomatik HFT sistemi. Sistematik risk yonetimi, minimum kayma hedeflemesi ve gercek zamanli K/Z takibi ile yapilandirilabilir stop-loss.",
+        "hi": [
+          "Milisaniye alti WebSocket emir defteri alimi",
+          "Cok borsa birlesik emir soyutlamasi",
+          "Risk kontrolleriyle dinamik pozisyon boyutu",
+          "Gercek zamanli K/Z panosu ve dusus izleme",
+          "Geriye donuk test destekli strateji"
+        ]
+      },
+      "07": {
+        "desc": "Freqtrade uzerinde uretim kaliteli otomatik alim satim botu. Ozel TA-Lib strateji mantigi, OHLCV geriye donuk test, canli alim satim ve performans panosu — Docker konteynerli.",
+        "hi": [
+          "TA-Lib gostergeli ozel strateji",
+          "Gecmis OHLCV verilerinde tam geriye donuk test",
+          "Docker konteynerli cok ortam dagitimi",
+          "Hyperopt parametre optimizasyonu",
+          "Canli islemler icin Telegram entegrasyonu"
+        ]
+      },
+      "08": {
+        "desc": "TUBiTAK BiLGEM stajinda Agrobot projesi icin gelistirilen Ar-Ge drone veri izleme frontend. Arastirmacilar icin drone kaynakli saha verilerini otomatik olarak ceker ve gorsellestiriyor.",
+        "hi": [
+          "Gercek zamanli drone telemetri gorsellestirmesi",
+          "Otomatik backend API veri cekme",
+          "Resmi Ar-Ge ortaminda gelistirildi",
+          "Saha kullanimi icin React duyarli pano",
+          "TUBiTAK Agrobot pipeline entegrasyonu"
+        ]
+      },
+      "09": {
+        "desc": "MKG Elektromekanik icin dijital donusum paketi. Tedarikci verilerinden otomatik faturalandirma ve Flutter personel takip uygulamasi — her ikisi uretimde aktif kullanim.",
+        "hi": [
+          "Kaziman katalogdan otomatik fatura",
+          "Sirket cihazlarinda Flutter personel uygulama",
+          "Supabase gercek zamanli PostgreSQL backend",
+          "Manuel is yukunu onemli olcude azaltti",
+          "ERP ve tedarikci akislariyla entegre"
+        ]
+      },
+      "10": {
+        "desc": "Buyuk olcekte urun verisi cikaran otomatik AliExpress kazima pipeline. MKG otomatik faturalandirmasini guncel katalogla destekliyor.",
+        "hi": [
+          "Yuksek verimli AliExpress urun cikartma",
+          "Kategori siniflandirmali veri normallestirme",
+          "Dahili veritabanina sema esleme",
+          "Proxy rotasyonlu kazima",
+          "Dogrudan MKG faturalandirma beslemesi"
+        ]
+      },
+      "11": {
+        "desc": "Next.js App Router ve Supabase ile gercek zamanli envanter takip uygulamasi. Canli stok izleme, urun yonetimi ve operasyonel ekipler icin anlik guncelleme.",
+        "hi": [
+          "Supabase canli aboneliklerle stok takibi",
+          "Kategori filtrelemeli urun katalogu",
+          "Next.js App Router sunucu bilesenli",
+          "Depo ekipleri icin rol tabanli erisim",
+          "Mobil duyarli depo kullanimi"
+        ]
+      },
+      "12": {
+        "desc": "Aura kreatif studyo icin modern animasyon oncelikli ajans sitesi. Akici CSS animasyonlari, tamamen duyarli tasarim ve rafine marka kimligi. Aktif olarak canli ve bakim yapiliyor.",
+        "hi": [
+          "Akici scroll CSS animasyonlari",
+          "Mobilden ultra genis ekrana tam duyarli",
+          "Ozel tipografi ile marka kimligi",
+          "Optimize varliklarla hizli teslimat",
+          "Canli ve aktif bakim sureci"
+        ]
+      },
+      "13": {
+        "desc": "Hasta randevu akisi, uzmanlik filtreli doktor arama, gercek zamanli musaitlik takibi ve klinik personel admin arayuzu iceren doktor randevu web uygulamasi.",
+        "hi": [
+          "Filtreli hasta doktor arama",
+          "Gercek zamanli randevu musaitlik takibi",
+          "Klinik personeli icin admin panosu",
+          "MongoDB randevu ve hasta veri modeli",
+          "JWT kimlik dogrulamali Express.js REST API"
+        ]
+      },
+      "14": {
+        "desc": "GPU hizlandirmali WebGL canvas animasyonlariyla gorsek acidan iddiali 3D web deneyimi — yuksek voltajli elektrik ark efektleri, parcacik sistemleri ve 60fps dinamik aydinlatma.",
+        "hi": [
+          "Ozel shader GPU hizlandirmali WebGL",
+          "Yuksek voltajli elektrik ark efektleri",
+          "Dinamik aydinlatma ve bloom isleme",
+          "requestAnimationFrame ile 60fps",
+          "Sifir bagimlilikli WebGL pipeline"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "connect": "İLETİŞİME GEÇ",
+    "reach": "{{platform}} üzerinden bana ulaşabilirsiniz. Birlikte bir proje geliştirmek, aklınızdaki bir fikri konuşmak ya da sadece merhaba demek için — her zaman buradayım.",
+    "slides": [
+      {
+        "title": "GITHUB",
+        "detail": "github.com/BerhudanBascan"
+      },
+      {
+        "title": "LINKEDIN",
+        "detail": "linkedin.com/in/berhudan-başcan"
+      },
+      {
+        "title": "E-POSTA",
+        "detail": "berhudanbascan@gmail.com"
+      },
+      {
+        "title": "TELEFON",
+        "detail": "+90 533 679 71 68"
+      }
+    ]
+  }
+}

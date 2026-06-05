@@ -1,0 +1,104 @@
+import { useEffect, useRef, useState } from 'react'
+
+const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee/${String(i + 1).padStart(2, '0')}.gif`)
+const ROW1 = IMAGES.slice(0, 11)
+const ROW2 = IMAGES.slice(11)
+
+export default function MarqueeSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [tileW, setTileW] = useState(440)
+  const [tileH, setTileH] = useState(280)
+  const [progress, setProgress] = useState(0)
+  const [innerVw, setInnerVw] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      setInnerVw(w)
+      if (w < 480) { setTileW(240); setTileH(154) }
+      else if (w < 768) { setTileW(320); setTileH(205) }
+      else if (w < 1024) { setTileW(380); setTileH(244) }
+      else { setTileW(440); setTileH(280) }
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = containerRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const total = el.offsetHeight - window.innerHeight
+      setProgress(Math.max(0, Math.min(1, -rect.top / total)))
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const gap = 16
+  const row1W = ROW1.length * (tileW + gap)
+  const row2W = ROW2.length * (tileW + gap)
+  const maxShift = Math.max(row1W, row2W) - innerVw + 48
+
+  const ease = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2
+  const shift1 = ease * maxShift
+  // const shift2 = ease * maxShift
+
+  return (
+    <section
+      ref={containerRef}
+      style={{ height: `${Math.max(row1W, row2W) + window.innerHeight}px`, position: 'relative' }}
+    >
+      <div style={{
+        position: 'sticky', top: 0,
+        height: '100vh', overflow: 'hidden',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        gap: 14,
+      }}>
+
+        {/* Top label */}
+        <div style={{
+          position: 'absolute', top: 'clamp(28px, 5vh, 52px)', left: 0, right: 0,
+          display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16,
+          pointerEvents: 'none',
+        }}>
+          <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
+          <span style={{ color: 'var(--fg-28)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase' }}>
+            Selected Work
+          </span>
+          <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
+        </div>
+
+        {/* Row 1 — scrolls left */}
+        <div style={{ display: 'flex', gap, paddingLeft: 24, transform: `translateX(${-shift1}px)`, willChange: 'transform', transition: 'transform 0.08s linear' }}>
+          {ROW1.map((src, i) => (
+            <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
+              <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 2 — scrolls right */}
+        <div style={{ display: 'flex', gap, paddingLeft: 24, transform: `translateX(${(ease - 1) * maxShift}px)`, willChange: 'transform', transition: 'transform 0.08s linear' }}>
+          {ROW2.map((src, i) => (
+            <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
+              <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Edge fade masks */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(to right, var(--bg) 0%, transparent 8%, transparent 92%, var(--bg) 100%)' }} />
+        {/* Bottom progress indicator */}
+        <div style={{ position: 'absolute', bottom: 'clamp(20px, 4vh, 40px)', left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+          <div style={{ width: 120, height: 2, borderRadius: 999, background: 'var(--fg-08)', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${progress * 100}%`, background: 'var(--fg-35)', borderRadius: 999, transition: 'width 0.1s linear' }} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

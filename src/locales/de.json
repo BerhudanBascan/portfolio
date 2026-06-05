@@ -1,0 +1,438 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "experience": "Erfahrung",
+    "skills": "Fähigkeiten",
+    "services": "Leistungen",
+    "projects": "Projekte",
+    "contact": "Kontakt"
+  },
+  "loading": {
+    "hey": "Hey."
+  },
+  "contact_btn": "Kontakt aufnehmen",
+  "hero": {
+    "tagline": "Ich entwickle skalierbare Backends, liefere echte Produkte und schreibe Code, der wirklich funktioniert.",
+    "name": "Hi, ich bin Berhudan"
+  },
+  "about": {
+    "heading": "Über mich",
+    "bio": "Ich bin ein 2001 geborener Softwareingenieur mit einem Abschluss in Informatik von der Sakarya-Universität. Mit über 3 Jahren Erfahrung in der Entwicklung von Produktionssystemen habe ich alles gebaut — von RESTful APIs und Automatisierungstools bis hin zu plattformübergreifenden mobilen Apps und Datenpipelines — stets mit Fokus auf saubere Architektur und echten Mehrwert. Als Perfektionist bin ich offen für neue Möglichkeiten.",
+    "stats": {
+      "years": "3+",
+      "years_label": "Jahre Erfahrung",
+      "projects": "14+",
+      "projects_label": "Projekte geliefert",
+      "gpa": "3.02",
+      "gpa_label": "Notendurchschnitt",
+      "graduated": "2025",
+      "graduated_label": "Abschluss"
+    },
+    "hobbies": [
+      "Programmierung",
+      "Muay Thai",
+      "Fitness",
+      "Gaming",
+      "Musik",
+      "Reisen",
+      "Fotografie",
+      "Kaffee"
+    ]
+  },
+  "experience": {
+    "heading": "Erfahrung",
+    "tabs": {
+      "work": "Arbeit",
+      "intern": "Praktika",
+      "certs": "Zertifikate"
+    },
+    "work": [
+      {
+        "role": "Softwareingenieur",
+        "company": "MKG Elektromekanik",
+        "period": "Dez 2025 – Heute",
+        "location": "Istanbul, Türkei",
+        "bullets": [
+          "Ich habe die digitale Transformation geleitet und alle internen Systeme von Grund auf aufgebaut",
+          "Ich habe ein automatisiertes Rechnungssystem entwickelt, das Lieferantendaten verarbeitet",
+          "Ich habe eine Personalverfolgungsapp gebaut, die täglich im Produktionsbetrieb genutzt wird"
+        ],
+        "stack": [
+          "Python",
+          "TypeScript",
+          "Flutter",
+          "Supabase",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "role": "Softwareingenieur",
+        "company": "Future Wave",
+        "period": "Feb 2024 – Heute",
+        "location": "Remote",
+        "bullets": [
+          "Ich habe Backend-Dienste und RESTful APIs für internationale Kunden entwickelt",
+          "Ich habe Authentifizierungsflows und Datenbankintegrationen implementiert",
+          "Ich habe Produktionsanwendungen end-to-end bereitgestellt und gewartet"
+        ],
+        "stack": [
+          "Node.js",
+          "Python",
+          "React",
+          "MongoDB",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "role": "Einkauf & Lager",
+        "company": "Hyatt Regency",
+        "period": "Jun 2022 – Okt 2022",
+        "location": "Bellevue, USA",
+        "bullets": [
+          "Ich habe die Einkaufs- und Lagerprozesse im Hyatt Regency Bellevue unterstützt",
+          "Ich habe in einem internationalen, englischsprachigen Umfeld gearbeitet"
+        ],
+        "stack": [
+          "Betrieb",
+          "Lagerverwaltung"
+        ]
+      },
+      {
+        "role": "Softwareentwickler",
+        "company": "FairMount Quasar",
+        "period": "Okt 2022 – Feb 2024",
+        "location": "Istanbul, Türkei",
+        "bullets": [
+          "Ich habe Backend-fokussierte Webanwendungen und interne Tools entwickelt",
+          "Meine Automatisierungsskripte haben den manuellen Aufwand um ~30% reduziert",
+          "Ich habe direkt mit Kunden zusammengearbeitet und maßgeschneiderte Lösungen geliefert"
+        ],
+        "stack": [
+          "Node.js",
+          "Python",
+          "MongoDB",
+          "PostgreSQL"
+        ]
+      }
+    ],
+    "internships": [
+      {
+        "role": "Softwareentwickler-Praktikant",
+        "company": "TÜBİTAK BİLGEM",
+        "type": "Pflichtpraktikum",
+        "location": "Gebze / Kocaeli",
+        "desc": "Im Rahmen des Agrobot-F&E-Projekts habe ich das komplette Frontend-System zur automatischen Darstellung und Überwachung landwirtschaftlicher Drohnendaten selbst aufgebaut.",
+        "stack": [
+          "React",
+          "TypeScript",
+          "REST API"
+        ]
+      },
+      {
+        "role": "Data-Science-Praktikant",
+        "company": "Bosphorus Analytica",
+        "type": "Freiwillig",
+        "location": "Istanbul",
+        "desc": "Ich habe Python-basierte Datenanalyse und -vorverarbeitung unterstützt und explorative Analyseaufgaben für laufende Forschungsprojekte durchgeführt.",
+        "stack": [
+          "Python",
+          "Pandas",
+          "NumPy"
+        ]
+      },
+      {
+        "role": "Automatisierungsentwickler-Praktikant",
+        "company": "Oraklar Software",
+        "type": "Pflichtpraktikum",
+        "location": "Istanbul",
+        "desc": "Ich habe an Automatisierungs- und Steuerungssoftware-Projekten mitgearbeitet und dabei praktische Erfahrung in Hardware-Software-Interaktion und industriellen Automatisierungssystemen gesammelt.",
+        "stack": [
+          "Python",
+          "Automatisierung",
+          "Steuerungssysteme"
+        ]
+      }
+    ],
+    "certs": [
+      {
+        "title": "Full-Stack-Webentwicklung Bootcamp",
+        "issuer": "Udemy — The London App Brewery",
+        "instructor": "Dr. Angela Yu",
+        "year": "2025",
+        "link": "https://www.udemy.com/certificate/UC-3571ac3d-f2eb-450c-8bfb-f20307b67fe5/"
+      },
+      {
+        "title": "100 Tage Code: Python Pro Bootcamp",
+        "issuer": "Udemy — The London App Brewery",
+        "instructor": "Dr. Angela Yu",
+        "year": "2025",
+        "link": "https://www.udemy.com/certificate/UC-a5f188de-ca1a-4d3e-bac3-bdfcf29fee17/"
+      },
+      {
+        "title": "Englisch-Sprachzertifikat",
+        "issuer": "English Time",
+        "instructor": "",
+        "year": "2017",
+        "link": "https://drive.google.com/file/d/1dZ47TxvbpzkLV7CSKtXfNUwBS5oJLT86/view"
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Fähigkeiten",
+    "hint": "fahre über die Kartenecken um mehr zu sehen",
+    "services_heading": "Leistungen",
+    "stacks": {
+      "languages": "Programmiersprachen",
+      "backend": "Backend",
+      "databases": "Datenbanken",
+      "frontend": "Frontend",
+      "data": "Daten & Analytik",
+      "devops": "Tools & DevOps"
+    },
+    "services": [
+      {
+        "number": "01",
+        "name": "Backend-Engineering",
+        "description": "Ich entwickle skalierbare RESTful APIs und serverseitige Systeme mit Node.js, Express.js und Python — mit solider Erfahrung in Authentifizierung, Datenbankdesign und Produktionsbereitstellung.",
+        "tags": [
+          "Node.js",
+          "Express.js",
+          "Python",
+          "REST APIs"
+        ]
+      },
+      {
+        "number": "02",
+        "name": "Frontend & Web",
+        "description": "Ich gestalte moderne, responsive Oberflachen mit React.js, Next.js und TypeScript. Mein Fokus liegt auf sauberer Komponentenarchitektur und reibungslosen Nutzererfahrungen.",
+        "tags": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "number": "03",
+        "name": "Mobile Apps",
+        "description": "Ich entwickle plattformubergreifende Apps mit Flutter — von nativen Integrationen uber IAP-Monetarisierung bis zur Mehrsprachigkeit, alles in Produktion eingefuhrt.",
+        "tags": [
+          "Flutter",
+          "Dart",
+          "iOS",
+          "Android"
+        ]
+      },
+      {
+        "number": "04",
+        "name": "Daten & Automatisierung",
+        "description": "Ich schreibe Datenanalyse- und Automatisierungsskripte mit Python, Pandas und NumPy — in Produktionsumgebungen habe ich den manuellen Aufwand um ca. 30% reduziert.",
+        "tags": [
+          "Pandas",
+          "NumPy",
+          "Python",
+          "Automatisierung"
+        ]
+      },
+      {
+        "number": "05",
+        "name": "Datenbanken & DevOps",
+        "description": "Ich arbeite praktisch mit MongoDB, PostgreSQL, MySQL und Supabase. Ausserdem verwalte ich Docker-Setups, Git-Workflows, Firebase Functions und CI/CD-Pipelines.",
+        "tags": [
+          "PostgreSQL",
+          "MongoDB",
+          "Docker",
+          "GitHub Actions"
+        ]
+      }
+    ],
+    "cards": {
+      "c1": "Hauptsprache fuer Full-Stack-Entwicklung. Treibt <span class=\"hl\">React, Next.js, Node.js</span> und <span class=\"hl\">Express</span> mit typensicherer, skalierbarer Architektur an.",
+      "c2": "Backend-Systeme mit <span class=\"hl\">Node.js, Express.js</span>, RESTful APIs und Firebase Functions. Leistungsstarke serverseitige Dienste in Produktion.",
+      "c3": "Komponentengetriebene UI mit <span class=\"hl\">React.js</span> und <span class=\"hl\">Next.js</span>. Tailwind CSS, HTML5 und CSS3 fuer responsive, hochleistungsfahige Webanwendungen.",
+      "c4": "Scripting, Datenpipelines und Automatisierung. <span class=\"hl\">Pandas</span> und <span class=\"hl\">NumPy</span> fuer Analyse; <span class=\"hl\">FastAPI</span> fuer Backend; LangChain fuer KI-Workflows.",
+      "c5": "End-to-End-Produktentwicklung — <span class=\"hl\">Python, TypeScript, React, Node.js</span>, PostgreSQL, MongoDB, Docker und Flutter. Von der Architektur bis zur Live-Bereitstellung.",
+      "c6": "Datenbankdesign mit <span class=\"hl\">MongoDB, PostgreSQL, MySQL</span> und <span class=\"hl\">Supabase</span>. Sicherheit auf Zeilenebene, Echtzeit-Abonnements und Migrationen.",
+      "c7": "Flutter-App bei MKG in Produktion. Echtzeit-Personalverfolgung mit <span class=\"hl\">Supabase Backend</span>, iOS-Widget, 17 Sprachen — taeglich im Einsatz.",
+      "c8": "<span class=\"hl\">Docker</span>-Containerorchestrierung, CI/CD-Pipelines, Git-Workflows und Cloud-Deployments. Von lokaler Entwicklung bis zur Live-Infrastruktur.",
+      "c9": "Plattformubergreifend mobil mit <span class=\"hl\">React Native</span>, MobX State Management, IAP-Monetarisierung, Google Ads und nativen <span class=\"hl\">Node.js</span>-Bridge-Integrationen."
+    },
+    "hint_mobile": "tippe die Kartenecken um mehr zu sehen"
+  },
+  "projects": {
+    "heading": "Projekte",
+    "labels": {
+      "overview": "Überblick",
+      "highlights": "Highlights"
+    },
+    "status": {
+      "Production": "Produktion",
+      "Active": "Aktiv",
+      "Completed": "Abgeschlossen"
+    },
+    "det": {
+      "01": {
+        "desc": "Logistik-MVP das turkische Frachtanbieter unter einer API zusammenfasst. Eine Anfrage liefert sortierte Preise aller Anbieter. Kunde wahlt, System bucht automatisch, Echtzeit-Tracking vereint.",
+        "hi": [
+          "Parallele Anfragen, normiertes Antwortschema",
+          "Automatisiertes Buchungs-Pipeline",
+          "Einheitliches GPS-Tracking",
+          "Admin-Panel fur Anbieterverwaltung",
+          "Massen-Excel-Import fur Unternehmen"
+        ]
+      },
+      "02": {
+        "desc": "Fortgeschrittener Sicherheitsscanner mit KI-Analyse uber OpenRouter. 150+ Req/Sek, 3,2% Falschpositivrate. WAF-Umgehung mit adaptiver Tarnung. Erkennung in 10+ Schwachstellenklassen.",
+        "hi": [
+          "833-Payload WAF-Bypass-Mutationsmotor",
+          "KI-Triage via GPT-4 / Claude / Llama 3",
+          "Erkennt SQLi, XSS, CSRF, SSRF, LFI, XXE",
+          "Subdomain-Entdeckung uber CT-Logs",
+          "75%+ Testabdeckung, 320+ Testfalle"
+        ]
+      },
+      "03": {
+        "desc": "Vollstandiges CRM fur Medizinprodukt- und Handelsunternehmen. Kundenverwaltung, Vertriebspipeline, Lager, Rechnungsstellung, Finanzanalyse und Workflow-Automatisierung mit Glassmorphism-UI.",
+        "hi": [
+          "Rollenbasierter Zugang mit 5 Berechtigungsstufen",
+          "Echtzeit-KPI-Dashboard und Verkaufstrichter",
+          "Automatische Rechnungsstellung PDF/Excel",
+          "WebSocket-Live-Benachrichtigungen",
+          "Zeitbasierter Workflow-Automatisierungsmotor"
+        ]
+      },
+      "04": {
+        "desc": "Chemisches Produktportal mit Echtzeit-Firebase-Sync, interaktiven 3D-Molekulvisualisierungen via Three.js und mehrsprachiger Zertifikatverwaltung (TR/EN/AR) mit RTL-Unterstutzung.",
+        "hi": [
+          "3D-Molekulvisualisierung mit Three.js WebGL",
+          "Echtzeit-Firestore-Sync mit onSnapshot",
+          "Mehrsprachige SDS/COA/MSDS-Verwaltung",
+          "Suche nach CAS-Nr., SKU, Formel, Marke",
+          "Sicheres rollenbasiertes Admin-Panel"
+        ]
+      },
+      "05": {
+        "desc": "iOS/Android-Speicherbereiniger mit nativer Node.js-Bridge fur JIMP-Bildverarbeitung. Erkennt Duplikate, IAP-Premium-Pakete, 17+ Sprachen, Google Ads und iOS-Widget.",
+        "hi": [
+          "Native Node.js-Bridge fur GPU-Bildanalyse",
+          "iOS-Widget mit App-Group-Speicher",
+          "IAP mit 6 stadtethematischen Paketen",
+          "Google Mobile Ads Belohnung und Interstitial",
+          "Lottie-Animationen durchgehend"
+        ]
+      },
+      "06": {
+        "desc": "Automatisiertes HFT-System mit niedriger Latenz fur Multi-Exchange-Krypto. WebSocket-Datenfeeds, systematisches Risikomanagement, minimale Slippage und konfigurierbares Stop-Loss.",
+        "hi": [
+          "Sub-Millisekunden WebSocket-Orderbuch",
+          "Einheitliche Multi-Exchange-Orderabstraktion",
+          "Dynamische Positionierung mit Risikokontrollen",
+          "Echtzeit P&L-Dashboard und Drawdown",
+          "Konfigurierbare Strategie mit Backtesting"
+        ]
+      },
+      "07": {
+        "desc": "Automatisierter Trading-Bot auf Freqtrade in Produktionsqualitat. Benutzerdefinierte TA-Lib-Strategie, OHLCV-Backtesting, Live-Ausfuhrung und Leistungs-Dashboard Docker-containerisiert.",
+        "hi": [
+          "Benutzerdefinierte Strategie mit TA-Lib",
+          "Vollstandiges Backtesting auf historischen Daten",
+          "Docker Multi-Umgebungs-Deployment",
+          "Hyperopt-Parameteroptimierung",
+          "Telegram-Integration fur Live-Alarme"
+        ]
+      },
+      "08": {
+        "desc": "F&E-Drohnen-Daten-Frontend beim TUBiTAK BiLGEM-Praktikum fur das Agrobot-Projekt. Ruft automatisch drohnenbasierte Felddaten ab und visualisiert sie fur Forscher und Feldbauingenieure.",
+        "hi": [
+          "Echtzeit-Drohnentelemetrie-Visualisierung",
+          "Automatischer Backend-API-Datenabruf",
+          "In formalem F&E-Umfeld entwickelt",
+          "React-responsives Feld-Dashboard",
+          "Integration in TUBiTAK Agrobot-Pipeline"
+        ]
+      },
+      "09": {
+        "desc": "Digitales Transformationspaket fur MKG Elektromekanik. Automatische Rechnungsstellung aus Lieferantendaten und Flutter-Personalverfolgungsapp — beide aktiv in Tagesproduktion.",
+        "hi": [
+          "Automatische Rechnungsgenerierung aus Katalog",
+          "Flutter-Personalapp auf Unternehmensgeraten",
+          "Supabase Echtzeit-PostgreSQL-Backend",
+          "Manuelle Arbeitslast erheblich reduziert",
+          "Integration mit ERP und Lieferantendaten"
+        ]
+      },
+      "10": {
+        "desc": "Automatisierte AliExpress-Scraping-Pipeline zur Extraktion und Normalisierung von Produktdaten im grossen Mastab. Beliefert MKG-Rechnungsstellung mit aktuellem Katalog.",
+        "hi": [
+          "Hochdurchsatz AliExpress-Extraktion",
+          "Datennormalisierung mit Kategorisierung",
+          "Schema-Mapping zur Produktdatenbank",
+          "Ratenbegrenzungsbewusstes Scraping",
+          "Direkteinspeisung in MKG-Pipeline"
+        ]
+      },
+      "11": {
+        "desc": "Echtzeit-Bestandsverfolgungsapp mit Next.js App Router und Supabase. Live-Bestandsuberwachung, Produktverwaltung und Sofortaktualisierungen fur operative Teams.",
+        "hi": [
+          "Echtzeit-Bestand via Supabase-Abonnements",
+          "Produktkatalog mit Kategoriefilterung",
+          "Next.js App Router mit Server-Komponenten",
+          "Rollenbasierter Zugang fur Lagerteams",
+          "Mobile-responsive fur Lagereinsatz"
+        ]
+      },
+      "12": {
+        "desc": "Moderner animationsbetonter Agentur-Webauftritt fur Aura Creative Studio. Flussige CSS-Animationen, vollstandig responsives Layout und verfeinerte Markenidentitat. Live und aktiv gepflegt.",
+        "hi": [
+          "Flussige scroll-getriebene CSS-Animationen",
+          "Vollstandig responsiv bis Ultra-Wide",
+          "Markenidentitat mit benutzerdefinierter Typografie",
+          "Schnelle statische Auslieferung",
+          "Live und aktiv in Produktion"
+        ]
+      },
+      "13": {
+        "desc": "Arzttermin-Webapp mit patientenseitigem Buchungsablauf, Arztsuche mit Spezialisierungsfiltern, Echtzeit-Verfugbarkeitsverfolgung und Admin-Interface fur Klinikpersonal.",
+        "hi": [
+          "Patientenseitige Arztsuche mit Filtern",
+          "Echtzeit-Terminverfugbarkeit",
+          "Admin-Dashboard fur Klinikpersonal",
+          "MongoDB Termin- und Patientenmodell",
+          "JWT-Auth Express.js REST API"
+        ]
+      },
+      "14": {
+        "desc": "Visuell ambitioniertes 3D-Weberlebnis mit GPU-beschleunigten WebGL-Canvas-Animationen — Hochspannungs-Lichtbogeneffekte, Partikelsysteme und dynamische Beleuchtung bei 60fps.",
+        "hi": [
+          "GPU-beschleunigtes WebGL mit Shadern",
+          "Hochspannungs-Lichtbogeneffekte",
+          "Dynamische Beleuchtung und Bloom",
+          "60fps mit requestAnimationFrame",
+          "Zero-Dependency WebGL-Pipeline"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "connect": "KONTAKTIEREN",
+    "reach": "Schreib mir auf {{platform}}. Ob du zusammenarbeiten mochtest, ein Projekt im Kopf hast oder einfach Hallo sagen willst — ich freue mich von dir zu horen.",
+    "slides": [
+      {
+        "title": "GITHUB",
+        "detail": "github.com/BerhudanBascan"
+      },
+      {
+        "title": "LINKEDIN",
+        "detail": "linkedin.com/in/berhudan-başcan"
+      },
+      {
+        "title": "E-MAIL",
+        "detail": "berhudanbascan@gmail.com"
+      },
+      {
+        "title": "TELEFON",
+        "detail": "+90 533 679 71 68"
+      }
+    ]
+  }
+}

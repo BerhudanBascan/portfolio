@@ -1,0 +1,64 @@
+@tailwind base;
+html { scroll-behavior: smooth; }
+@tailwind components;
+@tailwind utilities;
+
+:root[data-theme="dark"] {
+  --bg: #0C0C0C;
+  --card-bg: #141517;
+  --fg: #D7E2EA;
+  --fg-06: rgba(215,226,234,0.06);
+  --fg-08: rgba(215,226,234,0.08);
+  --fg-10: rgba(215,226,234,0.10);
+  --fg-15: rgba(215,226,234,0.15);
+  --fg-18: rgba(215,226,234,0.18);
+  --fg-28: rgba(215,226,234,0.28);
+  --fg-35: rgba(215,226,234,0.35);
+  --fg-40: rgba(215,226,234,0.40);
+  --header-bg: rgba(12,12,12,0.78);
+}
+:root[data-theme="light"] {
+  --bg: #F5F3EF;
+  --card-bg: #ECEAE5;
+  --fg: #1A1A1A;
+  --fg-06: rgba(26,26,26,0.05);
+  --fg-08: rgba(26,26,26,0.08);
+  --fg-10: rgba(26,26,26,0.10);
+  --fg-15: rgba(26,26,26,0.15);
+  --fg-18: rgba(26,26,26,0.18);
+  --fg-28: rgba(26,26,26,0.28);
+  --fg-35: rgba(26,26,26,0.38);
+  --fg-40: rgba(26,26,26,0.45);
+  --header-bg: rgba(245,243,239,0.82);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  background-color: var(--bg, #0C0C0C);
+  font-family: 'Kanit', sans-serif;
+  transition: background-color 0.35s ease;
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="light"] .hero-heading {
+  background: linear-gradient(180deg, #3a3d42 0%, #5a6a7a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
