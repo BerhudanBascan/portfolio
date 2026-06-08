@@ -348,6 +348,7 @@ export default function Header() {
     { label: t('nav.skills'),     href: '#skills' },
     { label: t('nav.services'),   href: '#services' },
     { label: t('nav.projects'),   href: '#projects' },
+    { label: t('nav.hobbies'),    href: '#hobbies' },
     { label: t('nav.contact'),    href: '#contact' },
   ]
 

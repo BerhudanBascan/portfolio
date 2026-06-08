@@ -4,14 +4,29 @@ const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee/${String(i 
 const ROW1 = IMAGES.slice(0, 11)
 const ROW2 = IMAGES.slice(11)
 
+function LazyGif({ src, width, height }: { src: string; width: number; height: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { rootMargin: '0px 120px 0px 120px', threshold: 0 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)', width, height, background: 'var(--fg-06)' }}>
+      {visible && <img src={src} alt="" style={{ width, height, display: 'block', objectFit: 'cover' }} />}
+    </div>
+  )
+}
+
 function MobileMarquee() {
   return (
     <section style={{ padding: '60px 0 48px', position: 'relative', overflow: 'hidden' }}>
       <style>{`
         @keyframes marquee-left  { from { transform: translateX(0) } to { transform: translateX(-50%) } }
         @keyframes marquee-right { from { transform: translateX(-50%) } to { transform: translateX(0) } }
-        .mq-left  { animation: marquee-left  18s linear infinite; display: flex; width: max-content; }
-        .mq-right { animation: marquee-right 22s linear infinite; display: flex; width: max-content; }
+        .mq-left  { animation: marquee-left  22s linear infinite; display: flex; width: max-content; will-change: transform; }
+        .mq-right { animation: marquee-right 26s linear infinite; display: flex; width: max-content; will-change: transform; }
       `}</style>
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginBottom: 24 }}>
@@ -20,25 +35,15 @@ function MobileMarquee() {
         <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
       </div>
 
-      {/* Row 1 — left */}
       <div style={{ overflow: 'hidden', marginBottom: 12 }}>
         <div className="mq-left" style={{ gap: 12 }}>
-          {[...ROW1, ...ROW1].map((src, i) => (
-            <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <img src={src} alt="" loading="lazy" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />
-            </div>
-          ))}
+          {[...ROW1, ...ROW1].map((src, i) => <LazyGif key={i} src={src} width={220} height={140} />)}
         </div>
       </div>
 
-      {/* Row 2 — right */}
       <div style={{ overflow: 'hidden' }}>
         <div className="mq-right" style={{ gap: 12 }}>
-          {[...ROW2, ...ROW2].map((src, i) => (
-            <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <img src={src} alt="" loading="lazy" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />
-            </div>
-          ))}
+          {[...ROW2, ...ROW2].map((src, i) => <LazyGif key={i} src={src} width={220} height={140} />)}
         </div>
       </div>
 

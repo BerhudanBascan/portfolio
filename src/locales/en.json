@@ -5,6 +5,7 @@
     "skills": "Skills",
     "services": "Services",
     "projects": "Projects",
+    "hobbies": "Hobbies",
     "contact": "Contact"
   },
   "loading": {
@@ -434,5 +435,41 @@
         "detail": "+90 533 679 71 68"
       }
     ]
+  },
+  "hobbies": {
+    "section_title": "02 — The Passions",
+    "title_main": "BEYOND",
+    "subtitle_main": "THE CODE.",
+    "caption": "Flawless experiences aren't just built with pixels. The rhythms that fill my life when I disconnect from the screen, the angles captured through the viewfinder, and the passions that recharge my energy.",
+    "software": {
+      "title": "Software",
+      "subtitle": "Architecture & Systems",
+      "desc": "Building the digital products of tomorrow with clean code, scalable systems, and creative solutions."
+    },
+    "coffee": {
+      "title": "Coffee",
+      "subtitle": "Specialty Brewing",
+      "desc": "Seeking perfection in aromas with V60, Aeropress, and freshly roasted single-origin beans."
+    },
+    "muaythai": {
+      "title": "Muay Thai & Fitness",
+      "subtitle": "Strength & Discipline",
+      "desc": "Pushing my limits as a licensed athlete for years, focusing on physical development and building an unwavering loop of discipline."
+    },
+    "photo": {
+      "title": "Photography",
+      "subtitle": "Visual Stories",
+      "desc": "Freezing overlooked moments, light, and composition in time through the viewfinder."
+    },
+    "music": {
+      "title": "Production",
+      "subtitle": "Electronic Music",
+      "desc": "Programming deep bass, rhythmic structures, and inspiring focus frequencies."
+    },
+    "gaming": {
+      "title": "Exploration",
+      "subtitle": "Gaming & Travel",
+      "desc": "Conquering new digital universes and tasting the unknown cultures of the physical world."
+    }
   }
 }

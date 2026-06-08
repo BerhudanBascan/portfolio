@@ -5,6 +5,7 @@
     "skills": "Fähigkeiten",
     "services": "Leistungen",
     "projects": "Projekte",
+    "hobbies": "Hobbies",
     "contact": "Kontakt"
   },
   "loading": {
@@ -434,5 +435,41 @@
         "detail": "+90 533 679 71 68"
       }
     ]
+  },
+  "hobbies": {
+    "section_title": "02 — The Passions",
+    "title_main": "BEYOND",
+    "subtitle_main": "THE CODE.",
+    "caption": "Makellose Erlebnisse entstehen nicht nur aus Pixeln. Die Rhythmen, die mein Leben füllen, wenn ich mich vom Bildschirm trenne, die durch den Sucher eingefangenen Winkel und die Leidenschaften, die meine Energie aufladen.",
+    "software": {
+      "title": "Software",
+      "subtitle": "Architektur & Systeme",
+      "desc": "Die digitalen Produkte von morgen mit sauberem Code, skalierbaren Systemen und kreativen Lösungen bauen."
+    },
+    "coffee": {
+      "title": "Kaffee",
+      "subtitle": "Nischen-Kaffeebrühen",
+      "desc": "Perfektion in Aromen suchen mit V60, Aeropress und frisch gerösteten Bohnen."
+    },
+    "muaythai": {
+      "title": "Muay Thai & Fitness",
+      "subtitle": "Kraft & Disziplin",
+      "desc": "Grenzen überschreiten, körperliche Entwicklung und eine unerschütterliche Fokusschleife aufbauen."
+    },
+    "photo": {
+      "title": "Fotografie",
+      "subtitle": "Visuelle Geschichten",
+      "desc": "Übersehene Momente, Licht und Komposition im Sucher einfangen und in der Zeit einfrieren."
+    },
+    "music": {
+      "title": "Musikproduktion",
+      "subtitle": "Elektronische Musik",
+      "desc": "Tiefe Bässe, rhythmische Strukturen und inspirierende Fokusfrequenzen programmieren."
+    },
+    "gaming": {
+      "title": "Erkundung",
+      "subtitle": "Gaming & Reisen",
+      "desc": "Neue digitale Universen erobern und die unbekannten Kulturen der physischen Welt entdecken."
+    }
   }
 }

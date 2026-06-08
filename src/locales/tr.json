@@ -5,6 +5,7 @@
     "skills": "Yetenekler",
     "services": "Hizmetler",
     "projects": "Projeler",
+    "hobbies": "Tutkular",
     "contact": "İletişim"
   },
   "loading": {
@@ -434,5 +435,41 @@
         "detail": "+90 533 679 71 68"
       }
     ]
+  },
+  "hobbies": {
+    "section_title": "02 — The Passions",
+    "title_main": "BEYOND",
+    "subtitle_main": "THE CODE.",
+    "caption": "Kusursuz deneyimler sadece piksellerden ibaret değildir. Ekrandan koptuğumda hayatımı dolduran ritimler, vizörden görünen açılar ve enerjimi yenileyen tutkular.",
+    "software": {
+      "title": "Yazılım",
+      "subtitle": "Mimari & Sistem",
+      "desc": "Temiz kod, ölçeklenebilir sistemler ve yaratıcı çözümlerle geleceğin dijital ürünlerini inşa etmek."
+    },
+    "coffee": {
+      "title": "Kahve",
+      "subtitle": "Nitelikli Demleme",
+      "desc": "V60, aeropress ve taze kavrulmuş çekirdeklerle aromaların peşinde kusursuzluğu aramak."
+    },
+    "muaythai": {
+      "title": "Muay Thai & Fitness",
+      "subtitle": "Güç & Disiplin",
+      "desc": "Yıllardır tutkuyla yaptığım lisanslı spor geçmişimle limitleri zorlamak, fiziksel gelişim ve sarsılmaz bir odaklanma döngüsü yaratmak."
+    },
+    "photo": {
+      "title": "Fotoğraf",
+      "subtitle": "Görsel Hikayeler",
+      "desc": "Gözden kaçan anları, ışığı ve kompozisyonları vizörden bakarak zamanın içinde dondurmak."
+    },
+    "music": {
+      "title": "Prodüksiyon",
+      "subtitle": "Elektronik Müzik",
+      "desc": "Derin baslar, ritim dizilimleri ve ilham veren odaklanma frekansları programlamak."
+    },
+    "gaming": {
+      "title": "Keşif",
+      "subtitle": "Oyun & Seyahat",
+      "desc": "Yeni dijital evrenleri fethetmek ve fiziksel dünyanın bilinmeyen kültürlerini tatmak."
+    }
   }
 }
