@@ -437,9 +437,7 @@
     ]
   },
   "hobbies": {
-    "section_title": "02 — The Passions",
-    "title_main": "BEYOND",
-    "subtitle_main": "THE CODE.",
+    "heading": "Hobbies",
     "caption": "Flawless experiences aren't just built with pixels. The rhythms that fill my life when I disconnect from the screen, the angles captured through the viewfinder, and the passions that recharge my energy.",
     "software": {
       "title": "Software",

@@ -32,10 +32,10 @@ export default function App() {
         <HeroSection />
         <MarqueeSection />
         <AboutSection />
+        <HobbiesSection />
         <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
-        <HobbiesSection />
         <ContactSection />
         </div>
       </motion.div>

@@ -437,9 +437,7 @@
     ]
   },
   "hobbies": {
-    "section_title": "02 — The Passions",
-    "title_main": "BEYOND",
-    "subtitle_main": "THE CODE.",
+    "heading": "Hobbies",
     "caption": "Makellose Erlebnisse entstehen nicht nur aus Pixeln. Die Rhythmen, die mein Leben füllen, wenn ich mich vom Bildschirm trenne, die durch den Sucher eingefangenen Winkel und die Leidenschaften, die meine Energie aufladen.",
     "software": {
       "title": "Software",
@@ -454,7 +452,7 @@
     "muaythai": {
       "title": "Muay Thai & Fitness",
       "subtitle": "Kraft & Disziplin",
-      "desc": "Grenzen überschreiten, körperliche Entwicklung und eine unerschütterliche Fokusschleife aufbauen."
+      "desc": "Seit Jahren gehe ich als lizenzierter Sportler an meine Grenzen, konzentriere mich auf die körperliche Entwicklung und baue eine unerschütterliche Disziplin auf."
     },
     "photo": {
       "title": "Fotografie",

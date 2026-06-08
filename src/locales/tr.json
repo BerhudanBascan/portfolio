@@ -437,9 +437,7 @@
     ]
   },
   "hobbies": {
-    "section_title": "02 — The Passions",
-    "title_main": "BEYOND",
-    "subtitle_main": "THE CODE.",
+    "heading": "Tutkularım",
     "caption": "Kusursuz deneyimler sadece piksellerden ibaret değildir. Ekrandan koptuğumda hayatımı dolduran ritimler, vizörden görünen açılar ve enerjimi yenileyen tutkular.",
     "software": {
       "title": "Yazılım",
