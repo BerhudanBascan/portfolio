@@ -27,7 +27,7 @@ export default function App() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <Header />
-        <div style={{ paddingTop: '1.5rem' }}>
+        <div className="pt-6 lg:pt-16">
         <HeroSection />
         <MarqueeSection />
         <AboutSection />

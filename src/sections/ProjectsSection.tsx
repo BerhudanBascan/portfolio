@@ -105,11 +105,11 @@ function ProjectCard({ project, index, containerRef }: {
             <div style={{ height: 1, background: 'linear-gradient(90deg,var(--fg-10),var(--fg-06) 70%,transparent)', marginBottom: isMobile ? '0.6rem' : 'clamp(0.8rem,2vw,1.5rem)' }} />
 
             {/* Content: images + text panel */}
-            <div style={{ display: 'flex', gap: 'clamp(0.75rem,2vw,1.4rem)', flexDirection: isMobile ? 'column' : 'row' }}>
-              <div style={{ flex: isMobile ? 'none' : '0 0 clamp(140px,36%,40%)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem,1.2vw,0.9rem)' }}>
-                <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'top center', borderRadius: isMobile ? 10 : 'clamp(10px,1.6vw,20px)', height: isMobile ? 140 : 'clamp(120px,12vw,200px)', display: 'block', opacity: 0.88 }} />
-                {!isMobile && <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'bottom center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(150px,17vw,270px)', display: 'block', opacity: 0.78 }} />}
-              </div>
+            <div style={{ display: 'flex', gap: 'clamp(0.75rem,2vw,1.4rem)', flexDirection: 'row' }}>
+              {!isMobile && <div style={{ flex: '0 0 clamp(140px,36%,40%)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem,1.2vw,0.9rem)' }}>
+                <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'top center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(120px,12vw,200px)', display: 'block', opacity: 0.88 }} />
+                <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'bottom center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(150px,17vw,270px)', display: 'block', opacity: 0.78 }} />
+              </div>}
               <div style={{ flex: 1, minWidth: 0, borderRadius: isMobile ? 12 : 'clamp(10px,1.6vw,20px)', padding: isMobile ? '0.75rem' : 'clamp(1rem,2.2vw,1.8rem)', border: '1px solid var(--fg-06)', background: 'var(--fg-06)', display: 'flex', flexDirection: 'column', gap: isMobile ? '0.5rem' : 'clamp(0.7rem,1.5vw,1.1rem)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'relative', zIndex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.4rem' }}>
