@@ -6,19 +6,43 @@ const ROW2 = IMAGES.slice(11)
 
 function MobileMarquee() {
   return (
-    <section style={{ padding: '60px 0 40px', position: 'relative' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+    <section style={{ padding: '60px 0 48px', position: 'relative', overflow: 'hidden' }}>
+      <style>{`
+        @keyframes marquee-left  { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+        @keyframes marquee-right { from { transform: translateX(-50%) } to { transform: translateX(0) } }
+        .mq-left  { animation: marquee-left  18s linear infinite; display: flex; width: max-content; }
+        .mq-right { animation: marquee-right 22s linear infinite; display: flex; width: max-content; }
+      `}</style>
+
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginBottom: 24 }}>
         <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
         <span style={{ color: 'var(--fg-28)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase' }}>Selected Work</span>
         <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
       </div>
-      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', display: 'flex', gap: 12, paddingLeft: 16, paddingRight: 16, paddingBottom: 4 }}>
-        {IMAGES.map((src, i) => (
-          <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.4)', border: '1px solid var(--fg-06)' }}>
-            <img src={src} alt="" loading="lazy" style={{ width: 200, height: 128, display: 'block', objectFit: 'cover' }} />
-          </div>
-        ))}
+
+      {/* Row 1 — left */}
+      <div style={{ overflow: 'hidden', marginBottom: 12 }}>
+        <div className="mq-left" style={{ gap: 12 }}>
+          {[...ROW1, ...ROW1].map((src, i) => (
+            <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
+              <img src={src} alt="" loading="lazy" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Row 2 — right */}
+      <div style={{ overflow: 'hidden' }}>
+        <div className="mq-right" style={{ gap: 12 }}>
+          {[...ROW2, ...ROW2].map((src, i) => (
+            <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
+              <img src={src} alt="" loading="lazy" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(to right, var(--bg) 0%, transparent 10%, transparent 90%, var(--bg) 100%)' }} />
     </section>
   )
 }
