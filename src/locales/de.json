@@ -22,13 +22,19 @@
     "stats": {
       "years": "3+",
       "years_label": "Jahre Erfahrung",
+      "years_suffix": "JHR",
       "projects": "20+",
       "projects_label": "Projekte geliefert",
+      "projects_suffix": "PROJ",
       "gpa": "3.02",
       "gpa_label": "Notendurchschnitt",
+      "gpa_suffix": "GPA",
       "graduated": "2025",
-      "graduated_label": "Abschluss"
+      "graduated_label": "Abschluss",
+      "graduated_suffix": "JHR"
     },
+    "cta_title": "Bereit zur Zusammenarbeit?",
+    "cta_subtitle": "Ich bin aktuell für Freelance-Projekte verfügbar.",
     "hobbies": [
       "Programmierung",
       "Muay Thai",
@@ -45,8 +51,41 @@
     "tabs": {
       "work": "Arbeit",
       "intern": "Praktika",
-      "certs": "Zertifikate"
+      "certs": "Zertifikate",
+      "languages": "Sprachen"
     },
+    "titles": {
+      "work": "Berufserfahrung",
+      "intern": "Frühe Entwicklung",
+      "certs": "Akademische & Zertifikate",
+      "languages": "Globale Kommunikation"
+    },
+    "languages": [
+      {
+        "role": "Türkisch",
+        "period": "Muttersprache",
+        "company": "Muttersprache",
+        "desc": "Natürliche und fließende Kommunikation, vollständige Kompetenz in allen professionellen und sozialen Kontexten."
+      },
+      {
+        "role": "Englisch",
+        "period": "B2-Niveau",
+        "company": "Professionell & Akademisch",
+        "desc": "Gute technische Kommunikation, Erstellung von Dokumentationen und Zusammenarbeit mit internationalen Teams. Vertieft durch Englischkurse in den USA und ein Studium komplett auf Englisch."
+      },
+      {
+        "role": "Kurdisch",
+        "period": "B2-Niveau",
+        "company": "Obere Mittelstufe",
+        "desc": "Gute alltägliche Konversationsfähigkeiten und fließende Kommunikation im sozialen und kulturellen Kontext."
+      },
+      {
+        "role": "Deutsch",
+        "period": "A1-Niveau",
+        "company": "Anfänger",
+        "desc": "Grundlegende Begrüßungen, einfache Alltagsgespräche und Verständnis von Basisbegriffen."
+      }
+    ],
     "work": [
       {
         "role": "Softwareingenieur",
@@ -154,6 +193,7 @@
         ]
       }
     ],
+    "view_cert": "Zertifikat ansehen →",
     "certs": [
       {
         "title": "Full-Stack-Webentwicklung Bootcamp",
@@ -194,56 +234,77 @@
       {
         "number": "01",
         "name": "Backend-Engineering",
-        "description": "Ich entwickle skalierbare RESTful APIs und serverseitige Systeme mit Node.js, Express.js und Python — mit solider Erfahrung in Authentifizierung, Datenbankdesign und Produktionsbereitstellung.",
+        "description": "Ich entwerfe und baue die serverseitige Logik, die echte Anwendungen antreibt — RESTful APIs, WebSocket-basierte Echtzeitsysteme, Authentifizierungsflows mit JWT und Session-Management, rollenbasierte Zugriffskontrolle und Hintergrundjob-Warteschlangen. Ich habe Backends ausgeliefert, die Live-Feldeinsätze, Mehrmandanten-Datenisolierung, Stripe-Zahlungsintegrationen und automatisierte E-Mail/Benachrichtigungs-Pipelines verwalten. Node.js + Express ist mein primärer Stack, FastAPI oder Flask wenn Python besser passt.",
         "tags": [
           "Node.js",
           "Express.js",
           "Python",
-          "REST APIs"
+          "FastAPI",
+          "REST APIs",
+          "WebSocket",
+          "JWT",
+          "Stripe"
         ]
       },
       {
         "number": "02",
         "name": "Frontend & Web",
-        "description": "Ich gestalte moderne, responsive Oberflachen mit React.js, Next.js und TypeScript. Mein Fokus liegt auf sauberer Komponentenarchitektur und reibungslosen Nutzererfahrungen.",
+        "description": "Ich verwandle Designs und Ideen in Interfaces, die schnell, zugänglich und durchdacht wirken. React und Next.js für Struktur und SSR, Tailwind für das Layout, Framer Motion und GSAP für Animationen, die eine UI lebendig fühlen lassen. Ich habe alles gebaut — von Marketing-Sites mit perfekten Lighthouse-Scores bis zu komplexen Dashboards mit Echtzeit-Datenfeeds, mehrsprachigem Routing und Dark/Light-Theming. Ich kümmere mich um Performance — aber noch mehr darum, ob es sich wirklich gut anfühlt.",
         "tags": [
           "React.js",
           "Next.js",
           "TypeScript",
-          "Tailwind CSS"
+          "Tailwind CSS",
+          "Framer Motion",
+          "GSAP",
+          "HTML5",
+          "CSS3"
         ]
       },
       {
         "number": "03",
         "name": "Mobile Apps",
-        "description": "Ich entwickle plattformubergreifende Apps mit Flutter — von nativen Integrationen uber IAP-Monetarisierung bis zur Mehrsprachigkeit, alles in Produktion eingefuhrt.",
+        "description": "Ich baue iOS- und Android-Apps mit Flutter und React Native, die täglich im Einsatz sind — keine Demos. Mein komplexestes Flutter-Deployment betreibt Echtzeit-Personalverfolgung mit Live-Karten-Updates, ein iOS-Homescreen-Widget, Push-Benachrichtigungen via FCM, In-App-Käufe, biometrische Authentifizierung und 17-Sprachen-Unterstützung, alles mit Supabase und PostgreSQL. Auf der React-Native-Seite habe ich E-Commerce- und Logistik-Apps mit Expo und Bare-Workflow ausgeliefert, mit Firebase, REST APIs und nativen Gerätemodulen.",
         "tags": [
           "Flutter",
+          "React Native",
           "Dart",
           "iOS",
-          "Android"
+          "Android",
+          "Expo",
+          "FCM",
+          "Supabase",
+          "Firebase"
         ]
       },
       {
         "number": "04",
         "name": "Daten & Automatisierung",
-        "description": "Ich schreibe Datenanalyse- und Automatisierungsskripte mit Python, Pandas und NumPy — in Produktionsumgebungen habe ich den manuellen Aufwand um ca. 30% reduziert.",
+        "description": "Ich schreibe Skripte, die die Arbeit übernehmen. Datenbereinigungspipelines mit Pandas und NumPy, geplante Scraper und Crawler, automatische Berichtsgeneratoren für Excel und PDF, und LangChain-KI-Workflows, die Dokumente verarbeiten, Fragen aus Wissensdatenbanken beantworten und eingehende Daten klassifizieren. Ich habe auch FastAPI-Dienste gebaut, die diese Pipelines als interne APIs bereitstellen, und den manuellen Aufwand in Produktionsumgebungen um ~30% reduziert.",
         "tags": [
+          "Python",
           "Pandas",
           "NumPy",
-          "Python",
-          "Automatisierung"
+          "FastAPI",
+          "LangChain",
+          "OpenAI",
+          "BeautifulSoup",
+          "Celery"
         ]
       },
       {
         "number": "05",
         "name": "Datenbanken & DevOps",
-        "description": "Ich arbeite praktisch mit MongoDB, PostgreSQL, MySQL und Supabase. Ausserdem verwalte ich Docker-Setups, Git-Workflows, Firebase Functions und CI/CD-Pipelines.",
+        "description": "Ich entwerfe Schemas, die skalieren und nicht brechen wenn Daten unordentlich oder Traffic hoch wird. PostgreSQL mit Row-Level-Security, MongoDB für dokumentenlastige Workloads, MySQL für Legacy-Integrationen, Supabase für Echtzeit-Abonnements, Redis für Caching und Pub/Sub. Auf der Infrastrukturseite: Docker und Docker Compose für Umgebungsparität, GitHub Actions für CI/CD-Pipelines, VPS-Deployment mit Nginx-Reverse-Proxies, SSL-Konfiguration und genug Erfahrung mit Produktionsvorfällen um zu wissen was man nicht tun sollte.",
         "tags": [
           "PostgreSQL",
           "MongoDB",
+          "MySQL",
+          "Supabase",
+          "Redis",
           "Docker",
-          "GitHub Actions"
+          "GitHub Actions",
+          "Nginx"
         ]
       }
     ],
@@ -258,7 +319,7 @@
       "c8": "<span class=\"hl\">Docker</span>-Containerorchestrierung, CI/CD-Pipelines, Git-Workflows und Cloud-Deployments. Von lokaler Entwicklung bis zur Live-Infrastruktur.",
       "c9": "Plattformubergreifend mobil mit <span class=\"hl\">React Native</span>, MobX State Management, IAP-Monetarisierung, Google Ads und nativen <span class=\"hl\">Node.js</span>-Bridge-Integrationen."
     },
-    "hint_mobile": "tippe die Kartenecken um mehr zu sehen"
+    "hint_mobile": "Fähigkeiten wechseln automatisch • tippen zum Umschalten"
   },
   "projects": {
     "heading": "Projekte",
@@ -272,6 +333,56 @@
       "Completed": "Abgeschlossen"
     },
     "det": {
+      "10": {
+        "desc": "Automatisierte AliExpress-Scraping-Pipeline zur Extraktion und Normalisierung von Produktdaten im grossen Mastab. Beliefert MKG-Rechnungsstellung mit aktuellem Katalog.",
+        "hi": [
+          "Hochdurchsatz AliExpress-Extraktion",
+          "Datennormalisierung mit Kategorisierung",
+          "Schema-Mapping zur Produktdatenbank",
+          "Ratenbegrenzungsbewusstes Scraping",
+          "Direkteinspeisung in MKG-Pipeline"
+        ]
+      },
+      "11": {
+        "desc": "Echtzeit-Bestandsverfolgungsapp mit Next.js App Router und Supabase. Live-Bestandsuberwachung, Produktverwaltung und Sofortaktualisierungen fur operative Teams.",
+        "hi": [
+          "Echtzeit-Bestand via Supabase-Abonnements",
+          "Produktkatalog mit Kategoriefilterung",
+          "Next.js App Router mit Server-Komponenten",
+          "Rollenbasierter Zugang fur Lagerteams",
+          "Mobile-responsive fur Lagereinsatz"
+        ]
+      },
+      "12": {
+        "desc": "Moderner animationsbetonter Agentur-Webauftritt fur Aura Creative Studio. Flussige CSS-Animationen, vollstandig responsives Layout und verfeinerte Markenidentitat. Live und aktiv gepflegt.",
+        "hi": [
+          "Flussige scroll-getriebene CSS-Animationen",
+          "Vollstandig responsiv bis Ultra-Wide",
+          "Markenidentitat mit benutzerdefinierter Typografie",
+          "Schnelle statische Auslieferung",
+          "Live und aktiv in Produktion"
+        ]
+      },
+      "13": {
+        "desc": "Arzttermin-Webapp mit patientenseitigem Buchungsablauf, Arztsuche mit Spezialisierungsfiltern, Echtzeit-Verfugbarkeitsverfolgung und Admin-Interface fur Klinikpersonal.",
+        "hi": [
+          "Patientenseitige Arztsuche mit Filtern",
+          "Echtzeit-Terminverfugbarkeit",
+          "Admin-Dashboard fur Klinikpersonal",
+          "MongoDB Termin- und Patientenmodell",
+          "JWT-Auth Express.js REST API"
+        ]
+      },
+      "14": {
+        "desc": "Visuell ambitioniertes 3D-Weberlebnis mit GPU-beschleunigten WebGL-Canvas-Animationen — Hochspannungs-Lichtbogeneffekte, Partikelsysteme und dynamische Beleuchtung bei 60fps.",
+        "hi": [
+          "GPU-beschleunigtes WebGL mit Shadern",
+          "Hochspannungs-Lichtbogeneffekte",
+          "Dynamische Beleuchtung und Bloom",
+          "60fps mit requestAnimationFrame",
+          "Zero-Dependency WebGL-Pipeline"
+        ]
+      },
       "01": {
         "desc": "Logistik-MVP das turkische Frachtanbieter unter einer API zusammenfasst. Eine Anfrage liefert sortierte Preise aller Anbieter. Kunde wahlt, System bucht automatisch, Echtzeit-Tracking vereint.",
         "hi": [
@@ -361,56 +472,6 @@
           "Manuelle Arbeitslast erheblich reduziert",
           "Integration mit ERP und Lieferantendaten"
         ]
-      },
-      "10": {
-        "desc": "Automatisierte AliExpress-Scraping-Pipeline zur Extraktion und Normalisierung von Produktdaten im grossen Mastab. Beliefert MKG-Rechnungsstellung mit aktuellem Katalog.",
-        "hi": [
-          "Hochdurchsatz AliExpress-Extraktion",
-          "Datennormalisierung mit Kategorisierung",
-          "Schema-Mapping zur Produktdatenbank",
-          "Ratenbegrenzungsbewusstes Scraping",
-          "Direkteinspeisung in MKG-Pipeline"
-        ]
-      },
-      "11": {
-        "desc": "Echtzeit-Bestandsverfolgungsapp mit Next.js App Router und Supabase. Live-Bestandsuberwachung, Produktverwaltung und Sofortaktualisierungen fur operative Teams.",
-        "hi": [
-          "Echtzeit-Bestand via Supabase-Abonnements",
-          "Produktkatalog mit Kategoriefilterung",
-          "Next.js App Router mit Server-Komponenten",
-          "Rollenbasierter Zugang fur Lagerteams",
-          "Mobile-responsive fur Lagereinsatz"
-        ]
-      },
-      "12": {
-        "desc": "Moderner animationsbetonter Agentur-Webauftritt fur Aura Creative Studio. Flussige CSS-Animationen, vollstandig responsives Layout und verfeinerte Markenidentitat. Live und aktiv gepflegt.",
-        "hi": [
-          "Flussige scroll-getriebene CSS-Animationen",
-          "Vollstandig responsiv bis Ultra-Wide",
-          "Markenidentitat mit benutzerdefinierter Typografie",
-          "Schnelle statische Auslieferung",
-          "Live und aktiv in Produktion"
-        ]
-      },
-      "13": {
-        "desc": "Arzttermin-Webapp mit patientenseitigem Buchungsablauf, Arztsuche mit Spezialisierungsfiltern, Echtzeit-Verfugbarkeitsverfolgung und Admin-Interface fur Klinikpersonal.",
-        "hi": [
-          "Patientenseitige Arztsuche mit Filtern",
-          "Echtzeit-Terminverfugbarkeit",
-          "Admin-Dashboard fur Klinikpersonal",
-          "MongoDB Termin- und Patientenmodell",
-          "JWT-Auth Express.js REST API"
-        ]
-      },
-      "14": {
-        "desc": "Visuell ambitioniertes 3D-Weberlebnis mit GPU-beschleunigten WebGL-Canvas-Animationen — Hochspannungs-Lichtbogeneffekte, Partikelsysteme und dynamische Beleuchtung bei 60fps.",
-        "hi": [
-          "GPU-beschleunigtes WebGL mit Shadern",
-          "Hochspannungs-Lichtbogeneffekte",
-          "Dynamische Beleuchtung und Bloom",
-          "60fps mit requestAnimationFrame",
-          "Zero-Dependency WebGL-Pipeline"
-        ]
       }
     }
   },
@@ -439,6 +500,11 @@
   "hobbies": {
     "heading": "Hobbies",
     "caption": "Makellose Erlebnisse entstehen nicht nur aus Pixeln. Die Rhythmen, die mein Leben füllen, wenn ich mich vom Bildschirm trenne, die durch den Sucher eingefangenen Winkel und die Leidenschaften, die meine Energie aufladen.",
+    "bg_text": "PASSIONEN",
+    "title_line1": "JENSEITS",
+    "title_line2": "DES CODES",
+    "editorial_desc": "[ Die wahre Formel hinter makellosen Benutzeroberflächen: Das Leben in mehreren Dimensionen leben. Das Licht einrahmen, den Rhythmus synthetisieren, die eigenen Grenzen erkunden. ]",
+    "allTimeFavorite": "All-Time-Favoriten",
     "software": {
       "title": "Software",
       "subtitle": "Architektur & Systeme",
@@ -469,5 +535,74 @@
       "subtitle": "Gaming & Reisen",
       "desc": "Neue digitale Universen erobern und die unbekannten Kulturen der physischen Welt entdecken."
     }
-  }
+  },
+  "marquee": {
+    "selectedWork": "Ausgewählte Arbeiten"
+  },
+  "footer": {
+    "copyright": "Berhudan Başcan © 2026",
+    "rights": "Alle Rechte vorbehalten"
+  },
+  "quotes": [
+    {
+      "c": "Löse erst das Problem. Dann schreib den Code.",
+      "a": "John Johnson"
+    },
+    {
+      "c": "Mach es zum Laufen, richtig, dann schnell.",
+      "a": "Kent Beck"
+    },
+    {
+      "c": "Code ist wie Humor. Wenn du ihn erklären musst, ist er schlecht.",
+      "a": "Cory House"
+    },
+    {
+      "c": "Wenn Debugging Fehler entfernt, muss Programmieren sie einsetzen.",
+      "a": "Edsger Dijkstra"
+    },
+    {
+      "c": "Einfachheit ist die Seele der Effizienz.",
+      "a": "Austin Freeman"
+    },
+    {
+      "c": "Es scheint immer unmöglich, bis es getan ist.",
+      "a": "Nelson Mandela"
+    },
+    {
+      "c": "Das Geheimnis des Fortkommens ist der Anfang.",
+      "a": "Mark Twain"
+    },
+    {
+      "c": "Treib dich selbst an. Niemand sonst wird es tun.",
+      "a": "Unbekannt"
+    },
+    {
+      "c": "Großes entsteht nie in der Komfortzone.",
+      "a": "Unbekannt"
+    },
+    {
+      "c": "Hör nicht auf wenn du müde bist. Hör auf wenn du fertig bist.",
+      "a": "Unbekannt"
+    },
+    {
+      "c": "Arbeite still. Lass den Erfolg laut sein.",
+      "a": "Frank Ocean"
+    },
+    {
+      "c": "Sei so gut, dass man dich nicht ignorieren kann.",
+      "a": "Steve Martin"
+    },
+    {
+      "c": "Stay hungry. Stay foolish.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "Der einzige Weg, großartige Arbeit zu leisten, ist zu lieben was du tust.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "Chancen passieren nicht. Du schaffst sie.",
+      "a": "Chris Grosser"
+    }
+  ]
 }

@@ -22,13 +22,19 @@
     "stats": {
       "years": "3+",
       "years_label": "Yıl Deneyim",
+      "years_suffix": "YIL",
       "projects": "20+",
       "projects_label": "Teslim Edilen Proje",
+      "projects_suffix": "PROJE",
       "gpa": "3.02",
       "gpa_label": "Not Ortalaması",
+      "gpa_suffix": "GPA",
       "graduated": "2025",
-      "graduated_label": "Mezuniyet"
+      "graduated_label": "Mezuniyet",
+      "graduated_suffix": "YIL"
     },
+    "cta_title": "İş birliği yapmaya hazır mısınız?",
+    "cta_subtitle": "Şu an freelance projeler için müsaitim.",
     "hobbies": [
       "Yazılım",
       "Muay Thai",
@@ -45,8 +51,41 @@
     "tabs": {
       "work": "İş",
       "intern": "Stajlar",
-      "certs": "Sertifikalar"
+      "certs": "Sertifikalar",
+      "languages": "Diller"
     },
+    "titles": {
+      "work": "Profesyonel İşler",
+      "intern": "Erken Dönem Şekillenme",
+      "certs": "Akademik & Sertifikalar",
+      "languages": "İletişim & Küresel"
+    },
+    "languages": [
+      {
+        "role": "Türkçe",
+        "period": "Ana Dil",
+        "company": "Native",
+        "desc": "Doğal ve akıcı iletişim, tüm profesyonel ve sosyal süreçlerde tam yetkinlik."
+      },
+      {
+        "role": "İngilizce",
+        "period": "B2 Seviye",
+        "company": "Profesyonel / Akademik",
+        "desc": "ABD'deki dil kursları ve üniversite eğitimimin tamamen İngilizce olmasından dolayı yüksek teknik iletişim, uluslararası takımlarla çalışma ve dökümantasyon yetkinliği."
+      },
+      {
+        "role": "Kürtçe",
+        "period": "B2 Seviye",
+        "company": "Orta-Üstü Seviye",
+        "desc": "İyi derecede günlük konuşma ve akıcı sosyal/kültürel iletişim becerisi."
+      },
+      {
+        "role": "Almanca",
+        "period": "A1 Seviye",
+        "company": "Temel Seviye",
+        "desc": "Günlük hayatta temel selamlaşma ve basit teknik/sosyal terimleri anlama becerisi."
+      }
+    ],
     "work": [
       {
         "role": "Yazılım Mühendisi",
@@ -154,6 +193,7 @@
         ]
       }
     ],
+    "view_cert": "Sertifikayı Gör →",
     "certs": [
       {
         "title": "Full-Stack Web Geliştirme Bootcamp",
@@ -193,57 +233,78 @@
     "services": [
       {
         "number": "01",
-        "name": "Backend Muhendisligi",
-        "description": "Node.js, Express.js ve Python kullanarak olceklenebilir RESTful API'lar ve sunucu tarafli sistemler gelistiriyorum — kimlik dogrulama, veritabani tasarimi ve production konuslandirma konusunda guclu bir deneyimim var.",
+        "name": "Backend Mühendisliği",
+        "description": "Gerçek uygulamalara güç veren sunucu tarafı mantığını tasarlayıp inşa ediyorum — RESTful API'lar, WebSocket tabanlı gerçek zamanlı sistemler, JWT ve oturum yönetimiyle kimlik doğrulama akışları, rol tabanlı erişim kontrolü ve arka plan iş kuyrukları. Canlı saha operasyonları, çok kiracılı veri izolasyonu, Stripe ödeme entegrasyonları ve otomatik e-posta/bildirim pipeline'larını yöneten backend'ler gönderdim. Birincil yığınim Node.js + Express, Python'ın daha uygun olduğu durumlarda FastAPI veya Flask.",
         "tags": [
           "Node.js",
           "Express.js",
           "Python",
-          "REST API"
+          "FastAPI",
+          "REST API",
+          "WebSocket",
+          "JWT",
+          "Stripe"
         ]
       },
       {
         "number": "02",
         "name": "Frontend & Web",
-        "description": "React.js, Next.js ve TypeScript ile modern, duyarli arayuzler tasarliyorum. Temiz komponent mimarisine ve kesintisiz kullanici deneyimine odaklaniyorum.",
+        "description": "Tasarımları ve fikirleri hızlı, erişilebilir ve özenle işlenmiş arayüzlere dönüştürüyorum. Yapı ve SSR için React ve Next.js, düzen için Tailwind, arayüzü canlı hissettiren animasyonlar için Framer Motion ve GSAP. Mükemmel Lighthouse skorlarına sahip pazarlama sitelerinden gerçek zamanlı veri akışları, çok dilli yönlendirme ve dark/light temalara sahip karmaşık panellere kadar her şeyi inşa ettim. Performansı önemsiyorum — ama kullanımının gerçekten iyi hissettirip hissettirmediğini daha çok.",
         "tags": [
           "React.js",
           "Next.js",
           "TypeScript",
-          "Tailwind CSS"
+          "Tailwind CSS",
+          "Framer Motion",
+          "GSAP",
+          "HTML5",
+          "CSS3"
         ]
       },
       {
         "number": "03",
         "name": "Mobil Uygulamalar",
-        "description": "Flutter ile cok platformlu mobil uygulamalar gelistiriyorum — yerel entegrasyonlar, uygulama ici satin alma ve cok dil destegi dahil, hepsi production'da konuslandirilmis.",
+        "description": "Flutter ve React Native ile her gün sahada kullanılan iOS ve Android uygulamaları yapıyorum — demo değil. En karmaşık Flutter dağıtımım canlı harita güncellemeleriyle gerçek zamanlı personel takibini, iOS ana ekran widget'ını, FCM üzerinden push bildirimleri, uygulama içi satın alma, biyometrik kimlik doğrulama ve Supabase ile PostgreSQL destekli 17 dil desteğini çalıştırıyor. React Native tarafında Expo ve bare workflow ile e-ticaret ve lojistik uygulamaları gönderdim; Firebase, REST API'lar ve yerel cihaz modülleri entegre ettim.",
         "tags": [
           "Flutter",
+          "React Native",
           "Dart",
           "iOS",
-          "Android"
+          "Android",
+          "Expo",
+          "FCM",
+          "Supabase",
+          "Firebase"
         ]
       },
       {
         "number": "04",
         "name": "Veri & Otomasyon",
-        "description": "Python, Pandas ve NumPy kullanarak veri analizi ve otomasyon scriptleri yaziyorum — production ortamlarinda manuel is yukunu yaklasik %30 azalttim.",
+        "description": "İnsanların yapmak zorunda kalmaması için işleri yapan scriptler yazıyorum. Pandas ve NumPy ile veri temizleme ve dönüştürme pipeline'ları, zamanlanmış scraper ve crawler'lar, Excel ve PDF'e aktaran otomatik rapor oluşturucular, belgeleri işleyen, bilgi tabanlarından sorulara yanıt veren ve gelen verileri sınıflandıran LangChain destekli AI iş akışları. Bu pipeline'ları dahili API'lar olarak sunan FastAPI servisleri de inşa ettim ve canlı production ortamlarında manuel operasyonel iş yükünü ~%30 azalttım.",
         "tags": [
+          "Python",
           "Pandas",
           "NumPy",
-          "Python",
-          "Otomasyon"
+          "FastAPI",
+          "LangChain",
+          "OpenAI",
+          "BeautifulSoup",
+          "Celery"
         ]
       },
       {
         "number": "05",
-        "name": "Veritabanlari & DevOps",
-        "description": "MongoDB, PostgreSQL, MySQL ve Supabase ile uygulamali calisiyorum. Ayrica Docker, Git is akislari, Firebase Functions ve CI/CD pipeline'larini yonetiyorum.",
+        "name": "Veritabanları & DevOps",
+        "description": "Veriler karmaşıklaştığında veya trafik artışında bozulmayan, ölçeklenen şemalar tasarlıyorum. Satır düzeyinde güvenlik ve karmaşık join'lerle PostgreSQL, belge ağırlıklı iş yükleri için MongoDB, eski entegrasyonlar için MySQL, gerçek zamanlı abonelikler ve anlık kimlik doğrulama kurulumu için Supabase, önbelleğe alma ve pub/sub için Redis. Altyapı tarafında: ortam paritesi için Docker ve Docker Compose, CI/CD pipeline'ları için GitHub Actions, Nginx ters proxy'leriyle VPS dağıtımı, SSL yapılandırması ve ne yapılmaması gerektiğini bilen production olay deneyimi.",
         "tags": [
           "PostgreSQL",
           "MongoDB",
+          "MySQL",
+          "Supabase",
+          "Redis",
           "Docker",
-          "GitHub Actions"
+          "GitHub Actions",
+          "Nginx"
         ]
       }
     ],
@@ -258,7 +319,7 @@
       "c8": "<span class=\"hl\">Docker</span> konteyner orkestrasyon, CI/CD pipeline'lari, Git is akislari ve bulut konuslandirmalari. Yerel gelistirmeden canli uretime.",
       "c9": "<span class=\"hl\">React Native</span> ile cok platformlu mobil, MobX durum yonetimi, IAP monetizasyon, Google Reklamlari ve yerel <span class=\"hl\">Node.js</span> kopru entegrasyonlari."
     },
-    "hint_mobile": "her kartın bir sırrı var — köşelere dokun ve gör"
+    "hint_mobile": "yetenekler otomatik döner • geçmek için dokun"
   },
   "projects": {
     "heading": "Projeler",
@@ -272,6 +333,56 @@
       "Completed": "Tamamlandı"
     },
     "det": {
+      "10": {
+        "desc": "Buyuk olcekte urun verisi cikaran otomatik AliExpress kazima pipeline. MKG otomatik faturalandirmasini guncel katalogla destekliyor.",
+        "hi": [
+          "Yuksek verimli AliExpress urun cikartma",
+          "Kategori siniflandirmali veri normallestirme",
+          "Dahili veritabanina sema esleme",
+          "Proxy rotasyonlu kazima",
+          "Dogrudan MKG faturalandirma beslemesi"
+        ]
+      },
+      "11": {
+        "desc": "Next.js App Router ve Supabase ile gercek zamanli envanter takip uygulamasi. Canli stok izleme, urun yonetimi ve operasyonel ekipler icin anlik guncelleme.",
+        "hi": [
+          "Supabase canli aboneliklerle stok takibi",
+          "Kategori filtrelemeli urun katalogu",
+          "Next.js App Router sunucu bilesenli",
+          "Depo ekipleri icin rol tabanli erisim",
+          "Mobil duyarli depo kullanimi"
+        ]
+      },
+      "12": {
+        "desc": "Aura kreatif studyo icin modern animasyon oncelikli ajans sitesi. Akici CSS animasyonlari, tamamen duyarli tasarim ve rafine marka kimligi. Aktif olarak canli ve bakim yapiliyor.",
+        "hi": [
+          "Akici scroll CSS animasyonlari",
+          "Mobilden ultra genis ekrana tam duyarli",
+          "Ozel tipografi ile marka kimligi",
+          "Optimize varliklarla hizli teslimat",
+          "Canli ve aktif bakim sureci"
+        ]
+      },
+      "13": {
+        "desc": "Hasta randevu akisi, uzmanlik filtreli doktor arama, gercek zamanli musaitlik takibi ve klinik personel admin arayuzu iceren doktor randevu web uygulamasi.",
+        "hi": [
+          "Filtreli hasta doktor arama",
+          "Gercek zamanli randevu musaitlik takibi",
+          "Klinik personeli icin admin panosu",
+          "MongoDB randevu ve hasta veri modeli",
+          "JWT kimlik dogrulamali Express.js REST API"
+        ]
+      },
+      "14": {
+        "desc": "GPU hizlandirmali WebGL canvas animasyonlariyla gorsek acidan iddiali 3D web deneyimi — yuksek voltajli elektrik ark efektleri, parcacik sistemleri ve 60fps dinamik aydinlatma.",
+        "hi": [
+          "Ozel shader GPU hizlandirmali WebGL",
+          "Yuksek voltajli elektrik ark efektleri",
+          "Dinamik aydinlatma ve bloom isleme",
+          "requestAnimationFrame ile 60fps",
+          "Sifir bagimlilikli WebGL pipeline"
+        ]
+      },
       "01": {
         "desc": "Turk kargo firmalarini tek API altinda toplayan lojistik MVP. Tek istekte tum firmalardan sirali fiyat/sure doner. Musteri secer, sistem otomatik rezervasyon yapar.",
         "hi": [
@@ -361,56 +472,6 @@
           "Manuel is yukunu onemli olcude azaltti",
           "ERP ve tedarikci akislariyla entegre"
         ]
-      },
-      "10": {
-        "desc": "Buyuk olcekte urun verisi cikaran otomatik AliExpress kazima pipeline. MKG otomatik faturalandirmasini guncel katalogla destekliyor.",
-        "hi": [
-          "Yuksek verimli AliExpress urun cikartma",
-          "Kategori siniflandirmali veri normallestirme",
-          "Dahili veritabanina sema esleme",
-          "Proxy rotasyonlu kazima",
-          "Dogrudan MKG faturalandirma beslemesi"
-        ]
-      },
-      "11": {
-        "desc": "Next.js App Router ve Supabase ile gercek zamanli envanter takip uygulamasi. Canli stok izleme, urun yonetimi ve operasyonel ekipler icin anlik guncelleme.",
-        "hi": [
-          "Supabase canli aboneliklerle stok takibi",
-          "Kategori filtrelemeli urun katalogu",
-          "Next.js App Router sunucu bilesenli",
-          "Depo ekipleri icin rol tabanli erisim",
-          "Mobil duyarli depo kullanimi"
-        ]
-      },
-      "12": {
-        "desc": "Aura kreatif studyo icin modern animasyon oncelikli ajans sitesi. Akici CSS animasyonlari, tamamen duyarli tasarim ve rafine marka kimligi. Aktif olarak canli ve bakim yapiliyor.",
-        "hi": [
-          "Akici scroll CSS animasyonlari",
-          "Mobilden ultra genis ekrana tam duyarli",
-          "Ozel tipografi ile marka kimligi",
-          "Optimize varliklarla hizli teslimat",
-          "Canli ve aktif bakim sureci"
-        ]
-      },
-      "13": {
-        "desc": "Hasta randevu akisi, uzmanlik filtreli doktor arama, gercek zamanli musaitlik takibi ve klinik personel admin arayuzu iceren doktor randevu web uygulamasi.",
-        "hi": [
-          "Filtreli hasta doktor arama",
-          "Gercek zamanli randevu musaitlik takibi",
-          "Klinik personeli icin admin panosu",
-          "MongoDB randevu ve hasta veri modeli",
-          "JWT kimlik dogrulamali Express.js REST API"
-        ]
-      },
-      "14": {
-        "desc": "GPU hizlandirmali WebGL canvas animasyonlariyla gorsek acidan iddiali 3D web deneyimi — yuksek voltajli elektrik ark efektleri, parcacik sistemleri ve 60fps dinamik aydinlatma.",
-        "hi": [
-          "Ozel shader GPU hizlandirmali WebGL",
-          "Yuksek voltajli elektrik ark efektleri",
-          "Dinamik aydinlatma ve bloom isleme",
-          "requestAnimationFrame ile 60fps",
-          "Sifir bagimlilikli WebGL pipeline"
-        ]
       }
     }
   },
@@ -439,6 +500,11 @@
   "hobbies": {
     "heading": "Tutkularım",
     "caption": "Kusursuz deneyimler sadece piksellerden ibaret değildir. Ekrandan koptuğumda hayatımı dolduran ritimler, vizörden görünen açılar ve enerjimi yenileyen tutkular.",
+    "bg_text": "TUTKULAR",
+    "title_line1": "KODUN",
+    "title_line2": "ÖTESİ",
+    "editorial_desc": "[ Kusursuz arayüzlerin ardında yatan gerçek formül: Hayatı çok boyutlu yaşamak. Işığı kadrajlamak, ritmi sentezlemek, kendi limitlerini keşfetmek. ]",
+    "allTimeFavorite": "Tüm Zamanların Favorileri",
     "software": {
       "title": "Yazılım",
       "subtitle": "Mimari & Sistem",
@@ -469,5 +535,74 @@
       "subtitle": "Oyun & Seyahat",
       "desc": "Yeni dijital evrenleri fethetmek ve fiziksel dünyanın bilinmeyen kültürlerini tatmak."
     }
-  }
+  },
+  "marquee": {
+    "selectedWork": "Seçili Çalışmalar"
+  },
+  "footer": {
+    "copyright": "Berhudan Başcan © 2026",
+    "rights": "Tüm hakları saklıdır"
+  },
+  "quotes": [
+    {
+      "c": "Önce sorunu çöz. Sonra kodu yaz.",
+      "a": "John Johnson"
+    },
+    {
+      "c": "Çalıştır, doğru yap, hızlandır.",
+      "a": "Kent Beck"
+    },
+    {
+      "c": "Kod mizah gibidir. Açıklamak zorunda kalıyorsan, kötüdür.",
+      "a": "Cory House"
+    },
+    {
+      "c": "Debug etmek hataları kaldırmaksa, programlamak onları koymak demektir.",
+      "a": "Edsger Dijkstra"
+    },
+    {
+      "c": "Sadelik, verimliliğin ruhudur.",
+      "a": "Austin Freeman"
+    },
+    {
+      "c": "Bitene kadar her şey imkânsız görünür.",
+      "a": "Nelson Mandela"
+    },
+    {
+      "c": "İlerlemek için sırrın adı: başlamak.",
+      "a": "Mark Twain"
+    },
+    {
+      "c": "Kendin için hiç kimse yapmayacak. Kendini zorla.",
+      "a": "Bilinmiyor"
+    },
+    {
+      "c": "Büyük şeyler asla konfor alanından çıkmaz.",
+      "a": "Bilinmiyor"
+    },
+    {
+      "c": "Yorulunca durma. Bitince dur.",
+      "a": "Bilinmiyor"
+    },
+    {
+      "c": "Sessizce çalış. Başarı konuşsun.",
+      "a": "Frank Ocean"
+    },
+    {
+      "c": "O kadar iyi ol ki görmezden gelemesinler.",
+      "a": "Steve Martin"
+    },
+    {
+      "c": "Aç kal. Deli kal.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "Büyük iş yapmanın tek yolu onu sevmektir.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "Fırsatlar gelmez. Sen yaratırsın.",
+      "a": "Chris Grosser"
+    }
+  ]
 }

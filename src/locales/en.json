@@ -22,13 +22,19 @@
     "stats": {
       "years": "3+",
       "years_label": "Years Experience",
+      "years_suffix": "YRS",
       "projects": "20+",
       "projects_label": "Projects Shipped",
+      "projects_suffix": "PROJ",
       "gpa": "3.02",
       "gpa_label": "GPA",
+      "gpa_suffix": "GPA",
       "graduated": "2025",
-      "graduated_label": "Graduated"
+      "graduated_label": "Graduated",
+      "graduated_suffix": "YR"
     },
+    "cta_title": "Ready to collaborate?",
+    "cta_subtitle": "I'm currently available for freelance projects.",
     "hobbies": [
       "Coding",
       "Muay Thai",
@@ -45,8 +51,41 @@
     "tabs": {
       "work": "Work",
       "intern": "Internships",
-      "certs": "Certificates"
+      "certs": "Certificates",
+      "languages": "Languages"
     },
+    "titles": {
+      "work": "Professional Experience",
+      "intern": "Early Development",
+      "certs": "Academic & Certifications",
+      "languages": "Global Communication"
+    },
+    "languages": [
+      {
+        "role": "Turkish",
+        "period": "Native",
+        "company": "Native Tongue",
+        "desc": "Natural and fluent communication, complete proficiency in all professional and social contexts."
+      },
+      {
+        "role": "English",
+        "period": "B2 Level",
+        "company": "Professional & Academic",
+        "desc": "Solid technical communication, writing documentation, and collaborating with international teams. Strengthened through language courses in the USA and a university degree taught in English."
+      },
+      {
+        "role": "Kurdish",
+        "period": "B2 Level",
+        "company": "Upper-Intermediate",
+        "desc": "Strong daily conversation skills and fluent communication in social/cultural contexts."
+      },
+      {
+        "role": "German",
+        "period": "A1 Level",
+        "company": "Beginner",
+        "desc": "Basic greetings, simple daily conversations, and understanding of fundamental terms."
+      }
+    ],
     "work": [
       {
         "role": "Software Engineer",
@@ -154,6 +193,7 @@
         ]
       }
     ],
+    "view_cert": "View Certificate →",
     "certs": [
       {
         "title": "Full-Stack Web Development Bootcamp",
@@ -194,56 +234,77 @@
       {
         "number": "01",
         "name": "Backend Engineering",
-        "description": "I build scalable RESTful APIs and server-side systems using Node.js, Express.js, and Python — with solid experience in auth, database design, and production deployments.",
+        "description": "I design and build the server-side logic that powers real applications — RESTful APIs, WebSocket-based real-time systems, authentication flows with JWT and session management, role-based access control, and background job queues. I've shipped backends handling live field operations, multi-tenant data isolation, Stripe payment integrations, and automated email/notification pipelines. Node.js + Express is my primary stack, FastAPI or Flask when Python is the better fit.",
         "tags": [
           "Node.js",
           "Express.js",
           "Python",
-          "REST APIs"
+          "FastAPI",
+          "REST APIs",
+          "WebSocket",
+          "JWT",
+          "Stripe"
         ]
       },
       {
         "number": "02",
         "name": "Frontend & Web",
-        "description": "I craft modern, responsive interfaces with React.js, Next.js, and TypeScript. I focus on clean component architecture and smooth user experiences.",
+        "description": "I turn designs and ideas into interfaces that are fast, accessible, and feel considered. React and Next.js for structure and SSR, Tailwind for layout, Framer Motion and GSAP for animations that make a UI feel alive. I've built everything from marketing sites with perfect Lighthouse scores to complex dashboards with real-time data feeds, multi-language routing, and dark/light theming. I care about performance — but more about whether the thing actually feels good to use.",
         "tags": [
           "React.js",
           "Next.js",
           "TypeScript",
-          "Tailwind CSS"
+          "Tailwind CSS",
+          "Framer Motion",
+          "GSAP",
+          "HTML5",
+          "CSS3"
         ]
       },
       {
         "number": "03",
         "name": "Mobile Apps",
-        "description": "I build cross-platform mobile apps with Flutter — covering native integrations, IAP monetization, and multi-language support, all deployed to production.",
+        "description": "I build iOS and Android apps with Flutter and React Native that are used daily in the field — not demos. My most complex Flutter deployment runs real-time personnel tracking with live map updates, an iOS home screen widget, push notifications via FCM, in-app purchases, biometric auth, and full 17-language support, backed by Supabase and PostgreSQL. On the React Native side I've shipped e-commerce and logistics apps with Expo and bare workflow, integrating Firebase, REST APIs, and native device modules.",
         "tags": [
           "Flutter",
+          "React Native",
           "Dart",
           "iOS",
-          "Android"
+          "Android",
+          "Expo",
+          "FCM",
+          "Supabase",
+          "Firebase"
         ]
       },
       {
         "number": "04",
         "name": "Data & Automation",
-        "description": "I write data analysis and automation scripts using Python, Pandas, and NumPy — reducing manual workload by ~30% in production environments.",
+        "description": "I write scripts that do the work so people don't have to. Data cleaning and transformation pipelines with Pandas and NumPy, scheduled scrapers and crawlers, automated report generators that export to Excel and PDF, and LangChain-powered AI workflows that process documents, answer questions from knowledge bases, and classify incoming data. I've also built FastAPI services that expose these pipelines as internal APIs and reduced manual operational workload by ~30% in live production environments.",
         "tags": [
+          "Python",
           "Pandas",
           "NumPy",
-          "Python",
-          "Automation"
+          "FastAPI",
+          "LangChain",
+          "OpenAI",
+          "BeautifulSoup",
+          "Celery"
         ]
       },
       {
         "number": "05",
         "name": "Databases & DevOps",
-        "description": "I work hands-on with MongoDB, PostgreSQL, MySQL, and Supabase. I also manage Docker setups, Git workflows, Firebase Functions, and CI/CD pipelines.",
+        "description": "I design schemas that scale and don't break when data gets messy or traffic spikes. PostgreSQL with row-level security and complex joins, MongoDB for document-heavy workloads, MySQL for legacy integrations, Supabase for real-time subscriptions and instant auth setup, Redis for caching and pub/sub. On the infrastructure side: Docker and Docker Compose for environment parity, GitHub Actions for CI/CD pipelines, VPS deployment with Nginx reverse proxies, SSL configuration, and enough production incident experience to know what not to do.",
         "tags": [
           "PostgreSQL",
           "MongoDB",
+          "MySQL",
+          "Supabase",
+          "Redis",
           "Docker",
-          "GitHub Actions"
+          "GitHub Actions",
+          "Nginx"
         ]
       }
     ],
@@ -258,7 +319,7 @@
       "c8": "Container orchestration with <span class=\"hl\">Docker</span>, CI/CD pipelines, Git workflows, and cloud deployments. From local dev to live production infrastructure.",
       "c9": "Cross-platform mobile with <span class=\"hl\">React Native</span>, MobX state management, IAP monetization, Google Ads, and native <span class=\"hl\">Node.js</span> bridge integrations."
     },
-    "hint_mobile": "touch the card corners to discover"
+    "hint_mobile": "skills auto-cycle • tap card to switch"
   },
   "projects": {
     "heading": "Projects",
@@ -272,6 +333,56 @@
       "Completed": "Completed"
     },
     "det": {
+      "10": {
+        "desc": "Buyuk olcekte urun verisi cikaran otomatik AliExpress kazima pipeline. MKG otomatik faturalandirmasini guncel katalogla destekliyor.",
+        "hi": [
+          "Yuksek verimli AliExpress urun cikartma",
+          "Kategori siniflandirmali veri normallestirme",
+          "Dahili veritabanina sema esleme",
+          "Proxy rotasyonlu kazima",
+          "Dogrudan MKG faturalandirma beslemesi"
+        ]
+      },
+      "11": {
+        "desc": "Next.js App Router ve Supabase ile gercek zamanli envanter takip uygulamasi. Canli stok izleme, urun yonetimi ve operasyonel ekipler icin anlik guncelleme.",
+        "hi": [
+          "Supabase canli aboneliklerle stok takibi",
+          "Kategori filtrelemeli urun katalogu",
+          "Next.js App Router sunucu bilesenli",
+          "Depo ekipleri icin rol tabanli erisim",
+          "Mobil duyarli depo kullanimi"
+        ]
+      },
+      "12": {
+        "desc": "Aura kreatif studyo icin modern animasyon oncelikli ajans sitesi. Akici CSS animasyonlari, tamamen duyarli tasarim ve rafine marka kimligi. Aktif olarak canli ve bakim yapiliyor.",
+        "hi": [
+          "Akici scroll CSS animasyonlari",
+          "Mobilden ultra genis ekrana tam duyarli",
+          "Ozel tipografi ile marka kimligi",
+          "Optimize varliklarla hizli teslimat",
+          "Canli ve aktif bakim sureci"
+        ]
+      },
+      "13": {
+        "desc": "Hasta randevu akisi, uzmanlik filtreli doktor arama, gercek zamanli musaitlik takibi ve klinik personel admin arayuzu iceren doktor randevu web uygulamasi.",
+        "hi": [
+          "Filtreli hasta doktor arama",
+          "Gercek zamanli randevu musaitlik takibi",
+          "Klinik personeli icin admin panosu",
+          "MongoDB randevu ve hasta veri modeli",
+          "JWT kimlik dogrulamali Express.js REST API"
+        ]
+      },
+      "14": {
+        "desc": "GPU hizlandirmali WebGL canvas animasyonlariyla gorsek acidan iddiali 3D web deneyimi — yuksek voltajli elektrik ark efektleri, parcacik sistemleri ve 60fps dinamik aydinlatma.",
+        "hi": [
+          "Ozel shader GPU hizlandirmali WebGL",
+          "Yuksek voltajli elektrik ark efektleri",
+          "Dinamik aydinlatma ve bloom isleme",
+          "requestAnimationFrame ile 60fps",
+          "Sifir bagimlilikli WebGL pipeline"
+        ]
+      },
       "01": {
         "desc": "Turk kargo firmalarini tek API altinda toplayan lojistik MVP. Tek istekte tum firmalardan sirali fiyat/sure doner. Musteri secer, sistem otomatik rezervasyon yapar.",
         "hi": [
@@ -361,56 +472,6 @@
           "Manuel is yukunu onemli olcude azaltti",
           "ERP ve tedarikci akislariyla entegre"
         ]
-      },
-      "10": {
-        "desc": "Buyuk olcekte urun verisi cikaran otomatik AliExpress kazima pipeline. MKG otomatik faturalandirmasini guncel katalogla destekliyor.",
-        "hi": [
-          "Yuksek verimli AliExpress urun cikartma",
-          "Kategori siniflandirmali veri normallestirme",
-          "Dahili veritabanina sema esleme",
-          "Proxy rotasyonlu kazima",
-          "Dogrudan MKG faturalandirma beslemesi"
-        ]
-      },
-      "11": {
-        "desc": "Next.js App Router ve Supabase ile gercek zamanli envanter takip uygulamasi. Canli stok izleme, urun yonetimi ve operasyonel ekipler icin anlik guncelleme.",
-        "hi": [
-          "Supabase canli aboneliklerle stok takibi",
-          "Kategori filtrelemeli urun katalogu",
-          "Next.js App Router sunucu bilesenli",
-          "Depo ekipleri icin rol tabanli erisim",
-          "Mobil duyarli depo kullanimi"
-        ]
-      },
-      "12": {
-        "desc": "Aura kreatif studyo icin modern animasyon oncelikli ajans sitesi. Akici CSS animasyonlari, tamamen duyarli tasarim ve rafine marka kimligi. Aktif olarak canli ve bakim yapiliyor.",
-        "hi": [
-          "Akici scroll CSS animasyonlari",
-          "Mobilden ultra genis ekrana tam duyarli",
-          "Ozel tipografi ile marka kimligi",
-          "Optimize varliklarla hizli teslimat",
-          "Canli ve aktif bakim sureci"
-        ]
-      },
-      "13": {
-        "desc": "Hasta randevu akisi, uzmanlik filtreli doktor arama, gercek zamanli musaitlik takibi ve klinik personel admin arayuzu iceren doktor randevu web uygulamasi.",
-        "hi": [
-          "Filtreli hasta doktor arama",
-          "Gercek zamanli randevu musaitlik takibi",
-          "Klinik personeli icin admin panosu",
-          "MongoDB randevu ve hasta veri modeli",
-          "JWT kimlik dogrulamali Express.js REST API"
-        ]
-      },
-      "14": {
-        "desc": "GPU hizlandirmali WebGL canvas animasyonlariyla gorsek acidan iddiali 3D web deneyimi — yuksek voltajli elektrik ark efektleri, parcacik sistemleri ve 60fps dinamik aydinlatma.",
-        "hi": [
-          "Ozel shader GPU hizlandirmali WebGL",
-          "Yuksek voltajli elektrik ark efektleri",
-          "Dinamik aydinlatma ve bloom isleme",
-          "requestAnimationFrame ile 60fps",
-          "Sifir bagimlilikli WebGL pipeline"
-        ]
       }
     }
   },
@@ -439,6 +500,11 @@
   "hobbies": {
     "heading": "Hobbies",
     "caption": "Flawless experiences aren't just built with pixels. The rhythms that fill my life when I disconnect from the screen, the angles captured through the viewfinder, and the passions that recharge my energy.",
+    "bg_text": "PASSIONS",
+    "title_line1": "BEYOND",
+    "title_line2": "THE CODE",
+    "editorial_desc": "[ The real formula behind flawless interfaces: Living life in multi-dimension. Framing the light, synthesizing the rhythm, exploring your own limits. ]",
+    "allTimeFavorite": "All Time Favorites",
     "software": {
       "title": "Software",
       "subtitle": "Architecture & Systems",
@@ -469,5 +535,74 @@
       "subtitle": "Gaming & Travel",
       "desc": "Conquering new digital universes and tasting the unknown cultures of the physical world."
     }
-  }
+  },
+  "marquee": {
+    "selectedWork": "Selected Work"
+  },
+  "footer": {
+    "copyright": "Berhudan Başcan © 2026",
+    "rights": "All rights reserved"
+  },
+  "quotes": [
+    {
+      "c": "First, solve the problem. Then, write the code.",
+      "a": "John Johnson"
+    },
+    {
+      "c": "Make it work, make it right, make it fast.",
+      "a": "Kent Beck"
+    },
+    {
+      "c": "Code is like humor. When you have to explain it, it is bad.",
+      "a": "Cory House"
+    },
+    {
+      "c": "If debugging is removing bugs, programming must be putting them in.",
+      "a": "Edsger Dijkstra"
+    },
+    {
+      "c": "Simplicity is the soul of efficiency.",
+      "a": "Austin Freeman"
+    },
+    {
+      "c": "It always seems impossible until it is done.",
+      "a": "Nelson Mandela"
+    },
+    {
+      "c": "The secret of getting ahead is getting started.",
+      "a": "Mark Twain"
+    },
+    {
+      "c": "Push yourself, because no one else is going to do it for you.",
+      "a": "Unknown"
+    },
+    {
+      "c": "Great things never come from comfort zones.",
+      "a": "Unknown"
+    },
+    {
+      "c": "Do not stop when you are tired. Stop when you are done.",
+      "a": "Unknown"
+    },
+    {
+      "c": "Work hard in silence. Let success make the noise.",
+      "a": "Frank Ocean"
+    },
+    {
+      "c": "Be so good they cannot ignore you.",
+      "a": "Steve Martin"
+    },
+    {
+      "c": "Stay hungry. Stay foolish.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "The only way to do great work is to love what you do.",
+      "a": "Steve Jobs"
+    },
+    {
+      "c": "Opportunities do not happen. You create them.",
+      "a": "Chris Grosser"
+    }
+  ]
 }
