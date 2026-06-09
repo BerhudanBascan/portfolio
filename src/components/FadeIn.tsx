@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ReactNode, ElementType, CSSProperties } from 'react'
+import { ReactNode, ElementType, CSSProperties, useMemo } from 'react'
 
 interface FadeInProps {
   children: ReactNode
@@ -22,7 +22,7 @@ export default function FadeIn({
   style,
   as = 'div',
 }: FadeInProps) {
-  const MotionComponent = motion.create(as as ElementType)
+  const MotionComponent = useMemo(() => motion.create(as as ElementType), [as])
 
   return (
     <MotionComponent
