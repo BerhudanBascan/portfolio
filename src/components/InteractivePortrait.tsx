@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion'
 import Magnet from './Magnet'
 
 const PORTRAIT_URL = '/images/berhudan.png'
@@ -54,6 +54,7 @@ export default function InteractivePortrait() {
   const ty = useTransform(smoothY, [-1, 1], [-10, 10])
   const glowX = useTransform(smoothX, [-1, 1], [35, 65])
   const glowY = useTransform(smoothY, [-1, 1], [35, 65])
+  const glowBg = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.12) 0%, transparent 55%)`
 
   useEffect(() => {
     isHoveredRef.current = isHovered
@@ -103,9 +104,7 @@ export default function InteractivePortrait() {
         <motion.div
           style={{
             position: 'absolute', inset: 0,
-            background: isHovered
-              ? `radial-gradient(circle at ${glowX.get()}% ${glowY.get()}%, rgba(255,255,255,0.12) 0%, transparent 55%)`
-              : 'none',
+            background: glowBg,
             pointerEvents: 'none',
             zIndex: 11,
             borderRadius: 8,
