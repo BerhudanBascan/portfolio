@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useIsTouch } from '../hooks/useBreakpoint'
 
 const SKILLS = [
   {
@@ -68,9 +70,31 @@ const SKILLS = [
 
 const SkillsCard = () => {
   const { t } = useTranslation()
+  const [activeSkillNum, setActiveSkillNum] = useState<number>(5);
+  const isTouch = useIsTouch(1024);
+
+  useEffect(() => {
+    if (!isTouch) return;
+
+    const interval = setInterval(() => {
+      setActiveSkillNum(prev => (prev === 9 ? 1 : prev + 1));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isTouch]);
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isTouch) {
+      e.preventDefault();
+      e.stopPropagation();
+      setActiveSkillNum(prev => (prev === 9 ? 1 : prev + 1));
+    }
+  };
+
   const TRANSLATED = SKILLS.map(s => ({ ...s, desc: t(`skills.cards.${s.id}`, s.desc) }))
   const dynamicStyles = SKILLS.map(s => `
-    .skills-card-wrapper .anchor:has(.p${s.num}:hover) {
+    .skills-card-wrapper .anchor:has(.p${s.num}:hover),
+    .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} {
       --theme: ${s.theme};
       --accent: ${s.accent};
       --font-main: ${s.font};
@@ -81,18 +105,22 @@ const SkillsCard = () => {
       --ty: ${s.ty};
       --op: ${s.op};
     }
-    .skills-card-wrapper .anchor:has(.p${s.num}:hover) .${s.id} {
+    .skills-card-wrapper .anchor:has(.p${s.num}:hover) .${s.id},
+    .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} .${s.id} {
       display: flex;
       opacity: 1;
     }
   `).join('\n');
 
   return (
-    <div className="skills-card-wrapper w-full flex justify-center items-center relative overflow-visible">
-      <div className="transform scale-[0.5] sm:scale-[0.6] md:scale-[0.7] lg:scale-[0.8] transition-transform duration-500 origin-center">
+    <div className="skills-card-wrapper relative flex justify-center items-center overflow-visible mx-auto">
+      <div 
+        className="scale-container transform scale-[0.5] sm:scale-[0.6] md:scale-[0.7] lg:scale-[0.8] transition-transform duration-500 origin-center absolute"
+        onClick={handleCardClick}
+      >
         <div className="body sk-body relative" style={{ position: 'relative' }}>
           <div className="aura" />
-          <div className="anchor">
+          <div className={`anchor ${activeSkillNum !== null ? `active-card-${activeSkillNum}` : ''}`}>
             <div className="sensors">
               {TRANSLATED.map(s => (
                 <div key={s.id} className={`p${s.num}`} />
@@ -135,6 +163,38 @@ const SkillsCard = () => {
         </div>
       </div>
       <style dangerouslySetInnerHTML={{__html: `
+        .skills-card-wrapper {
+          width: 210px;
+          height: 290px;
+          transition: width 0.5s, height 0.5s;
+        }
+        @media (min-width: 640px) {
+          .skills-card-wrapper {
+            width: 252px;
+            height: 348px;
+          }
+        }
+        @media (min-width: 768px) {
+          .skills-card-wrapper {
+            width: 294px;
+            height: 406px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .skills-card-wrapper {
+            width: 336px;
+            height: 464px;
+          }
+        }
+
+        .skills-card-wrapper .scale-container {
+          width: 420px;
+          height: 580px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
         .skills-card-wrapper .sk-body {
           --bg: transparent;
           --theme: #ffffff;
@@ -189,7 +249,7 @@ const SkillsCard = () => {
         }
 
         /* Default visible card is c5 */
-        .skills-card-wrapper .anchor:not(:has(.sensors div:hover)) .c5 {
+        .skills-card-wrapper .anchor:not(:has(.sensors div:hover)):not([class*="active-card-"]) .c5 {
           display: flex;
           opacity: 1;
         }
@@ -306,9 +366,6 @@ const SkillsCard = () => {
           text-transform: uppercase;
           margin: 0;
           color: #fff;
-          background: linear-gradient(to bottom, #fff, var(--theme));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
         }
 
         .skills-card-wrapper .stats-hub {
