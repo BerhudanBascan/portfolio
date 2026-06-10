@@ -1,8 +1,9 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import LoadingScreen from './components/LoadingScreen'
 import Header from './components/Header'
+import { LangContext } from './context/LangContext'
 import HeroSection from './sections/HeroSection'
 import MarqueeSection from './sections/MarqueeSection'
 import AboutSection from './sections/AboutSection'
@@ -15,16 +16,23 @@ import ContactSection from './sections/ContactSection'
 export default function App() {
   const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true)
+  const [displayLang, setDisplayLang] = useState(i18n.language.split('-')[0])
+  const pendingLang = useRef<string | null>(null)
   const handleDone = useCallback(() => setLoading(false), [])
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
-  // Sync <html lang> attribute with selected language
   useEffect(() => {
     document.documentElement.lang = i18n.language
   }, [i18n.language])
 
+  const requestLangChange = useCallback((lang: string) => {
+    pendingLang.current = lang
+    setDisplayLang(lang)
+  }, [])
+
   return (
+    <LangContext.Provider value={requestLangChange}>
     <div className="w-full flex flex-col relative min-h-screen">
       <div style={{ position:'fixed', inset:0, zIndex:0, pointerEvents:'none', opacity:0.25, background:'radial-gradient(ellipse 80% 60% at 20% 30%, #ff6ec799 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 20%, #6ec6ff88 0%, transparent 55%), radial-gradient(ellipse 70% 60% at 60% 80%, #ff9f4077 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 10% 80%, #a78bfa77 0%, transparent 55%)' }} />
       <AnimatePresence>{loading && <LoadingScreen onDone={handleDone} />}</AnimatePresence>
@@ -36,17 +44,32 @@ export default function App() {
         className="flex flex-col w-full"
       >
         <Header />
-        <div className="pt-6 lg:pt-16 w-full flex flex-col">
-          <HeroSection />
-          <MarqueeSection />
-          <AboutSection />
-          <HobbiesSection />
-          <ExperienceSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
-        </div>
+        <AnimatePresence mode="wait" onExitComplete={() => {
+          if (pendingLang.current) {
+            i18n.changeLanguage(pendingLang.current)
+            pendingLang.current = null
+          }
+        }}>
+          <motion.div
+            key={displayLang}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="pt-6 lg:pt-16 w-full flex flex-col"
+          >
+            <HeroSection />
+            <MarqueeSection />
+            <AboutSection />
+            <HobbiesSection />
+            <ExperienceSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ContactSection />
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
     </div>
+    </LangContext.Provider>
   )
 }

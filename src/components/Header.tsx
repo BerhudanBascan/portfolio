@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../context/ThemeContext'
+import { useLangChange } from '../context/LangContext'
 
 const LANGS = ['EN', 'TR', 'DE'] as const
 
@@ -83,11 +84,12 @@ function ThemeBulb() {
 /* ─── Lang switch ─── */
 function LangSwitch() {
   const { i18n } = useTranslation()
+  const requestLangChange = useLangChange()
   const btnRef = useRef<HTMLButtonElement>(null)
   const [pos, setPos] = useState({ x: 0, y: 0 })
-  const idx = LANGS.findIndex(l => l.toLowerCase() === i18n.language.toLowerCase())
+  const idx = LANGS.findIndex(l => l.toLowerCase() === i18n.language.split('-')[0].toLowerCase())
   const current = idx === -1 ? 0 : idx
-  const cycle = () => i18n.changeLanguage(LANGS[(current + 1) % LANGS.length].toLowerCase())
+  const cycle = () => requestLangChange(LANGS[(current + 1) % LANGS.length].toLowerCase())
   const onMove = (e: React.MouseEvent) => {
     if (!btnRef.current) return
     const r = btnRef.current.getBoundingClientRect()

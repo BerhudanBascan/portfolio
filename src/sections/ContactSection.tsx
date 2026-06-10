@@ -89,6 +89,10 @@ export default function ContactSection() {
           80% { transform: translate(calc(-50% - 3vw), -25vh) scale(3.5); opacity: 0.3; }
           100% { transform: translate(calc(-50% + 5vw), -30vh) scale(5); opacity: 0; }
         }
+        @keyframes contactFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+        }
         .chimney-particle {
           position: absolute;
           left: 50%;
@@ -193,11 +197,18 @@ export default function ContactSection() {
             }
           }}
         >
-          {IMAGES.map((item, i) => (
-            <div key={i} style={getStyle(i)}>
-              <img src={item.src} alt={item.title} className="w-full h-full object-contain drop-shadow-2xl pointer-events-none" style={{ objectPosition: 'bottom center' }} draggable={false} />
-            </div>
-          ))}
+          {IMAGES.map((item, i) => {
+            const role = getRole(i)
+            const floatDelay = [0, 0.8, 1.6, 2.4][i]
+            const floatDur = role === 'center' ? '3.2s' : '4s'
+            return (
+              <div key={i} style={getStyle(i)}>
+                <div style={{ width: '100%', height: '100%', animation: `contactFloat ${floatDur} ease-in-out ${floatDelay}s infinite` }}>
+                  <img src={item.src} alt={item.title} className="w-full h-full object-contain drop-shadow-2xl pointer-events-none" style={{ objectPosition: 'bottom center' }} draggable={false} />
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Bottom-left text + nav buttons */}
