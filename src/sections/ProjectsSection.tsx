@@ -78,9 +78,9 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
   const color = PROJECT_COLORS[index % PROJECT_COLORS.length]
 
   return (
-    <div style={{ position: isMobile ? 'relative' : 'sticky', top: isMobile ? 'auto' : 72, zIndex: index + 1 }}>
+    <div style={{ position: 'sticky', top: isMobile ? 60 : 72, zIndex: index + 1 }}>
       <motion.div
-        style={{ scale: isMobile ? 1 : scale, transformOrigin: 'top center', maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 0.5rem' : '0 clamp(0.75rem,3vw,2rem)', position: 'relative' }}
+        style={{ scale, transformOrigin: 'top center', maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 0.5rem' : '0 clamp(0.75rem,3vw,2rem)', position: 'relative' }}
       >
         {/* Aurora glow behind card */}
         <div style={{
@@ -179,7 +179,7 @@ export default function ProjectsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-10 mb-10 sm:mb-16">
         <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem,9.5vw,150px)', color: 'rgb(100, 105, 115)' }}>{ t('projects.heading') }</h2>
       </div>
-      <div style={{ paddingBottom: isMobile ? '40vh' : '60vh' }}>
+      <div style={{ paddingBottom: '60vh' }}>
         {PROJECTS.map((p, i) => <ProjectCard key={p.num} project={p} index={i} isMobile={isMobile} scrollYProgress={scrollYProgress} />)}
       </div>
     </section>
