@@ -198,7 +198,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.93 }}
           transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-          className="fixed bottom-3 right-2 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-1.5 sm:gap-3 px-1.5 py-1 sm:px-4 sm:py-3 rounded-lg sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"
+          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"
           style={{
             background: 'rgba(10,10,12,0.15)',
             backdropFilter: 'blur(16px)',
@@ -219,7 +219,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           </button>
 
           {/* Cover art */}
-          <div className="relative w-6 h-6 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden shrink-0 border border-white/10">
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden shrink-0 border border-white/10">
             <img src={track.coverSrc} alt="" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/20" />
           </div>
@@ -243,19 +243,19 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
 
           {/* Controls */}
           <div className="flex items-center gap-1 shrink-0 ml-1">
-            <button onClick={onPrev} className="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center text-white/50 hover:text-white transition-colors">
+            <button onClick={onPrev} className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-white/50 hover:text-white transition-colors">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
             </button>
             <button
               onClick={playing ? onPause : onPlay}
-              className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-transform shadow-lg shrink-0"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-transform shadow-lg shrink-0"
             >
               {playing
                 ? <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
                 : <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5"><path d="M5 3l14 9-14 9V3z"/></svg>
               }
             </button>
-            <button onClick={onNext} className="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center text-white/50 hover:text-white transition-colors">
+            <button onClick={onNext} className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-white/50 hover:text-white transition-colors">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6v12l8.5-6zM16 6h2v12h-2z"/></svg>
             </button>
           </div>
