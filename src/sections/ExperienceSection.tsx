@@ -44,10 +44,10 @@ function ListItem({ item, tabKey, isActive, color, onEnter }: {
       )}
       <div className="flex flex-col min-w-0 flex-1 ml-1">
         <span className="font-mono text-[9px] xl:text-[10px] tracking-[0.25em] uppercase text-[var(--fg-35)] mb-0.5">{badge}</span>
-        <span className={`font-black text-[0.82rem] xl:text-[0.9rem] uppercase tracking-tight leading-tight transition-colors duration-300 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'}`}>
+        <span className={`font-black text-[0.82rem] xl:text-[0.9rem] uppercase tracking-tight leading-tight transition-colors duration-300 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-60)] group-hover:text-[var(--fg)]'}`}>
           {title}
         </span>
-        <span className="font-semibold text-[10px] xl:text-[11px] tracking-widest uppercase text-[var(--fg-28)] truncate mt-0.5">{sub}</span>
+        <span className="font-semibold text-[10px] xl:text-[11px] tracking-widest uppercase text-[var(--fg)] truncate mt-0.5">{sub}</span>
       </div>
       <div className={`w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-300 ${isActive ? 'bg-white' : 'bg-[var(--fg-18)] group-hover:bg-[var(--fg-35)]'}`} />
     </div>
@@ -77,7 +77,7 @@ function DetailPanel({ item, tabKey, color, t }: {
           {badge}
         </span>
         <h3 className="text-xl xl:text-2xl font-black uppercase tracking-tight leading-tight text-[var(--fg)] mb-1">{title}</h3>
-        <p className="text-[0.72rem] xl:text-[0.78rem] font-semibold tracking-widest uppercase text-[var(--fg-35)]">{sub}</p>
+        <p className="text-[0.72rem] xl:text-[0.78rem] font-semibold tracking-widest uppercase text-[var(--fg)]">{sub}</p>
       </div>
 
       <div className="h-[1px] w-full bg-gradient-to-r from-[var(--fg-18)] to-transparent" />
@@ -148,8 +148,8 @@ function MobileCard({ item, tabKey, isOpen, color, onToggle, t }: {
           </motion.div>
         </div>
       </div>
-      <h4 className="text-[0.82rem] sm:text-[0.9rem] font-extrabold text-[var(--fg)] tracking-tight leading-snug mb-0.5 uppercase">{title}</h4>
-      <span className="text-[0.68rem] sm:text-[0.75rem] font-semibold tracking-wider uppercase text-[var(--fg-40)] leading-relaxed">{sub}</span>
+      <h4 className="text-[0.82rem] sm:text-[0.9rem] font-extrabold text-[var(--fg-60)] tracking-tight leading-snug mb-0.5 uppercase">{title}</h4>
+      <span className="text-[0.68rem] sm:text-[0.75rem] font-semibold tracking-wider uppercase text-[var(--fg)] leading-relaxed">{sub}</span>
       <AnimatePresence>
         {isOpen && (
           <motion.div
