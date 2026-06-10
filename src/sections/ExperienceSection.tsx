@@ -44,10 +44,10 @@ function ListItem({ item, tabKey, isActive, color, onEnter }: {
       )}
       <div className="flex flex-col min-w-0 flex-1 ml-1">
         <span className="font-mono text-[9px] xl:text-[10px] tracking-[0.25em] uppercase text-[var(--fg-35)] mb-0.5">{badge}</span>
-        <span className={`font-black text-[0.82rem] xl:text-[0.9rem] uppercase tracking-tight leading-tight transition-colors duration-300 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-60)] group-hover:text-[var(--fg)]'}`}>
+        <span className={`font-black text-[0.82rem] xl:text-[0.9rem] uppercase tracking-tight leading-tight transition-colors duration-300 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'}`}>
           {title}
         </span>
-        <span className="font-semibold text-[10px] xl:text-[11px] tracking-widest uppercase text-[var(--fg)] truncate mt-0.5">{sub}</span>
+        <span className="font-semibold text-[10px] xl:text-[11px] tracking-widest uppercase text-[var(--fg-28)] truncate mt-0.5">{sub}</span>
       </div>
       <div className={`w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-300 ${isActive ? 'bg-white' : 'bg-[var(--fg-18)] group-hover:bg-[var(--fg-35)]'}`} />
     </div>
@@ -77,7 +77,7 @@ function DetailPanel({ item, tabKey, color, t }: {
           {badge}
         </span>
         <h3 className="text-xl xl:text-2xl font-black uppercase tracking-tight leading-tight text-[var(--fg)] mb-1">{title}</h3>
-        <p className="text-[0.72rem] xl:text-[0.78rem] font-semibold tracking-widest uppercase text-[var(--fg)]">{sub}</p>
+        <p className="text-[0.72rem] xl:text-[0.78rem] font-semibold tracking-widest uppercase text-[var(--fg-35)]">{sub}</p>
       </div>
 
       <div className="h-[1px] w-full bg-gradient-to-r from-[var(--fg-18)] to-transparent" />
@@ -127,62 +127,79 @@ function MobileCard({ item, tabKey, isOpen, color, onToggle, t }: {
   return (
     <div
       onClick={onToggle}
-      className={`group relative flex flex-col p-3 sm:p-4 rounded-xl border transition-all duration-400 overflow-hidden cursor-pointer select-none ${
-        isOpen ? 'bg-[var(--fg-08)] border-[var(--fg-28)]' : 'bg-[var(--fg-06)]/30 border-[var(--fg-06)] hover:bg-[var(--fg-08)] hover:border-[var(--fg-18)]'
+      className={`group relative flex flex-col p-4 sm:p-5 rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer select-none ${
+        isOpen
+          ? 'bg-[var(--fg-08)] border-[var(--fg-28)] shadow-lg shadow-black/5'
+          : 'bg-[var(--fg-06)]/20 border-[var(--fg-06)] hover:bg-[var(--fg-08)] hover:border-[var(--fg-18)]'
       }`}
     >
-      {isOpen && <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${color}`} />}
-      <div className="flex justify-between items-start gap-2 mb-1.5">
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[0.65rem] font-mono tracking-widest uppercase leading-none transition-colors duration-500 ${
-          isOpen ? `bg-gradient-to-r ${color} border-transparent text-white` : 'border-[var(--fg-18)] bg-[var(--bg)]/40 text-[var(--fg)]'
+      {/* Top accent gradient line */}
+      {isOpen && <div className={`absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r ${color}`} />}
+
+      <div className="flex justify-between items-start gap-3 w-full">
+        <div className="flex flex-col min-w-0 flex-1">
+          {/* Badge (date/issuer) */}
+          <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[var(--fg-35)] mb-1.5 font-bold">
+            {badge}
+          </span>
+          {/* Title */}
+          <h4 className={`text-[0.92rem] sm:text-[1rem] font-black uppercase tracking-tight leading-tight transition-colors duration-300 ${
+            isOpen ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'
+          }`}>
+            {title}
+          </h4>
+          {/* Subtitle / Company */}
+          <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-[var(--fg-28)] mt-1 truncate">
+            {sub}
+          </span>
+        </div>
+
+        {/* Plus / Minus indicator button */}
+        <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${
+          isOpen ? `bg-gradient-to-tr ${color} border-transparent text-white` : 'border-[var(--fg-18)] text-[var(--fg)] opacity-55'
         }`}>
-          {badge}
-        </span>
-        <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${
-          isOpen ? `bg-gradient-to-tr ${color} border-transparent text-white` : 'border-[var(--fg-18)] text-[var(--fg)] opacity-50'
-        }`}>
-          <motion.div animate={{ rotate: isOpen ? 135 : 0 }} transition={{ type: 'spring', stiffness: 170, damping: 22 }}>
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+          <motion.div animate={{ rotate: isOpen ? 135 : 0 }} transition={{ type: 'spring', stiffness: 200, damping: 20 }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
               <path d="M12 5v14m-7-7h14" />
             </svg>
           </motion.div>
         </div>
       </div>
-      <h4 className="text-[0.82rem] sm:text-[0.9rem] font-extrabold text-[var(--fg-60)] tracking-tight leading-snug mb-0.5 uppercase">{title}</h4>
-      <span className="text-[0.68rem] sm:text-[0.75rem] font-semibold tracking-wider uppercase text-[var(--fg)] leading-relaxed">{sub}</span>
-      <AnimatePresence>
+
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pt-3 border-t border-[var(--fg-08)] mt-3 flex flex-col gap-2">
+            {/* Content area */}
+            <div className="pt-4 mt-4 border-t border-[var(--fg-10)] flex flex-col gap-3">
               {tabKey === 'work' && Array.isArray(item.bullets) && (
-                <ul className="flex flex-col gap-1.5">
+                <ul className="flex flex-col gap-2.5 pl-1">
                   {item.bullets.map((b: string, j: number) => (
-                    <li key={j} className="flex items-start gap-2 text-[0.7rem] sm:text-[0.75rem] leading-relaxed text-[var(--fg-40)]">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--fg)] shrink-0 opacity-40 animate-pulse" />
+                    <li key={j} className="flex items-start gap-2.5 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-[var(--fg-40)]">
+                      <span className={`mt-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r ${color} shrink-0 shadow-sm`} />
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
               )}
               {(tabKey === 'intern' || tabKey === 'languages') && (
-                <p className="text-[var(--fg-40)] text-[0.7rem] sm:text-[0.75rem] leading-relaxed font-light">{item.desc}</p>
+                <p className="text-[var(--fg-40)] text-[0.78rem] sm:text-[0.82rem] leading-relaxed font-light pl-1">{item.desc}</p>
               )}
               {tabKey === 'certs' && item.link && (
                 <a href={item.link} target="_blank" rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1.5 text-[0.68rem] sm:text-[0.73rem] font-mono tracking-widest uppercase font-bold text-[var(--fg-40)] hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r ${color} transition-all duration-500 border-b border-[var(--fg-18)] pb-0.5 w-fit`}>
+                  className={`inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono tracking-widest uppercase font-bold text-[var(--fg-40)] hover:text-white border-b border-[var(--fg-18)] pb-0.5 w-fit mt-1 ml-1`}>
                   {t('experience.view_cert') || 'View Certificate →'}
                 </a>
               )}
               {(tabKey === 'work' || tabKey === 'intern') && Array.isArray(item.stack) && (
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                <div className="flex flex-wrap gap-1.5 pt-3.5 mt-1 border-t border-[var(--fg-06)]">
                   {item.stack.map((s: string) => (
-                    <span key={s} className="px-2 py-0.5 rounded-full border border-[var(--fg-10)] bg-[var(--fg-06)] text-[0.62rem] sm:text-[0.7rem] font-mono tracking-wider uppercase text-[var(--fg-40)]">{s}</span>
+                    <span key={s} className="px-2.5 py-1 rounded-full border border-[var(--fg-10)] bg-[var(--fg-06)] text-[8px] font-mono tracking-wider uppercase text-[var(--fg-40)]">{s}</span>
                   ))}
                 </div>
               )}
@@ -241,14 +258,14 @@ export default function ExperienceSection() {
 
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-14 xl:gap-20 w-full">
 
-          {/* ── Tab nav: 2-col mobile, 4-col tablet, vertical sidebar desktop ── */}
-          <nav className="w-full lg:w-[240px] xl:w-[280px] grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-1 gap-2 sm:gap-3 lg:sticky lg:top-24 lg:self-start shrink-0">
+          {/* ── Tab nav: grid structure on mobile (no arrows to save horizontal space) ── */}
+          <nav className="w-full lg:w-[240px] xl:w-[280px] grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-1 gap-2.5 sm:gap-3 lg:sticky lg:top-24 lg:self-start shrink-0">
             {(Object.keys(TAB_CONFIG) as TabKey[]).map((key) => {
               const isActive = activeTab === key
               const tab = TAB_CONFIG[key]
               return (
                 <button key={key} onClick={() => selectTab(key)}
-                  className={`group relative flex items-center justify-between gap-1.5 sm:gap-2 p-2 sm:p-4 lg:p-5 rounded-2xl transition-all duration-500 overflow-hidden text-left border ${
+                  className={`group relative flex items-center justify-between gap-2 p-3 sm:p-4 lg:p-5 rounded-2xl transition-all duration-500 overflow-hidden text-left border ${
                     isActive
                       ? `bg-[var(--fg-06)] border-[var(--fg-18)] shadow-lg ${tab.shadow}`
                       : `bg-transparent border-[var(--fg-06)] hover:bg-[var(--fg-06)] hover:border-[var(--fg-12)]`
@@ -262,7 +279,7 @@ export default function ExperienceSection() {
                   )}
                   {isActive && (
                     <motion.div layoutId="tabBeamH"
-                      className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r ${tab.color} lg:hidden`}
+                      className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${tab.color} lg:hidden`}
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
                     />
                   )}
@@ -270,11 +287,52 @@ export default function ExperienceSection() {
                     <span className={`font-mono text-[7px] sm:text-[9px] tracking-[0.3em] font-bold transition-colors duration-500 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-35)]'}`}>
                       {tab.id}
                     </span>
-                    <span className={`text-[0.78rem] sm:text-[0.88rem] lg:text-[1rem] xl:text-[1.2rem] font-black tracking-tight uppercase leading-tight transition-colors duration-500 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'}`}>
+                    <span className={`text-[0.74rem] sm:text-[0.85rem] lg:text-[1rem] xl:text-[1.2rem] font-black tracking-tight uppercase leading-tight transition-colors duration-500 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'}`}>
                       {t(tab.labelKey)}
                     </span>
                   </div>
-                  <div className={`relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0 ${
+                  <div className={`relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0 lg:flex hidden ${
+                    isActive
+                      ? `bg-gradient-to-tr ${tab.color} text-white border-transparent rotate-90`
+                      : `border-[var(--fg-10)] text-[var(--fg-35)] group-hover:border-[var(--fg-28)] group-hover:text-[var(--fg)]`
+                  }`}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </button>
+              )
+            })}
+          </nav>
+
+          {/* ── Tab nav on desktop: vertical sidebar ── */}
+          <nav className="hidden lg:grid lg:w-[240px] xl:w-[280px] lg:grid-cols-1 gap-3 lg:sticky lg:top-24 lg:self-start shrink-0">
+            {(Object.keys(TAB_CONFIG) as TabKey[]).map((key) => {
+              const isActive = activeTab === key
+              const tab = TAB_CONFIG[key]
+              return (
+                <button key={key} onClick={() => selectTab(key)}
+                  className={`group relative flex items-center justify-between gap-1.5 sm:gap-2 p-5 rounded-2xl transition-all duration-500 overflow-hidden text-left border ${
+                    isActive
+                      ? `bg-[var(--fg-06)] border-[var(--fg-18)] shadow-lg ${tab.shadow}`
+                      : `bg-transparent border-[var(--fg-06)] hover:bg-[var(--fg-06)] hover:border-[var(--fg-12)]`
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div layoutId="tabBeam"
+                      className={`absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b ${tab.color}`}
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
+                    />
+                  )}
+                  <div className="relative z-10 flex flex-col gap-0.5 lg:ml-2 min-w-0 flex-1">
+                    <span className={`font-mono text-[9px] tracking-[0.3em] font-bold transition-colors duration-500 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-35)]'}`}>
+                      {tab.id}
+                    </span>
+                    <span className={`text-[1rem] xl:text-[1.2rem] font-black tracking-tight uppercase leading-tight transition-colors duration-500 ${isActive ? 'text-[var(--fg)]' : 'text-[var(--fg-40)] group-hover:text-[var(--fg)]'}`}>
+                      {t(tab.labelKey)}
+                    </span>
+                  </div>
+                  <div className={`relative z-10 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0 ${
                     isActive
                       ? `bg-gradient-to-tr ${tab.color} text-white border-transparent rotate-90 ${tab.shadow}`
                       : `border-[var(--fg-10)] text-[var(--fg-35)] group-hover:border-[var(--fg-28)] group-hover:text-[var(--fg)] group-hover:scale-110`
@@ -335,7 +393,7 @@ export default function ExperienceSection() {
                 </div>
 
                 {/* Mobile: accordion (click to expand) */}
-                <div className="flex flex-col gap-2 sm:gap-2.5 w-full lg:hidden">
+                <div className="flex flex-col gap-3.5 w-full lg:hidden">
                   {getTabItems(activeTab).map((item, idx) => (
                     <MobileCard
                       key={idx}
