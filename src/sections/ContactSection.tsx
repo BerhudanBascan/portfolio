@@ -56,13 +56,9 @@ export default function ContactSection() {
   }
 
   return (
-    <motion.section
+    <section
       id="contact"
       className="relative w-full -mt-10 sm:-mt-12 md:-mt-14 z-10"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
         backgroundColor: currentItem.bg,
         transition: 'background-color 650ms cubic-bezier(0.4,0,0.2,1)',
@@ -256,6 +252,6 @@ export default function ContactSection() {
         </a>
 
       </div>
-    </motion.section>
+    </section>
   )
 }
