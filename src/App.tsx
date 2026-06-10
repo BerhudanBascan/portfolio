@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import LoadingScreen from './components/LoadingScreen'
@@ -16,8 +16,7 @@ import ContactSection from './sections/ContactSection'
 export default function App() {
   const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true)
-  const [displayLang, setDisplayLang] = useState(i18n.language.split('-')[0])
-  const pendingLang = useRef<string | null>(null)
+  const [fading, setFading] = useState(false)
   const handleDone = useCallback(() => setLoading(false), [])
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
@@ -27,9 +26,12 @@ export default function App() {
   }, [i18n.language])
 
   const requestLangChange = useCallback((lang: string) => {
-    pendingLang.current = lang
-    setDisplayLang(lang)
-  }, [])
+    setFading(true)
+    setTimeout(() => {
+      i18n.changeLanguage(lang)
+      setFading(false)
+    }, 280)
+  }, [i18n])
 
   return (
     <LangContext.Provider value={requestLangChange}>
@@ -44,19 +46,9 @@ export default function App() {
         className="flex flex-col w-full"
       >
         <Header />
-        <AnimatePresence mode="wait" onExitComplete={() => {
-          if (pendingLang.current) {
-            i18n.changeLanguage(pendingLang.current)
-            pendingLang.current = null
-          }
-        }}>
-          <motion.div
-            key={displayLang}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          <div
             className="pt-6 lg:pt-16 w-full flex flex-col"
+            style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.28s ease-in-out' }}
           >
             <HeroSection />
             <MarqueeSection />
@@ -66,8 +58,7 @@ export default function App() {
             <SkillsSection />
             <ProjectsSection />
             <ContactSection />
-          </motion.div>
-        </AnimatePresence>
+          </div>
       </motion.div>
     </div>
     </LangContext.Provider>
