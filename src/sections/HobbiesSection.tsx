@@ -521,7 +521,7 @@ export default function HobbiesSection() {
 
   const isMobile = useBreakpoint(1024);
 
-  // Constrain mini player above contact section on mobile
+  // Pin mini player to contact section top-right on mobile when visible
   const [playerBottom, setPlayerBottom] = useState<number | undefined>(undefined);
   useEffect(() => {
     if (!isMobile) return;
@@ -530,8 +530,9 @@ export default function HobbiesSection() {
       if (!contact) return;
       const rect = contact.getBoundingClientRect();
       const vh = window.innerHeight;
-      if (rect.top < vh) {
-        setPlayerBottom(Math.max(16, vh - rect.top + 8));
+      if (rect.top <= vh) {
+        // Pin player right at the top of the contact section
+        setPlayerBottom(vh - rect.top);
       } else {
         setPlayerBottom(undefined);
       }
