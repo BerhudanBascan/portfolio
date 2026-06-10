@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
 import { useTranslation } from 'react-i18next'
-import { useBreakpoint } from '../hooks/useBreakpoint'
 
 const TAB_CONFIG = {
   work:      { id: "01", labelKey: "experience.tabs.work",      titleKey: "experience.titles.work",      color: "from-blue-500 to-indigo-600",   shadow: "shadow-blue-500/20",    bg: "bg-blue-500/10" },
@@ -200,8 +199,6 @@ export default function ExperienceSection() {
   const [activeTab, setActiveTab] = useState<TabKey>('work')
   const [selectedIdx, setSelectedIdx] = useState<number>(0)
   const [expandedCard, setExpandedCard] = useState<number | null>(null)
-  const isMobile = useBreakpoint(1024)
-
   const rawWork      = t('experience.work',        { returnObjects: true }); const safeWork      = Array.isArray(rawWork)      ? rawWork      as any[] : []
   const rawIntern    = t('experience.internships', { returnObjects: true }); const safeIntern    = Array.isArray(rawIntern)    ? rawIntern    as any[] : []
   const rawCerts     = t('experience.certs',       { returnObjects: true }); const safeCerts     = Array.isArray(rawCerts)     ? rawCerts     as any[] : []
