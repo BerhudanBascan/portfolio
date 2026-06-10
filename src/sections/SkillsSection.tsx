@@ -88,14 +88,11 @@ function ServicesAccordion({ services }: { services: any[] }) {
                     {s.number}
                   </span>
                   <span
-                    className="font-black uppercase tracking-tight leading-none transition-all duration-700"
+                    className="font-black uppercase tracking-tight leading-none transition-all duration-500"
                     style={isMobile ? {
-                      fontSize: 'clamp(0.82rem, 1.4vw, 1rem)',
+                      fontSize: 'clamp(0.82rem, 1.4vw, 1.05rem)',
                       color: isOpen ? 'var(--fg)' : 'var(--fg-40)',
                       letterSpacing: isOpen ? '-0.02em' : '0.01em',
-                      transform: isOpen ? 'scale(1.35)' : 'scale(1)',
-                      transformOrigin: 'left center',
-                      transition: 'transform 0.5s cubic-bezier(0.16,1,0.3,1), color 0.4s',
                     } : {
                       fontSize: isOpen ? 'clamp(1.6rem, 4vw, 3.2rem)' : 'clamp(0.82rem, 1.4vw, 1rem)',
                       color: isOpen ? 'var(--fg)' : 'var(--fg-40)',
@@ -137,8 +134,8 @@ function ServicesAccordion({ services }: { services: any[] }) {
                     animate={{ height: 'auto', opacity: 1, ...(isMobile ? {} : { filter: 'blur(0px)' }) }}
                     exit={{ height: 0, opacity: 0, ...(isMobile ? {} : { filter: 'blur(10px)' }) }}
                     transition={isMobile ? {
-                      height:  { duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
-                      opacity: { duration: 0.4, ease: 'easeOut', delay: 0.1 },
+                      height:  { duration: 0.2, ease: 'easeOut' },
+                      opacity: { duration: 0.2, ease: 'easeOut' },
                     } : {
                       height:  { duration: 1.4, ease: [0.04, 0.62, 0.23, 0.98] },
                       opacity: { duration: 1.0, ease: 'easeOut', delay: 0.3 },
