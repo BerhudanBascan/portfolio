@@ -250,7 +250,7 @@ export default function ExperienceSection() {
         <FadeIn delay={0} y={40}>
           <h2
             className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-16 md:mb-20 text-center break-words px-4 w-full"
-            style={{ fontSize: 'clamp(2rem,12vw,160px)', color: 'rgb(100,105,115)' }}
+            style={{ fontSize: 'clamp(2rem,9.5vw,150px)', color: 'rgb(100,105,115)' }}
           >
             {t('experience.heading')}
           </h2>

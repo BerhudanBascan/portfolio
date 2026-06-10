@@ -126,11 +126,21 @@ function DesktopNav({ navLinks }: { navLinks: { label: string; href: string }[] 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [visible, setVisible] = useState(true)
   const lastY = useRef(0)
-  const { t } = useTranslation()
+  const skipUntil = useRef(0)
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    // Reset skip timer on language change to ignore layout shift scroll events
+    skipUntil.current = Date.now() + 500
+  }, [i18n.language])
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
+      if (Date.now() < skipUntil.current) {
+        lastY.current = y
+        return
+      }
       const diff = y - lastY.current
       if (Math.abs(diff) > 8) {
         setVisible(diff < 0 || y < 80)
@@ -312,12 +322,23 @@ function MobileMenu({ isOpen, setIsOpen, navLinks }: { isOpen: boolean; setIsOpe
 
 /* ─── Mobile top bar ─── */
 function MobileBar({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (v: boolean) => void }) {
+  const { i18n } = useTranslation()
   const barRef = useRef<HTMLDivElement>(null)
   const lastY = useRef(0)
+  const skipUntil = useRef(0)
+
+  useEffect(() => {
+    // Reset skip timer on language change to ignore layout shift scroll events
+    skipUntil.current = Date.now() + 500
+  }, [i18n.language])
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
+      if (Date.now() < skipUntil.current) {
+        lastY.current = y
+        return
+      }
       const diff = y - lastY.current
       if (Math.abs(diff) > 6) {
         if (barRef.current) {

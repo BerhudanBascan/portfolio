@@ -292,7 +292,7 @@ export default function SkillsSection() {
       <div className="border-t pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-20 md:pb-24 xl:pb-24 relative w-full flex flex-col items-center" style={{ borderColor: 'var(--fg-06)' }}>
         <div className="max-w-5xl mx-auto w-full px-4 sm:px-8 md:px-10">
           <FadeIn delay={0} y={40}>
-            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-8 sm:mb-12 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 12vw, 160px)', color: 'rgb(100, 105, 115)' }}>
+            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-8 sm:mb-12 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
               {t('skills.heading')}
             </h2>
           </FadeIn>
@@ -330,7 +330,7 @@ export default function SkillsSection() {
 
           {/* Heading */}
           <FadeIn delay={0} y={40}>
-            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-14 md:mb-20 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 12vw, 160px)', color: 'rgb(100, 105, 115)' }}>
+            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-14 md:mb-20 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
               {t('skills.services_heading')}
             </h2>
           </FadeIn>

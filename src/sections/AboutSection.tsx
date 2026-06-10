@@ -115,7 +115,7 @@ export default function AboutSection() {
                   {t('about.heading')}
                 </h2>
               </motion.div>
-              <h2 className="hero-heading font-black uppercase leading-none tracking-tight block lg:hidden text-center mb-10 sm:mb-14 break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 12vw, 160px)', color: 'rgb(100, 105, 115)' }}>
+              <h2 className="hero-heading font-black uppercase leading-none tracking-tight block lg:hidden text-center mb-10 sm:mb-14 break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
                 {t('about.heading')}
               </h2>
             </div>

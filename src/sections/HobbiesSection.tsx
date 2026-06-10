@@ -597,7 +597,7 @@ export default function HobbiesSection() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-6 break-words px-4 w-full"
-            style={{ fontSize: 'clamp(2rem, 12vw, 160px)', color: 'rgb(100, 105, 115)' }}
+            style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}
           >
             {t('hobbies.heading')}
           </motion.h2>
