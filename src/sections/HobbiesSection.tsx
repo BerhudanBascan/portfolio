@@ -497,7 +497,7 @@ function SpotifyCard() {
 
 /* ─── Main Section ─── */
 export default function HobbiesSection() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLElement>(null);
