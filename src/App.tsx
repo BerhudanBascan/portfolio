@@ -16,7 +16,6 @@ import ContactSection from './sections/ContactSection'
 export default function App() {
   const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true)
-  const [fading, setFading] = useState(false)
   const handleDone = useCallback(() => setLoading(false), [])
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
@@ -26,11 +25,7 @@ export default function App() {
   }, [i18n.language])
 
   const requestLangChange = useCallback((lang: string) => {
-    setFading(true)
-    setTimeout(() => {
-      i18n.changeLanguage(lang)
-      setFading(false)
-    }, 280)
+    i18n.changeLanguage(lang)
   }, [i18n])
 
   return (
@@ -46,10 +41,7 @@ export default function App() {
         className="flex flex-col w-full"
       >
         <Header />
-          <div
-            className="pt-6 lg:pt-16 w-full flex flex-col"
-            style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.28s ease-in-out' }}
-          >
+          <div className="pt-6 lg:pt-16 w-full flex flex-col">
             <HeroSection />
             <MarqueeSection />
             <AboutSection />
