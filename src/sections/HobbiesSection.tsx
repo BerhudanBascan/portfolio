@@ -177,7 +177,7 @@ function MiniWave({ analyserRef, playing }: { analyserRef: React.RefObject<Analy
 }
 
 /* ─── Floating Mini Player (portal) ─── */
-function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress }: {
+function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress, bottomOffset }: {
   show: boolean;
   playing: boolean;
   trackIdx: number;
@@ -188,6 +188,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
   onPrev: () => void;
   onClose: () => void;
   progress: number;
+  bottomOffset?: number;
 }) {
   const track = PLAYLIST[trackIdx];
   return ReactDOM.createPortal(
@@ -198,7 +199,8 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.93 }}
           transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"
+          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-all duration-300 sm:opacity-15 sm:hover:opacity-60"
+          style={bottomOffset !== undefined ? { bottom: `${bottomOffset}px` } : {}}
           style={{
             background: 'rgba(10,10,12,0.15)',
             backdropFilter: 'blur(16px)',
@@ -517,6 +519,26 @@ export default function HobbiesSection() {
     if (playing) setShowPlayer(true);
   }, [playing]);
 
+  // Constrain mini player above contact section on mobile
+  const [playerBottom, setPlayerBottom] = useState<number | undefined>(undefined);
+  useEffect(() => {
+    if (!isMobile) return;
+    const update = () => {
+      const contact = document.getElementById('contact');
+      if (!contact) return;
+      const rect = contact.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.top < vh) {
+        setPlayerBottom(Math.max(16, vh - rect.top + 8));
+      } else {
+        setPlayerBottom(undefined);
+      }
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    return () => window.removeEventListener('scroll', update);
+  }, [isMobile]);
+
   // Sync progress for floating mini player
   useEffect(() => {
     const a = audioRef.current;
@@ -746,6 +768,7 @@ export default function HobbiesSection() {
         onPrev={prevTrackGlobal}
         onClose={() => { pauseAudio(); setShowPlayer(false); }}
         progress={progress}
+        bottomOffset={playerBottom}
       />
     </section>
   );
