@@ -131,7 +131,7 @@ function DesktopNav({ navLinks }: { navLinks: { label: string; href: string }[] 
 
   useEffect(() => {
     // Reset skip timer on language change to ignore layout shift scroll events
-    skipUntil.current = Date.now() + 500
+    skipUntil.current = Date.now() + 1000
   }, [i18n.language])
 
   useEffect(() => {
@@ -329,7 +329,7 @@ function MobileBar({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: 
 
   useEffect(() => {
     // Reset skip timer on language change to ignore layout shift scroll events
-    skipUntil.current = Date.now() + 500
+    skipUntil.current = Date.now() + 1000
   }, [i18n.language])
 
   useEffect(() => {

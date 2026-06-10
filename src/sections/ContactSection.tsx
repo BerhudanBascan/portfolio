@@ -58,12 +58,13 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative w-full -mt-10 sm:-mt-12 md:-mt-14 z-10"
+      className="relative w-full -mt-10 sm:-mt-12 md:-mt-14 z-30"
       style={{
         backgroundColor: currentItem.bg,
         transition: 'background-color 650ms cubic-bezier(0.4,0,0.2,1)',
         fontFamily: 'Inter, sans-serif',
-        borderRadius: '40px 40px 0 0'
+        borderRadius: '40px 40px 0 0',
+        zIndex: 30
       }}
     >
       {/* Performant GPU-Accelerated Steam/Glow Effect */}

@@ -568,7 +568,6 @@ export default function HobbiesSection() {
 
   return (
     <section
-      key={i18n.language}
       ref={containerRef}
       id="hobbies"
       className="relative min-h-[120vh] text-[var(--fg)] pt-40 sm:pt-52 pb-24 sm:pb-32 overflow-hidden flex flex-col justify-center transition-colors duration-500 selection:bg-[var(--fg)] selection:text-[var(--bg)] border-t"

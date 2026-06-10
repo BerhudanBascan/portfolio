@@ -25,7 +25,44 @@ export default function App() {
   }, [i18n.language])
 
   const requestLangChange = useCallback((lang: string) => {
+    const sections = document.querySelectorAll('section[id], div[id]')
+    let anchorEl: HTMLElement | null = null
+    let anchorOffset = 0
+    const viewportCenter = window.innerHeight / 2
+    let bestDist = Infinity
+
+    sections.forEach((el) => {
+      const rect = el.getBoundingClientRect()
+      const elCenter = rect.top + rect.height / 2
+      const dist = Math.abs(elCenter - viewportCenter)
+      
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (dist < bestDist) {
+          bestDist = dist
+          anchorEl = el as HTMLElement
+          anchorOffset = rect.top
+        }
+      }
+    })
+
     i18n.changeLanguage(lang)
+
+    if (anchorEl) {
+      let count = 0
+      const adjust = () => {
+        if (!anchorEl) return
+        const newRect = anchorEl.getBoundingClientRect()
+        const diff = newRect.top - anchorOffset
+        if (Math.abs(diff) > 0.5) {
+          window.scrollBy(0, diff)
+        }
+        count++
+        if (count < 25) {
+          requestAnimationFrame(adjust)
+        }
+      }
+      requestAnimationFrame(adjust)
+    }
   }, [i18n])
 
   return (
