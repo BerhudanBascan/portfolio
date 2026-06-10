@@ -1,6 +1,24 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useBreakpoint } from '../hooks/useBreakpoint'
+
+const PROJECT_COLORS = [
+  '59,130,246',   // 01 KargoLink — blue
+  '220,38,127',   // 02 CS Vortex — pink/red
+  '99,102,241',   // 03 Blab CRM — indigo
+  '16,185,129',   // 04 KimyaLab — emerald
+  '249,115,22',   // 05 CleanerLab — orange
+  '245,158,11',   // 06 CryptoBot — amber
+  '6,182,212',    // 07 Freqtradee — cyan
+  '132,204,22',   // 08 Agrobot — lime
+  '168,85,247',   // 09 MKG Tools — purple
+  '239,68,68',    // 10 AliExpress — red
+  '20,184,166',   // 11 Stok Takibi — teal
+  '236,72,153',   // 12 Aura Web — hot pink
+  '34,197,94',    // 13 Doctor App — green
+  '251,191,36',   // 14 Voltage — yellow
+]
 
 const PROJECTS: any[] = [
   { num:'01', client:'Full-Stack MVP',    name:'KargoLink',          stack:'TypeScript · React · Node.js · PostgreSQL · Docker',     github:'https://github.com/BerhudanBascan/KargoLink',                  tl:'https://opengraph.githubassets.com/1/BerhudanBascan/KargoLink',                  bl:'https://opengraph.githubassets.com/1/BerhudanBascan/KargoLink',       r:'https://opengraph.githubassets.com/1/BerhudanBascan/kimyalab' },
@@ -40,20 +58,14 @@ const DET: Record<string,D> = {
 }
 
 
-function ProjectCard({ project, index, containerRef }: {
+function ProjectCard({ project, index, isMobile, scrollYProgress }: {
   project: typeof PROJECTS[0]
   index: number
-  containerRef: React.RefObject<HTMLDivElement | null>
+  isMobile: boolean
+  scrollYProgress: any
 }) {
   const { t } = useTranslation()
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
-  useEffect(() => {
-    const fn = () => setIsMobile(window.innerWidth < 640)
-    window.addEventListener('resize', fn)
-    return () => window.removeEventListener('resize', fn)
-  }, [])
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] })
   const range = [index / TOTAL, Math.min((index + 2) / TOTAL, 1)]
   const scale = useTransform(scrollYProgress, range, [1, 1 - (TOTAL - 1 - index) * 0.025])
   const rawD = DET[project.num]
@@ -62,15 +74,29 @@ function ProjectCard({ project, index, containerRef }: {
   const live = d.status === 'Production' || d.status === 'Active'
   const highlights = d.hi
 
+  const [hovered, setHovered] = useState(false)
+  const color = PROJECT_COLORS[index % PROJECT_COLORS.length]
+
   return (
     <div style={{ position: 'sticky', top: 72, zIndex: index + 1 }}>
       <motion.div
-        style={{ scale, transformOrigin: 'top center', maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 0.5rem' : '0 clamp(0.75rem,3vw,2rem)' }}
+        style={{ scale, transformOrigin: 'top center', maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 0.5rem' : '0 clamp(0.75rem,3vw,2rem)', position: 'relative' }}
       >
+        {/* Aurora glow behind card */}
+        <div style={{
+          position: 'absolute',
+          inset: '-30px',
+          borderRadius: 'clamp(32px,5vw,64px)',
+          background: `radial-gradient(ellipse at 50% 60%, rgba(${color},0.3) 0%, rgba(${color},0.1) 45%, transparent 75%)`,
+          pointerEvents: 'none',
+          zIndex: 0,
+          opacity: hovered ? 0.55 : 0.2,
+          transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1)',
+        }} />
         <div
-          style={{ background: 'var(--card-bg)', border: `2px solid rgba(215,226,234,${0.1 + (TOTAL - 1 - index) * 0.025})`, borderRadius: isMobile ? 20 : 'clamp(24px,3.5vw,48px)', boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden', transition: 'border-color 0.4s, box-shadow 0.4s' }}
-          onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'var(--fg-28)'; el.style.boxShadow = '0 24px 80px rgba(0,0,0,0.9)' }}
-          onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = `rgba(215,226,234,${0.1 + (TOTAL - 1 - index) * 0.025})`; el.style.boxShadow = '0 8px 32px rgba(0,0,0,0.6)' }}
+          style={{ position: 'relative', zIndex: 1, background: 'var(--card-bg)', border: `2px solid rgba(215,226,234,${0.1 + (TOTAL - 1 - index) * 0.025})`, borderRadius: isMobile ? 20 : 'clamp(24px,3.5vw,48px)', boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden', transition: 'border-color 0.4s, box-shadow 0.4s' }}
+          onMouseEnter={e => { setHovered(true); const el = e.currentTarget; el.style.borderColor = `rgba(${color},0.35)`; el.style.boxShadow = `0 24px 80px rgba(0,0,0,0.9), 0 0 60px rgba(${color},0.15)` }}
+          onMouseLeave={e => { setHovered(false); const el = e.currentTarget; el.style.borderColor = `rgba(215,226,234,${0.1 + (TOTAL - 1 - index) * 0.025})`; el.style.boxShadow = '0 8px 32px rgba(0,0,0,0.6)' }}
         >
           <div style={{ height: 1, background: 'linear-gradient(90deg,transparent,var(--fg-28) 35%,var(--fg-08) 70%,transparent)' }} />
           <div style={{ padding: isMobile ? '0.9rem' : 'clamp(1.4rem,3.5vw,3rem)' }}>
@@ -84,15 +110,15 @@ function ProjectCard({ project, index, containerRef }: {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: '0.4rem', alignItems: 'center' }}>
                     {isMobile && <span style={{ color: 'var(--fg-28)', fontWeight: 900, fontSize: '0.6rem', letterSpacing: '0.1em', marginRight: 2 }}>{project.num}</span>}
-                    <span style={{ padding: '2px 8px', border: '1px solid var(--fg-15)', borderRadius: 999, fontSize: '0.5rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--fg-40)' }}>{project.client}</span>
-                    <span style={{ padding: '2px 8px', borderRadius: 999, fontSize: '0.5rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', background: live ? 'rgba(61,184,125,0.1)' : 'var(--fg-06)', color: live ? '#3DB87D' : 'var(--fg-35)', border: live ? '1px solid rgba(61,184,125,0.25)' : '1px solid var(--fg-10)' }}>{t('projects.status.' + d.status, d.status)}</span>
-                    <span style={{ padding: '2px 8px', border: '1px solid var(--fg-08)', borderRadius: 999, fontSize: '0.5rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--fg-18)' }}>{d.year}</span>
+                    <span style={{ padding: '2px 8px', border: '1px solid var(--fg-15)', borderRadius: 999, fontSize: '0.62rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--fg-40)' }}>{project.client}</span>
+                    <span style={{ padding: '2px 8px', borderRadius: 999, fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', background: live ? 'rgba(61,184,125,0.1)' : 'var(--fg-06)', color: live ? '#3DB87D' : 'var(--fg-35)', border: live ? '1px solid rgba(61,184,125,0.25)' : '1px solid var(--fg-10)' }}>{t('projects.status.' + d.status, d.status)}</span>
+                    <span style={{ padding: '2px 8px', border: '1px solid var(--fg-08)', borderRadius: 999, fontSize: '0.62rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--fg-18)' }}>{d.year}</span>
                   </div>
-                  <h3 className="hero-heading" style={{ fontSize: isMobile ? 'clamp(1.3rem,7vw,2rem)' : 'clamp(1.3rem,4vw,3.8rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: 1, margin: 0 }}>{project.name}</h3>
+                  <h3 className="hero-heading" style={{ fontSize: isMobile ? 'clamp(1.3rem,7vw,2rem)' : 'clamp(1.3rem,4vw,3.8rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: 1, margin: 0, color: 'rgb(100, 105, 115)' }}>{project.name}</h3>
                 </div>
               </div>
               <a href={project.github} target="_blank" rel="noopener noreferrer"
-                style={{ flexShrink: 0, borderRadius: 999, border: '1.5px solid var(--fg-18)', color: 'var(--fg)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: isMobile ? '0.3rem 0.7rem' : '0.55rem 1.5rem', fontSize: isMobile ? '0.45rem' : '0.6rem', textDecoration: 'none', transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center', gap: 5, background: 'transparent', whiteSpace: 'nowrap', alignSelf: 'flex-start' }}
+                style={{ flexShrink: 0, borderRadius: 999, border: '1.5px solid var(--fg-18)', color: 'var(--fg)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: isMobile ? '0.45rem 1rem' : '0.55rem 1.5rem', fontSize: isMobile ? '0.6rem' : '0.6rem', textDecoration: 'none', transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center', gap: 5, background: 'transparent', whiteSpace: 'nowrap', alignSelf: 'flex-start' }}
                 onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'var(--fg-40)'; el.style.background = 'var(--fg-06)' }}
                 onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'var(--fg-18)'; el.style.background = 'transparent' }}
               >GitHub <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
@@ -100,7 +126,7 @@ function ProjectCard({ project, index, containerRef }: {
 
             {/* Stack pills */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: isMobile ? '0.6rem' : 'clamp(0.8rem,2vw,1.5rem)' }}>
-              {project.stack.split(' · ').map((tech: string, i: number) => <span key={i} style={{ padding: '2px 8px', border: '1px solid var(--fg-08)', borderRadius: 999, fontSize: '0.48rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-35)' }}>{tech}</span>)}
+              {project.stack.split(' · ').map((tech: string) => <span key={tech} style={{ padding: '2px 8px', border: '1px solid var(--fg-08)', borderRadius: 999, fontSize: '0.62rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-35)' }}>{tech}</span>)}
             </div>
             <div style={{ height: 1, background: 'linear-gradient(90deg,var(--fg-10),var(--fg-06) 70%,transparent)', marginBottom: isMobile ? '0.6rem' : 'clamp(0.8rem,2vw,1.5rem)' }} />
 
@@ -114,7 +140,7 @@ function ProjectCard({ project, index, containerRef }: {
                 <div style={{ position: 'relative', zIndex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.4rem' }}>
                     <div style={{ width: 14, height: 1, background: 'var(--fg-28)' }} />
-                    <span style={{ fontSize: '0.5rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--fg-35)' }}>{t('projects.labels.overview')}</span>
+                    <span style={{ fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--fg-35)' }}>{t('projects.labels.overview')}</span>
                   </div>
                   <p style={{ fontSize: 'clamp(0.76rem,1.2vw,0.93rem)', fontWeight: 300, lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>{d.desc}</p>
                 </div>
@@ -122,11 +148,11 @@ function ProjectCard({ project, index, containerRef }: {
                 <div style={{ position: 'relative', zIndex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.4rem' }}>
                     <div style={{ width: 14, height: 1, background: 'var(--fg-28)' }} />
-                    <span style={{ fontSize: '0.5rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--fg-35)' }}>{t('projects.labels.highlights')}</span>
+                    <span style={{ fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--fg-35)' }}>{t('projects.labels.highlights')}</span>
                   </div>
                   <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                    {highlights.map((h: string, i: number) => (
-                      <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 7 }}>
+                    {highlights.map((h: string) => (
+                      <li key={h} style={{ display: 'flex', alignItems: 'flex-start', gap: 7 }}>
                         <span style={{ marginTop: 6, width: 3, height: 3, borderRadius: '50%', background: 'var(--fg-35)', flexShrink: 0, display: 'inline-block' }} />
                         <span style={{ fontSize: 'clamp(0.72rem,1.1vw,0.86rem)', fontWeight: 300, lineHeight: 1.55, color: 'var(--fg)' }}>{h}</span>
                       </li>
@@ -145,13 +171,16 @@ function ProjectCard({ project, index, containerRef }: {
 export default function ProjectsSection() {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
+  const isMobile = useBreakpoint(640)
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] })
+
   return (
-    <section id="projects" ref={containerRef} style={{ position: 'relative', zIndex: 20 }} className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 w-full pt-20 sm:pt-24 md:pt-32 pb-32">
+    <section id="projects" ref={containerRef} style={{ position: 'relative', zIndex: 20, borderColor: 'var(--fg-06)' }} className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 w-full pt-20 sm:pt-24 md:pt-32 pb-4 sm:pb-24 md:pb-32 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-10 mb-10 sm:mb-16">
-        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center" style={{ fontSize: 'clamp(2.8rem,12vw,160px)' }}>{ t('projects.heading') }</h2>
+        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem,12vw,160px)', color: 'rgb(100, 105, 115)' }}>{ t('projects.heading') }</h2>
       </div>
-      <div style={{ paddingBottom: '40vh' }}>
-        {PROJECTS.map((p, i) => <ProjectCard key={p.num} project={p} index={i} containerRef={containerRef} />)}
+      <div style={{ paddingBottom: isMobile ? '40vh' : '60vh' }}>
+        {PROJECTS.map((p, i) => <ProjectCard key={p.num} project={p} index={i} isMobile={isMobile} scrollYProgress={scrollYProgress} />)}
       </div>
     </section>
   )
