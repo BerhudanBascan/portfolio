@@ -200,12 +200,12 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           exit={{ opacity: 0, y: 24, scale: 0.93 }}
           transition={{ type: 'spring', stiffness: 280, damping: 26 }}
           className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-all duration-300 sm:opacity-15 sm:hover:opacity-60"
-          style={bottomOffset !== undefined ? { bottom: `${bottomOffset}px` } : {}}
           style={{
             background: 'rgba(10,10,12,0.15)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             boxShadow: '0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)',
+            ...(bottomOffset !== undefined ? { bottom: `${bottomOffset}px` } : {}),
           }}
         >
           {/* Close button (top-right) */}
@@ -519,6 +519,8 @@ export default function HobbiesSection() {
     if (playing) setShowPlayer(true);
   }, [playing]);
 
+  const isMobile = useBreakpoint(1024);
+
   // Constrain mini player above contact section on mobile
   const [playerBottom, setPlayerBottom] = useState<number | undefined>(undefined);
   useEffect(() => {
@@ -562,7 +564,6 @@ export default function HobbiesSection() {
   const prevTrackGlobal = () => setTrackIdx(prev => (prev - 1 + PLAYLIST.length) % PLAYLIST.length);
 
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
-  const isMobile = useBreakpoint(1024);
   const [isGalleryHovered, setIsGalleryHovered] = useState(false);
 
   const hobbiesData = useMemo(() => HOBBY_IDS.map((id) => ({
