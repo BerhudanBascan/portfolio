@@ -25,18 +25,19 @@ export default function App() {
   }, [i18n.language])
 
   const requestLangChange = useCallback((lang: string) => {
-    const sections = document.querySelectorAll('section[id], div[id]')
+    (window as any).__langChanging = Date.now() + 1000
+
+    const elements = document.querySelectorAll('section[id], h1, h2, h3, p, li, button, a')
     let anchorEl: HTMLElement | null = null
     let anchorOffset = 0
     const viewportCenter = window.innerHeight / 2
     let bestDist = Infinity
 
-    sections.forEach((el) => {
+    elements.forEach((el) => {
       const rect = el.getBoundingClientRect()
-      const elCenter = rect.top + rect.height / 2
-      const dist = Math.abs(elCenter - viewportCenter)
-      
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
+        const elCenter = rect.top + rect.height / 2
+        const dist = Math.abs(elCenter - viewportCenter)
         if (dist < bestDist) {
           bestDist = dist
           anchorEl = el as HTMLElement
@@ -57,7 +58,7 @@ export default function App() {
           window.scrollBy(0, diff)
         }
         count++
-        if (count < 25) {
+        if (count < 30) {
           requestAnimationFrame(adjust)
         }
       }

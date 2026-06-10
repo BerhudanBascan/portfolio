@@ -137,7 +137,7 @@ function DesktopNav({ navLinks }: { navLinks: { label: string; href: string }[] 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
-      if (Date.now() < skipUntil.current) {
+      if (Date.now() < skipUntil.current || ((window as any).__langChanging && Date.now() < (window as any).__langChanging)) {
         lastY.current = y
         return
       }
@@ -335,7 +335,7 @@ function MobileBar({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
-      if (Date.now() < skipUntil.current) {
+      if (Date.now() < skipUntil.current || ((window as any).__langChanging && Date.now() < (window as any).__langChanging)) {
         lastY.current = y
         return
       }
