@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useBreakpoint } from '../hooks/useBreakpoint'
 
 const IMAGES = [
   { src: '/images/contact/github.png', bg: '#F4845F', title: 'GITHUB',   label: 'github.com/BerhudanBascan',       link: 'https://github.com/BerhudanBascan' },
@@ -14,7 +15,7 @@ export default function ContactSection() {
   const { t } = useTranslation()
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
+  const isMobile = useBreakpoint(640)
   const dragStartX = useRef<number | null>(null)
   const touchStartX = useRef<number | null>(null)
   const wheelAccum = useRef(0)
@@ -22,9 +23,6 @@ export default function ContactSection() {
 
   useEffect(() => {
     IMAGES.forEach(item => { const img = new Image(); img.src = item.src })
-    const handleResize = () => setIsMobile(window.innerWidth < 640)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const navigate = (dir: 'next' | 'prev') => {
@@ -51,19 +49,84 @@ export default function ContactSection() {
       willChange: 'transform, filter, opacity',
       transition: 'transform 650ms cubic-bezier(0.4,0,0.2,1), filter 650ms cubic-bezier(0.4,0,0.2,1), opacity 650ms cubic-bezier(0.4,0,0.2,1), left 650ms cubic-bezier(0.4,0,0.2,1), bottom 650ms cubic-bezier(0.4,0,0.2,1)',
     }
-    if (role === 'center') return { ...base, transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.68})`, filter: 'none',      opacity: 1,    zIndex: 20, left: '50%',                       height: isMobile ? '60%' : '92%', bottom: isMobile ? '20%' : '-4%' }
-    if (role === 'left')   return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '20%' : '30%',  height: isMobile ? '16%' : '28%', bottom: isMobile ? '32%' : '12%' }
-    if (role === 'right')  return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '80%' : '70%',  height: isMobile ? '16%' : '28%', bottom: isMobile ? '32%' : '12%' }
-    return                        { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(4px)', opacity: 0.5,  zIndex: 5,  left: '50%',                       height: isMobile ? '13%' : '22%', bottom: isMobile ? '36%' : '16%' }
+    if (role === 'center') return { ...base, transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.15})`,  filter: 'none',      opacity: 1,    zIndex: 20, left: '50%',                       height: isMobile ? '60%' : '65%', bottom: isMobile ? '20%' : '4%'  }
+    if (role === 'left')   return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '20%' : '30%',  height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
+    if (role === 'right')  return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '80%' : '70%',  height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
+    return                        { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(4px)', opacity: 0.5,  zIndex: 5,  left: '50%',                       height: isMobile ? '13%' : '20%', bottom: isMobile ? '36%' : '16%' }
   }
 
   return (
     <section
       id="contact"
-      className="relative w-full overflow-hidden -mt-10 sm:-mt-12 md:-mt-14 z-10"
-      style={{ backgroundColor: currentItem.bg, transition: 'background-color 650ms cubic-bezier(0.4,0,0.2,1)', fontFamily: 'Inter, sans-serif', borderRadius: '40px 40px 0 0' }}
+      className="relative w-full -mt-10 sm:-mt-12 md:-mt-14 z-10"
+      style={{ 
+        backgroundColor: currentItem.bg, 
+        transition: 'background-color 650ms cubic-bezier(0.4,0,0.2,1)', 
+        fontFamily: 'Inter, sans-serif', 
+        borderRadius: '40px 40px 0 0' 
+      }}
     >
-      <div className="relative w-full" style={{ height: '120vh', overflow: 'hidden' }}>
+      {/* Performant GPU-Accelerated Steam/Glow Effect */}
+      <style>{`
+        @keyframes chimney-left {
+          0% { transform: translate(-50%, 0) scale(0.2); opacity: 0; }
+          15% { opacity: 0.8; }
+          50% { transform: translate(calc(-50% - 6vw), -10vh) scale(1.5); opacity: 0.6; }
+          80% { transform: translate(calc(-50% - 15vw), -20vh) scale(3); opacity: 0.2; }
+          100% { transform: translate(calc(-50% - 20vw), -25vh) scale(4); opacity: 0; }
+        }
+        @keyframes chimney-right {
+          0% { transform: translate(-50%, 0) scale(0.2); opacity: 0; }
+          15% { opacity: 0.8; }
+          50% { transform: translate(calc(-50% + 8vw), -12vh) scale(1.6); opacity: 0.6; }
+          80% { transform: translate(calc(-50% + 18vw), -22vh) scale(3.2); opacity: 0.2; }
+          100% { transform: translate(calc(-50% + 25vw), -28vh) scale(4.5); opacity: 0; }
+        }
+        @keyframes chimney-center {
+          0% { transform: translate(-50%, 0) scale(0.2); opacity: 0; }
+          15% { opacity: 0.9; }
+          50% { transform: translate(calc(-50% + 2vw), -15vh) scale(1.8); opacity: 0.7; }
+          80% { transform: translate(calc(-50% - 3vw), -25vh) scale(3.5); opacity: 0.3; }
+          100% { transform: translate(calc(-50% + 5vw), -30vh) scale(5); opacity: 0; }
+        }
+        .chimney-particle {
+          position: absolute;
+          left: 50%;
+          bottom: -40px;
+          border-radius: 50%;
+          filter: blur(25px);
+          will-change: transform, opacity;
+        }
+      `}</style>
+      {IMAGES.map((img, i) => (
+        <div 
+          key={img.title}
+          className="absolute -top-40 md:-top-56 left-0 w-full h-40 md:h-56 pointer-events-none mix-blend-screen"
+          style={{
+            opacity: activeIndex === i ? 1 : 0,
+            transition: 'opacity 650ms cubic-bezier(0.4,0,0.2,1)',
+            willChange: 'opacity',
+            zIndex: 1
+          }}
+        >
+          {/* Chimney Smoke Billowing from Center */}
+          <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-left 4.5s infinite ease-in-out 0s' }} />
+          <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-right 5.2s infinite ease-in-out 0.8s' }} />
+          <div className="chimney-particle w-40 h-40 md:w-56 md:h-56" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-center 4.8s infinite ease-in-out 1.5s' }} />
+          
+          <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-left 5s infinite ease-in-out 2.2s' }} />
+          <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-right 4.7s infinite ease-in-out 3s' }} />
+          <div className="chimney-particle w-40 h-40 md:w-56 md:h-56" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-center 5.5s infinite ease-in-out 3.8s' }} />
+        </div>
+      ))}
+      
+      {/* Soft Transition Gradient from main background to contact background */}
+      <div 
+        className="absolute top-0 left-0 w-full h-40 md:h-64 z-40 pointer-events-none mix-blend-normal"
+        style={{ background: 'linear-gradient(to bottom, var(--bg) 0%, transparent 100%)' }}
+      />
+      
+      <div className="relative w-full" style={{ height: 'clamp(600px, 100svh, 820px)', overflow: 'hidden' }}>
 
         {/* Grain overlay */}
         <div className="absolute inset-0 pointer-events-none z-50 opacity-40 mix-blend-overlay">
@@ -138,12 +201,12 @@ export default function ContactSection() {
         </div>
 
         {/* Bottom-left text + nav buttons */}
-        <div className="absolute bottom-6 left-4 sm:bottom-20 sm:left-12 lg:left-24" style={{ zIndex: 60, maxWidth: 400 }}>
-          <p className="font-bold uppercase tracking-[0.02em] mb-2 sm:mb-3 text-base sm:text-[22px]" style={{ color: 'white', opacity: 0.95 }}>
+        <div className="absolute bottom-8 left-4 sm:bottom-20 sm:left-12 lg:left-24" style={{ zIndex: 60, maxWidth: 400 }}>
+          <p className="font-bold uppercase tracking-[0.02em] mb-1 sm:mb-3 text-base sm:text-[22px]" style={{ color: 'white', opacity: 0.95 }}>
             {currentItem.title}
           </p>
-          <p className="hidden sm:block text-xs sm:text-sm mb-4 sm:mb-6" style={{ color: 'white', opacity: 0.85, lineHeight: 1.6 }}>
-            {t('contact.reach', { platform: currentItem.title.toLowerCase() })}<br />
+          <p className="block text-[10px] sm:text-sm mb-3 sm:mb-6" style={{ color: 'white', opacity: 0.75, lineHeight: 1.5 }}>
+            <span className="hidden sm:inline">{t('contact.reach', { platform: currentItem.title.toLowerCase() })}<br /></span>
             <strong>{currentItem.label}</strong>
           </p>
           <div className="flex gap-4">
@@ -165,7 +228,7 @@ export default function ContactSection() {
           href={currentItem.link}
           target={currentItem.link.startsWith('http') ? '_blank' : undefined}
           rel="noopener noreferrer"
-          className="absolute bottom-6 right-4 sm:bottom-20 sm:right-10 flex items-center gap-3 group"
+          className="absolute bottom-8 right-4 sm:bottom-20 sm:right-10 flex items-center gap-3 group"
           style={{ zIndex: 60 }}
         >
           <span style={{ fontFamily: 'Anton, sans-serif', fontSize: 'clamp(24px, 4vw, 56px)', fontWeight: 400, color: 'white', opacity: 0.9, letterSpacing: '-0.02em', lineHeight: 1, textTransform: 'uppercase', transition: 'opacity 200ms' }}
