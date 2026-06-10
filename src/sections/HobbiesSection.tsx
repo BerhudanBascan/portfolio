@@ -177,7 +177,7 @@ function MiniWave({ analyserRef, playing }: { analyserRef: React.RefObject<Analy
 }
 
 /* ─── Floating Mini Player (portal) ─── */
-function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress, bottomOffset }: {
+function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress, inContact }: {
   show: boolean;
   playing: boolean;
   trackIdx: number;
@@ -188,9 +188,12 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
   onPrev: () => void;
   onClose: () => void;
   progress: number;
-  bottomOffset?: number;
+  inContact?: boolean;
 }) {
   const track = PLAYLIST[trackIdx];
+  const contactEl = inContact ? document.getElementById('contact') : null;
+  const portalTarget = contactEl ?? document.body;
+
   return ReactDOM.createPortal(
     <AnimatePresence>
       {show && (
@@ -199,13 +202,14 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.93 }}
           transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-all duration-300 sm:opacity-15 sm:hover:opacity-60"
+          className={inContact
+            ? "absolute top-3 right-3 z-[9999] flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300"
+            : "fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"}
           style={{
             background: 'rgba(10,10,12,0.15)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             boxShadow: '0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)',
-            ...(bottomOffset !== undefined ? { bottom: `${bottomOffset}px` } : {}),
           }}
         >
           {/* Close button (top-right) */}
@@ -272,7 +276,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    portalTarget
   );
 }
 
@@ -521,21 +525,15 @@ export default function HobbiesSection() {
 
   const isMobile = useBreakpoint(1024);
 
-  // Pin mini player to contact section top-right on mobile when visible
-  const [playerBottom, setPlayerBottom] = useState<number | undefined>(undefined);
+  // Switch mini player into contact section on mobile when visible
+  const [inContact, setInContact] = useState(false);
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile) { setInContact(false); return; }
     const update = () => {
       const contact = document.getElementById('contact');
       if (!contact) return;
       const rect = contact.getBoundingClientRect();
-      const vh = window.innerHeight;
-      if (rect.top <= vh) {
-        // Pin player right at the top of the contact section
-        setPlayerBottom(vh - rect.top);
-      } else {
-        setPlayerBottom(undefined);
-      }
+      setInContact(rect.top < window.innerHeight && rect.bottom > 0);
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
@@ -770,7 +768,7 @@ export default function HobbiesSection() {
         onPrev={prevTrackGlobal}
         onClose={() => { pauseAudio(); setShowPlayer(false); }}
         progress={progress}
-        bottomOffset={playerBottom}
+        inContact={inContact}
       />
     </section>
   );
