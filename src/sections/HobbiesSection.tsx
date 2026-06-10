@@ -177,7 +177,7 @@ function MiniWave({ analyserRef, playing }: { analyserRef: React.RefObject<Analy
 }
 
 /* ─── Floating Mini Player (portal) ─── */
-function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress, inContact }: {
+function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onPlay, onNext, onPrev, onClose, progress }: {
   show: boolean;
   playing: boolean;
   trackIdx: number;
@@ -188,12 +188,8 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
   onPrev: () => void;
   onClose: () => void;
   progress: number;
-  inContact?: boolean;
 }) {
   const track = PLAYLIST[trackIdx];
-  const contactEl = inContact ? document.getElementById('contact') : null;
-  const portalTarget = contactEl ?? document.body;
-
   return ReactDOM.createPortal(
     <AnimatePresence>
       {show && (
@@ -202,9 +198,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.93 }}
           transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-          className={inContact
-            ? "absolute top-3 right-3 z-[9999] flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300"
-            : "fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"}
+          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[9999] flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/5 opacity-10 hover:opacity-55 transition-opacity duration-300 sm:opacity-15 sm:hover:opacity-60"
           style={{
             background: 'rgba(10,10,12,0.15)',
             backdropFilter: 'blur(16px)',
@@ -276,7 +270,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
         </motion.div>
       )}
     </AnimatePresence>,
-    portalTarget
+    document.body
   );
 }
 
@@ -523,23 +517,6 @@ export default function HobbiesSection() {
     if (playing) setShowPlayer(true);
   }, [playing]);
 
-  const isMobile = useBreakpoint(1024);
-
-  // Switch mini player into contact section on mobile when visible
-  const [inContact, setInContact] = useState(false);
-  useEffect(() => {
-    if (!isMobile) { setInContact(false); return; }
-    const update = () => {
-      const contact = document.getElementById('contact');
-      if (!contact) return;
-      const rect = contact.getBoundingClientRect();
-      setInContact(rect.top < window.innerHeight && rect.bottom > 0);
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-    return () => window.removeEventListener('scroll', update);
-  }, [isMobile]);
-
   // Sync progress for floating mini player
   useEffect(() => {
     const a = audioRef.current;
@@ -563,6 +540,7 @@ export default function HobbiesSection() {
   const prevTrackGlobal = () => setTrackIdx(prev => (prev - 1 + PLAYLIST.length) % PLAYLIST.length);
 
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const isMobile = useBreakpoint(1024);
   const [isGalleryHovered, setIsGalleryHovered] = useState(false);
 
   const hobbiesData = useMemo(() => HOBBY_IDS.map((id) => ({
@@ -768,7 +746,6 @@ export default function HobbiesSection() {
         onPrev={prevTrackGlobal}
         onClose={() => { pauseAudio(); setShowPlayer(false); }}
         progress={progress}
-        inContact={inContact}
       />
     </section>
   );
