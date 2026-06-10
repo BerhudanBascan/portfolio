@@ -259,7 +259,7 @@ export default function ExperienceSection() {
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-14 xl:gap-20 w-full">
 
           {/* ── Tab nav: grid structure on mobile (no arrows to save horizontal space) ── */}
-          <nav className="w-full lg:w-[240px] xl:w-[280px] grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-1 gap-2.5 sm:gap-3 lg:sticky lg:top-24 lg:self-start shrink-0">
+          <nav className="w-full grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 lg:hidden shrink-0">
             {(Object.keys(TAB_CONFIG) as TabKey[]).map((key) => {
               const isActive = activeTab === key
               const tab = TAB_CONFIG[key]
