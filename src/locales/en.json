@@ -319,7 +319,7 @@
       "c8": "Container orchestration with <span class=\"hl\">Docker</span>, CI/CD pipelines, Git workflows, and cloud deployments. From local dev to live production infrastructure.",
       "c9": "Cross-platform mobile with <span class=\"hl\">React Native</span>, MobX state management, IAP monetization, Google Ads, and native <span class=\"hl\">Node.js</span> bridge integrations."
     },
-    "hint_mobile": "skills auto-cycle • tap card to switch"
+    "hint_mobile": "tap the corners of the card to discover"
   },
   "projects": {
     "heading": "Projects",
