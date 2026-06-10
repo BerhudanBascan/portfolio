@@ -143,7 +143,7 @@ function DesktopNav({ navLinks }: { navLinks: { label: string; href: string }[] 
       }
       const diff = y - lastY.current
       if (Math.abs(diff) > 8) {
-        setVisible(diff < 0 || y < 80)
+        setVisible(diff < 0 || y < 350)
         lastY.current = y
       }
     }
@@ -342,7 +342,7 @@ function MobileBar({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: 
       const diff = y - lastY.current
       if (Math.abs(diff) > 6) {
         if (barRef.current) {
-          barRef.current.style.transform = (diff < 0 || y < 80) ? 'translateY(0)' : 'translateY(-100%)'
+          barRef.current.style.transform = (diff < 0 || y < 350) ? 'translateY(0)' : 'translateY(-100%)'
         }
         lastY.current = y
       }

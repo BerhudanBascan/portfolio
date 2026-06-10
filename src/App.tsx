@@ -27,28 +27,42 @@ export default function App() {
   const requestLangChange = useCallback((lang: string) => {
     (window as any).__langChanging = Date.now() + 1000
 
+    const isAtTop = window.scrollY <= 15
+
     const elements = document.querySelectorAll('section[id], h1, h2, h3, p, li, button, a')
     let anchorEl: HTMLElement | null = null
     let anchorOffset = 0
     const viewportCenter = window.innerHeight / 2
     let bestDist = Infinity
 
-    elements.forEach((el) => {
-      const rect = el.getBoundingClientRect()
-      if (rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
-        const elCenter = rect.top + rect.height / 2
-        const dist = Math.abs(elCenter - viewportCenter)
-        if (dist < bestDist) {
-          bestDist = dist
-          anchorEl = el as HTMLElement
-          anchorOffset = rect.top
+    if (!isAtTop) {
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        if (rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
+          const elCenter = rect.top + rect.height / 2
+          const dist = Math.abs(elCenter - viewportCenter)
+          if (dist < bestDist) {
+            bestDist = dist
+            anchorEl = el as HTMLElement
+            anchorOffset = rect.top
+          }
         }
-      }
-    })
+      })
+    }
 
     i18n.changeLanguage(lang)
 
-    if (anchorEl) {
+    if (isAtTop) {
+      let count = 0
+      const forceTop = () => {
+        window.scrollTo(0, 0)
+        count++
+        if (count < 15) {
+          requestAnimationFrame(forceTop)
+        }
+      }
+      requestAnimationFrame(forceTop)
+    } else if (anchorEl) {
       let count = 0
       const adjust = () => {
         if (!anchorEl) return
