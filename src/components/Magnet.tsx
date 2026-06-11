@@ -1,4 +1,4 @@
-import { useRef, useState, ReactNode } from 'react'
+import { useRef, ReactNode } from 'react'
 
 interface MagnetProps {
   children: ReactNode
@@ -18,8 +18,7 @@ export default function Magnet({
   className,
 }: MagnetProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [active, setActive] = useState(false)
-  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const activeRef = useRef(false)
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return
@@ -32,17 +31,23 @@ export default function Magnet({
     const threshold = Math.max(rect.width, rect.height) / 2 + padding
 
     if (dist < threshold) {
-      setActive(true)
-      setPos({ x: dx / strength, y: dy / strength })
-    } else {
-      setActive(false)
-      setPos({ x: 0, y: 0 })
+      if (!activeRef.current) {
+        activeRef.current = true
+        ref.current.style.transition = activeTransition
+      }
+      ref.current.style.transform = `translate3d(${dx / strength}px, ${dy / strength}px, 0)`
+    } else if (activeRef.current) {
+      activeRef.current = false
+      ref.current.style.transition = inactiveTransition
+      ref.current.style.transform = 'translate3d(0px, 0px, 0)'
     }
   }
 
   const handleMouseLeave = () => {
-    setActive(false)
-    setPos({ x: 0, y: 0 })
+    if (!ref.current) return
+    activeRef.current = false
+    ref.current.style.transition = inactiveTransition
+    ref.current.style.transform = 'translate3d(0px, 0px, 0)'
   }
 
   return (
@@ -51,11 +56,7 @@ export default function Magnet({
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `translate3d(${pos.x}px, ${pos.y}px, 0)`,
-        transition: active ? activeTransition : inactiveTransition,
-        willChange: 'transform',
-      }}
+      style={{ willChange: 'transform' }}
     >
       {children}
     </div>

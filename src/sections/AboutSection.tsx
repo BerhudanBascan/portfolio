@@ -20,31 +20,22 @@ function AnimatedParagraph({ text }: { text: string }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.85', 'end 0.2'] })
   const words = text.split(' ')
-  let charCounter = 0
-  const totalChars = text.replace(/\s+/g, '').length
+  const total = words.length
   return (
     <p ref={ref} className="flex flex-wrap" style={{ color: 'var(--fg)', fontSize: 'clamp(1rem, 2vw, 1.5rem)', lineHeight: 1.65, fontWeight: 300 }}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-flex mr-[0.3em]">
-          {word.split('').map((char, ci) => {
-            const start = charCounter / totalChars
-            const end = start + 1 / totalChars
-            charCounter++
-            return <AnimChar key={ci} char={char} progress={scrollYProgress} range={[start, end]} />
-          })}
-        </span>
+        <AnimWord key={wi} word={word} progress={scrollYProgress} range={[wi / total, Math.min((wi + 2) / total, 1)]} />
       ))}
     </p>
   )
 }
 
-function AnimChar({ char, progress, range }: { char: string; progress: any; range: number[] }) {
+function AnimWord({ word, progress, range }: { word: string; progress: any; range: number[] }) {
   const opacity = useTransform(progress, range, [0.15, 1])
   return (
-    <span className="relative inline-block">
-      <span className="invisible">{char}</span>
-      <motion.span style={{ opacity }} className="absolute left-0 top-0">{char}</motion.span>
-    </span>
+    <motion.span style={{ opacity }} className="mr-[0.3em]">
+      {word}
+    </motion.span>
   )
 }
 

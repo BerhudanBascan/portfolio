@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../context/ThemeContext'
 import { useLangChange } from '../context/LangContext'
@@ -18,17 +18,20 @@ const SOCIALS = [
 
 /* ─── Magnetic wrapper ─── */
 function MagneticWrapper({ children }: { children: React.ReactNode }) {
-  const [pos, setPos] = useState({ x: 0, y: 0 })
   const ref = useRef<HTMLDivElement>(null)
+  const xMv = useMotionValue(0)
+  const yMv = useMotionValue(0)
+  const xSpring = useSpring(xMv, { stiffness: 150, damping: 15, mass: 0.1 })
+  const ySpring = useSpring(yMv, { stiffness: 150, damping: 15, mass: 0.1 })
   const onMove = (e: React.MouseEvent) => {
     if (!ref.current) return
     const { left, top, width, height } = ref.current.getBoundingClientRect()
-    setPos({ x: (e.clientX - left - width / 2) * 0.2, y: (e.clientY - top - height / 2) * 0.2 })
+    xMv.set((e.clientX - left - width / 2) * 0.2)
+    yMv.set((e.clientY - top - height / 2) * 0.2)
   }
   return (
-    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={() => setPos({ x: 0, y: 0 })}
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={() => { xMv.set(0); yMv.set(0) }}
+      style={{ x: xSpring, y: ySpring }}
     >{children}</motion.div>
   )
 }
@@ -86,18 +89,22 @@ function LangSwitch() {
   const { i18n } = useTranslation()
   const requestLangChange = useLangChange()
   const btnRef = useRef<HTMLButtonElement>(null)
-  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const xMv = useMotionValue(0)
+  const yMv = useMotionValue(0)
+  const xSpring = useSpring(xMv, { stiffness: 180, damping: 14, mass: 0.1 })
+  const ySpring = useSpring(yMv, { stiffness: 180, damping: 14, mass: 0.1 })
   const idx = LANGS.findIndex(l => l.toLowerCase() === i18n.language.split('-')[0].toLowerCase())
   const current = idx === -1 ? 0 : idx
   const cycle = () => requestLangChange(LANGS[(current + 1) % LANGS.length].toLowerCase())
   const onMove = (e: React.MouseEvent) => {
     if (!btnRef.current) return
     const r = btnRef.current.getBoundingClientRect()
-    setPos({ x: (e.clientX - r.left - r.width / 2) * 0.3, y: (e.clientY - r.top - r.height / 2) * 0.3 })
+    xMv.set((e.clientX - r.left - r.width / 2) * 0.3)
+    yMv.set((e.clientY - r.top - r.height / 2) * 0.3)
   }
   return (
-    <motion.button ref={btnRef} onClick={cycle} onMouseMove={onMove} onMouseLeave={() => setPos({ x: 0, y: 0 })}
-      animate={{ x: pos.x, y: pos.y }} transition={{ type: 'spring', stiffness: 180, damping: 14, mass: 0.1 }}
+    <motion.button ref={btnRef} onClick={cycle} onMouseMove={onMove} onMouseLeave={() => { xMv.set(0); yMv.set(0) }}
+      style={{ x: xSpring, y: ySpring }}
       whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.94 }}
       aria-label={`Change language, current: ${LANGS[current]}`}
       className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-9 lg:h-9 rounded-full border border-[var(--fg-18)] bg-transparent cursor-pointer relative overflow-hidden shrink-0 flex items-center justify-center"

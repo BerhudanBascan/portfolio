@@ -427,12 +427,19 @@ function MusicPlayerCard({ audioRef, analyserRef, playing, setPlaying, trackIdx,
 function SpotifyCard() {
   const { quote, refresh } = useQuote();
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const spotlightRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !spotlightRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mousePosRef.current = { x, y };
+    spotlightRef.current.style.background = `
+      radial-gradient(400px circle at ${x}px ${y}px, rgba(255,255,255,0.15), transparent 40%),
+      radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.05), transparent 50%)
+    `;
   };
 
   return (
@@ -454,14 +461,9 @@ function SpotifyCard() {
         <div className="absolute inset-[3px] md:inset-[4px] bg-[linear-gradient(var(--fg-06)_1px,transparent_1px),linear-gradient(90deg,var(--fg-06)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none rounded-[1.8rem] overflow-hidden" />
         
         {/* Interactive Mouse Spotlight (Elegant & Flashy) */}
-        <div 
+        <div
+          ref={spotlightRef}
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-screen z-10"
-          style={{
-            background: `
-              radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.15), transparent 40%),
-              radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.05), transparent 50%)
-            `
-          }}
         />
 
         {/* Content Container */}

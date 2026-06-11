@@ -71,8 +71,8 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
   const rawD = DET[project.num]
   const detTr = t(`projects.det.${project.num}`, { returnObjects: true, defaultValue: null }) as any
   const d = detTr && typeof detTr === 'object' && detTr.desc ? { ...rawD, desc: detTr.desc, hi: detTr.hi } : rawD
-  const live = d.status === 'Production' || d.status === 'Active'
-  const highlights = d.hi
+  const live = d?.status === 'Production' || d?.status === 'Active'
+  const highlights = d?.hi ?? []
 
   const [hovered, setHovered] = useState(false)
   const color = PROJECT_COLORS[index % PROJECT_COLORS.length]

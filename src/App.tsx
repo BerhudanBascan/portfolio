@@ -65,7 +65,7 @@ export default function App() {
     } else if (anchorEl) {
       let count = 0
       const adjust = () => {
-        if (!anchorEl) return
+        if (!anchorEl || !document.body.contains(anchorEl)) return
         const newRect = anchorEl.getBoundingClientRect()
         const diff = newRect.top - anchorOffset
         if (Math.abs(diff) > 0.5) {

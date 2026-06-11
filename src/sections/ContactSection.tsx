@@ -142,15 +142,7 @@ export default function ContactSection() {
       <div className="relative w-full" style={{ height: 'clamp(600px, 100svh, 820px)', overflow: 'hidden' }}>
 
         {/* Grain overlay */}
-        <div className="absolute inset-0 pointer-events-none z-50 opacity-40 mix-blend-overlay">
-          <svg width="100%" height="100%">
-            <filter id="noise">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
-              <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.1 0" />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noise)" />
-          </svg>
-        </div>
+        <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.18] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '256px 256px' }} />
 
         {/* Giant ghost text */}
         <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2, top: '18%' }}>

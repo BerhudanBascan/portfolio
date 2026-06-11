@@ -274,12 +274,6 @@ export default function ExperienceSection() {
                   }`}
                 >
                   {isActive && (
-                    <motion.div layoutId="tabBeam"
-                      className={`absolute left-0 top-0 bottom-0 w-1 lg:w-1.5 bg-gradient-to-b ${tab.color} hidden lg:block`}
-                      transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
-                    />
-                  )}
-                  {isActive && (
                     <motion.div layoutId="tabBeamH"
                       className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${tab.color} lg:hidden`}
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
