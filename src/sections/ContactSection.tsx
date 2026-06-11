@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 
 const IMAGES = [
-  { src: '/images/contact/github.png', bg: '#F4845F', title: 'GITHUB',   label: 'github.com/BerhudanBascan',       link: 'https://github.com/BerhudanBascan' },
-  { src: '/images/contact/linkedin.png', bg: '#6BBF7A', title: 'LINKEDIN', label: 'linkedin.com/in/berhudan-başcan',  link: 'https://www.linkedin.com/in/berhudan-başcan-2b28671aa' },
-  { src: '/images/contact/email.png', bg: '#E882B4', title: 'EMAIL',    label: 'berhudanbascan@gmail.com',       link: 'mailto:berhudanbascan@gmail.com' },
-  { src: '/images/contact/phone.png', bg: '#6EB5FF', title: 'PHONE',    label: '+90 533 679 71 68',              link: 'tel:+905336797168' },
+  { src: '/images/contact/github.png', bg: '#F4845F', title: 'GITHUB', label: 'github.com/BerhudanBascan', link: 'https://github.com/BerhudanBascan' },
+  { src: '/images/contact/linkedin.png', bg: '#6BBF7A', title: 'LINKEDIN', label: 'linkedin.com/in/berhudan-başcan', link: 'https://www.linkedin.com/in/berhudan-başcan-2b28671aa' },
+  { src: '/images/contact/email.png', bg: '#E882B4', title: 'EMAIL', label: 'berhudanbascan@gmail.com', link: 'mailto:berhudanbascan@gmail.com' },
+  { src: '/images/contact/phone.png', bg: '#6EB5FF', title: 'PHONE', label: '+90 533 679 71 68', link: 'tel:+905336797168' },
 ]
 
 export default function ContactSection() {
@@ -56,10 +56,10 @@ export default function ContactSection() {
       willChange: 'transform, filter, opacity',
       transition: 'transform 650ms cubic-bezier(0.4,0,0.2,1), filter 650ms cubic-bezier(0.4,0,0.2,1), opacity 650ms cubic-bezier(0.4,0,0.2,1), left 650ms cubic-bezier(0.4,0,0.2,1), bottom 650ms cubic-bezier(0.4,0,0.2,1)',
     }
-    if (role === 'center') return { ...base, transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.15})`,  filter: 'none',      opacity: 1,    zIndex: 20, left: '50%',                       height: isMobile ? '60%' : '65%', bottom: isMobile ? '20%' : '4%'  }
-    if (role === 'left')   return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '20%' : '30%',  height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
-    if (role === 'right')  return { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '80%' : '70%',  height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
-    return                        { ...base, transform: 'translateX(-50%) scale(1)',                          filter: 'blur(4px)', opacity: 0.5,  zIndex: 5,  left: '50%',                       height: isMobile ? '13%' : '20%', bottom: isMobile ? '36%' : '16%' }
+    if (role === 'center') return { ...base, transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.15})`, filter: 'none', opacity: 1, zIndex: 20, left: '50%', height: isMobile ? '60%' : '65%', bottom: isMobile ? '20%' : '4%' }
+    if (role === 'left') return { ...base, transform: 'translateX(-50%) scale(1)', filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '20%' : '30%', height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
+    if (role === 'right') return { ...base, transform: 'translateX(-50%) scale(1)', filter: 'blur(2px)', opacity: 0.85, zIndex: 10, left: isMobile ? '80%' : '70%', height: isMobile ? '16%' : '26%', bottom: isMobile ? '32%' : '12%' }
+    return { ...base, transform: 'translateX(-50%) scale(1)', filter: 'blur(4px)', opacity: 0.5, zIndex: 5, left: '50%', height: isMobile ? '13%' : '20%', bottom: isMobile ? '36%' : '16%' }
   }
 
   return (
@@ -111,7 +111,7 @@ export default function ContactSection() {
         }
       `}</style>
       {IMAGES.map((img, i) => (
-        <div 
+        <div
           key={img.title}
           className="absolute -top-40 md:-top-56 left-0 w-full h-40 md:h-56 pointer-events-none mix-blend-screen"
           style={{
@@ -126,30 +126,31 @@ export default function ContactSection() {
           <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-left 4.5s infinite ease-in-out 0s' }} />
           <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-right 5.2s infinite ease-in-out 0.8s' }} />
           <div className="chimney-particle w-40 h-40 md:w-56 md:h-56" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-center 4.8s infinite ease-in-out 1.5s' }} />
-          
+
           <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-left 5s infinite ease-in-out 2.2s' }} />
           <div className="chimney-particle w-32 h-32 md:w-48 md:h-48" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-right 4.7s infinite ease-in-out 3s' }} />
           <div className="chimney-particle w-40 h-40 md:w-56 md:h-56" style={{ background: `radial-gradient(circle, ${img.bg} 0%, transparent 70%)`, animation: 'chimney-center 5.5s infinite ease-in-out 3.8s' }} />
         </div>
       ))}
-      
+
       {/* Soft Transition Gradient from main background to contact background */}
-      <div 
+      <div
         className="absolute top-0 left-0 w-full h-40 md:h-64 z-40 pointer-events-none mix-blend-normal"
         style={{ background: 'linear-gradient(to bottom, var(--bg) 0%, transparent 100%)' }}
       />
-      
+
       <div className="relative w-full" style={{ height: 'clamp(600px, 100svh, 820px)', overflow: 'hidden' }}>
 
-        {/* Performant static grain overlay */}
-        <div 
-          className="absolute inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"
-          style={{ 
-            backgroundImage: 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYy00AAAACHRSTlMAAAAAAAAAAABwEldyAAAAeElEQVQ4y+2TMQ4AIAgD4f8/2sHBwUaNJt1MW5yEUr7wD0Q1T/O4k5l0G6l32nkn3R3V3VHdnbwHee+k+6O6P6r7o7o/qvujuj+q+6O6P6r7o7o/qvujuj+q+6O6P6r7o7o/qvujuj+q+6O6P6r7o/5P3w8+D84Pzvnx18aR1E/p1wAAAABJRU5ErkJggg==")',
-            backgroundRepeat: 'repeat',
-            backgroundSize: '64px'
-          }}
-        />
+        {/* Grain overlay */}
+        <div className="absolute inset-0 pointer-events-none z-50 opacity-40 mix-blend-overlay">
+          <svg width="100%" height="100%">
+            <filter id="noise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
+              <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.1 0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noise)" />
+          </svg>
+        </div>
 
         {/* Giant ghost text */}
         <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2, top: '18%' }}>
@@ -185,7 +186,7 @@ export default function ContactSection() {
             navigate(delta < 0 ? 'next' : 'prev')
           }}
           onMouseLeave={() => { dragStartX.current = null }}
-          onTouchStart={e => { 
+          onTouchStart={e => {
             touchStartX.current = e.touches[0].clientX
             touchStartY.current = e.touches[0].clientY
           }}

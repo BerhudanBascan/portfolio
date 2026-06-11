@@ -213,6 +213,8 @@ function MobileCard({ item, tabKey, isOpen, color, onToggle, t }: {
 
 export default function ExperienceSection() {
   const { t } = useTranslation()
+  const heading = t('experience.heading')
+  const headingVw = Math.min(9.5, 90 / heading.length)
   const [activeTab, setActiveTab] = useState<TabKey>('work')
   const [selectedIdx, setSelectedIdx] = useState<number>(0)
   const [expandedCard, setExpandedCard] = useState<number | null>(null)
@@ -249,10 +251,10 @@ export default function ExperienceSection() {
       <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col">
         <FadeIn delay={0} y={40}>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-16 md:mb-20 text-center break-words px-4 w-full"
-            style={{ fontSize: 'clamp(2rem,9.5vw,150px)', color: 'rgb(100,105,115)' }}
+            className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-16 md:mb-20 text-center whitespace-nowrap px-4 w-full"
+            style={{ fontSize: `clamp(2rem,${headingVw}vw,150px)`, color: 'rgb(100,105,115)' }}
           >
-            {t('experience.heading')}
+            {heading}
           </h2>
         </FadeIn>
 

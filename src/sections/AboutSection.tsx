@@ -50,6 +50,9 @@ function AnimChar({ char, progress, range }: { char: string; progress: any; rang
 
 export default function AboutSection() {
   const { t } = useTranslation()
+  const heading = t('about.heading')
+  const lgVw = Math.min(7, 90 / heading.length)
+  const mobileVw = Math.min(9.5, 90 / heading.length)
   const containerRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] })
@@ -111,12 +114,12 @@ export default function AboutSection() {
           <div className="lg:col-span-5 w-full">
             <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center items-center lg:items-start pt-32 sm:pt-48 lg:pt-24 pb-0 lg:pb-0 text-center lg:text-left">
               <motion.div style={{ y: headingY }} className="hidden lg:block w-full">
-                <h2 className="hero-heading font-black uppercase leading-none tracking-tight break-words" style={{ fontSize: 'clamp(2.8rem, 7vw, 120px)', color: 'rgb(100, 105, 115)' }}>
-                  {t('about.heading')}
+                <h2 className="hero-heading font-black uppercase leading-none tracking-tight whitespace-nowrap" style={{ fontSize: `clamp(2.8rem, ${lgVw}vw, 120px)`, color: 'rgb(100, 105, 115)' }}>
+                  {heading}
                 </h2>
               </motion.div>
-              <h2 className="hero-heading font-black uppercase leading-none tracking-tight block lg:hidden text-center mb-10 sm:mb-14 break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
-                {t('about.heading')}
+              <h2 className="hero-heading font-black uppercase leading-none tracking-tight block lg:hidden text-center mb-10 sm:mb-14 whitespace-nowrap px-4 w-full" style={{ fontSize: `clamp(2rem, ${mobileVw}vw, 150px)`, color: 'rgb(100, 105, 115)' }}>
+                {heading}
               </h2>
             </div>
           </div>

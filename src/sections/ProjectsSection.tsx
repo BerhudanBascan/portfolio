@@ -171,13 +171,15 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
 export default function ProjectsSection() {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
+  const heading = t('projects.heading')
+  const headingVw = Math.min(9.5, 90 / heading.length)
   const isMobile = useBreakpoint(640)
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] })
 
   return (
     <section id="projects" ref={containerRef} style={{ position: 'relative', zIndex: 20, borderColor: 'var(--fg-06)' }} className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 w-full pt-20 sm:pt-24 md:pt-32 pb-4 sm:pb-24 md:pb-32 border-t">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-10 mb-10 sm:mb-16">
-        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem,9.5vw,150px)', color: 'rgb(100, 105, 115)' }}>{ t('projects.heading') }</h2>
+      <div className="relative z-10 w-full flex justify-center mb-8 sm:mb-12 md:mb-16 xl:mb-20">
+        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center whitespace-nowrap px-4 w-full" style={{ fontSize: `clamp(2rem, ${headingVw}vw, 150px)`, color: 'rgb(100, 105, 115)' }}>{ heading }</h2>
       </div>
       <div style={{ paddingBottom: '60vh' }}>
         {PROJECTS.map((p, i) => <ProjectCard key={p.num} project={p} index={i} isMobile={isMobile} scrollYProgress={scrollYProgress} />)}

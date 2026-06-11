@@ -268,6 +268,10 @@ function ResponsiveCardSwap({ services }: { services: any[] }) {
 
 export default function SkillsSection() {
   const { t } = useTranslation()
+  const heading1 = t('skills.heading')
+  const heading1Vw = Math.min(9.5, 90 / heading1.length)
+  const heading2 = t('skills.services_heading')
+  const heading2Vw = Math.min(9.5, 90 / heading2.length)
   const SERVICES = t('skills.services', { returnObjects: true }) as any[]
   const techStacks = useMemo(() => ({
     left: [
@@ -289,8 +293,8 @@ export default function SkillsSection() {
       <div className="border-t pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-20 md:pb-24 xl:pb-24 relative w-full flex flex-col items-center" style={{ borderColor: 'var(--fg-06)' }}>
         <div className="max-w-5xl mx-auto w-full px-4 sm:px-8 md:px-10">
           <FadeIn delay={0} y={40}>
-            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-8 sm:mb-12 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
-              {t('skills.heading')}
+            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-8 sm:mb-12 text-center whitespace-nowrap px-4 w-full" style={{ fontSize: `clamp(2rem, ${heading1Vw}vw, 150px)`, color: 'rgb(100, 105, 115)' }}>
+              {heading1}
             </h2>
           </FadeIn>
         </div>
@@ -326,9 +330,9 @@ export default function SkillsSection() {
         <div className="max-w-[1500px] mx-auto px-4 sm:px-8 md:px-10 lg:px-12 pt-16 sm:pt-20 md:pt-24 pb-48 sm:pb-32 md:pb-36 lg:pb-40">
 
           {/* Heading */}
-          <FadeIn delay={0} y={40}>
-            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-14 md:mb-20 text-center break-words px-4 w-full" style={{ fontSize: 'clamp(2rem, 9.5vw, 150px)', color: 'rgb(100, 105, 115)' }}>
-              {t('skills.services_heading')}
+          <FadeIn delay={0.2} y={30} className="w-full flex justify-center">
+            <h2 className="hero-heading font-black uppercase leading-none tracking-tight mb-10 sm:mb-14 md:mb-20 text-center whitespace-nowrap px-4 w-full" style={{ fontSize: `clamp(2rem, ${heading2Vw}vw, 150px)`, color: 'rgb(100, 105, 115)' }}>
+              {heading2}
             </h2>
           </FadeIn>
 
