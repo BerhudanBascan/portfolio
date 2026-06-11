@@ -141,16 +141,15 @@ export default function ContactSection() {
       
       <div className="relative w-full" style={{ height: 'clamp(600px, 100svh, 820px)', overflow: 'hidden' }}>
 
-        {/* Grain overlay */}
-        <div className="absolute inset-0 pointer-events-none z-50 opacity-40 mix-blend-overlay">
-          <svg width="100%" height="100%">
-            <filter id="noise">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
-              <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.1 0" />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noise)" />
-          </svg>
-        </div>
+        {/* Performant static grain overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"
+          style={{ 
+            backgroundImage: 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYy00AAAACHRSTlMAAAAAAAAAAABwEldyAAAAeElEQVQ4y+2TMQ4AIAgD4f8/2sHBwUaNJt1MW5yEUr7wD0Q1T/O4k5l0G6l32nkn3R3V3VHdnbwHee+k+6O6P6r7o7o/qvujuj+q+6O6P6r7o7o/qvujuj+q+6O6P6r7o7o/qvujuj+q+6O6P6r7o/5P3w8+D84Pzvnx18aR1E/p1wAAAABJRU5ErkJggg==")',
+            backgroundRepeat: 'repeat',
+            backgroundSize: '64px'
+          }}
+        />
 
         {/* Giant ghost text */}
         <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2, top: '18%' }}>
