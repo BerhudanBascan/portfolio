@@ -18,18 +18,25 @@ export default function ContactSection() {
   const isMobile = useBreakpoint(640)
   const dragStartX = useRef<number | null>(null)
   const touchStartX = useRef<number | null>(null)
+  const touchStartY = useRef<number | null>(null)
+  const navigateTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const wheelAccum = useRef(0)
   const wheelTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     IMAGES.forEach(item => { const img = new Image(); img.src = item.src })
+    return () => {
+      if (navigateTimer.current) clearTimeout(navigateTimer.current)
+      if (wheelTimer.current) clearTimeout(wheelTimer.current)
+    }
   }, [])
 
   const navigate = (dir: 'next' | 'prev') => {
     if (isAnimating) return
     setIsAnimating(true)
     setActiveIndex(prev => dir === 'next' ? (prev + 1) % 4 : (prev + 3) % 4)
-    setTimeout(() => setIsAnimating(false), 650)
+    if (navigateTimer.current) clearTimeout(navigateTimer.current)
+    navigateTimer.current = setTimeout(() => setIsAnimating(false), 650)
   }
 
   const getRole = (i: number) => {
@@ -109,8 +116,9 @@ export default function ContactSection() {
           className="absolute -top-40 md:-top-56 left-0 w-full h-40 md:h-56 pointer-events-none mix-blend-screen"
           style={{
             opacity: activeIndex === i ? 1 : 0,
-            transition: 'opacity 650ms cubic-bezier(0.4,0,0.2,1)',
-            willChange: 'opacity',
+            visibility: activeIndex === i ? 'visible' : 'hidden',
+            transition: 'opacity 650ms cubic-bezier(0.4,0,0.2,1), visibility 650ms cubic-bezier(0.4,0,0.2,1)',
+            willChange: 'opacity, visibility',
             zIndex: 1
           }}
         >
@@ -178,13 +186,19 @@ export default function ContactSection() {
             navigate(delta < 0 ? 'next' : 'prev')
           }}
           onMouseLeave={() => { dragStartX.current = null }}
-          onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
+          onTouchStart={e => { 
+            touchStartX.current = e.touches[0].clientX
+            touchStartY.current = e.touches[0].clientY
+          }}
           onTouchEnd={e => {
-            if (touchStartX.current === null) return
-            const delta = e.changedTouches[0].clientX - touchStartX.current
+            if (touchStartX.current === null || touchStartY.current === null) return
+            const deltaX = e.changedTouches[0].clientX - touchStartX.current
+            const deltaY = e.changedTouches[0].clientY - touchStartY.current
             touchStartX.current = null
-            if (Math.abs(delta) < 40) return
-            navigate(delta < 0 ? 'next' : 'prev')
+            touchStartY.current = null
+            if (Math.abs(deltaY) > Math.abs(deltaX)) return // User is likely scrolling vertically
+            if (Math.abs(deltaX) < 40) return
+            navigate(deltaX < 0 ? 'next' : 'prev')
           }}
           onWheel={e => {
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return

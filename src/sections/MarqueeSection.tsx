@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useBreakpoint } from '../hooks/useBreakpoint'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee/${String(i + 1).padStart(2, '0')}.gif`)
 const ROW1 = IMAGES.slice(0, 11)
@@ -75,7 +76,6 @@ function DesktopMarquee() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [tileW, setTileW] = useState(440)
   const [tileH, setTileH] = useState(280)
-  const [progress, setProgress] = useState(0)
   const [innerVw, setInnerVw] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
   const [sectionH, setSectionH] = useState(0)
 
@@ -98,27 +98,21 @@ function DesktopMarquee() {
     return () => window.removeEventListener('resize', updateH)
   }, [])
 
-  useEffect(() => {
-    const onScroll = () => {
-      const el = containerRef.current
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      const total = el.offsetHeight - window.innerHeight
-      setProgress(Math.max(0, Math.min(1, -rect.top / total)))
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
 
   const gap = 16
   const row1W = ROW1.length * (tileW + gap)
   const row2W = ROW2.length * (tileW + gap)
   const maxShift1 = row1W - innerVw + 48
   const maxShift2 = row2W - innerVw + 48
-  const ease = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2
-  const shift1 = ease * maxShift1
-  const shift2 = (ease - 1) * maxShift2
+
+  const easedProgress = useTransform(scrollYProgress, p => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
+  const shift1 = useTransform(easedProgress, p => -(p * maxShift1))
+  const shift2 = useTransform(easedProgress, p => (p - 1) * maxShift2)
+  const progressWidth = useTransform(scrollYProgress, p => `${p * 100}%`)
 
   return (
     <section ref={containerRef} style={{ height: `${Math.max(row1W, row2W) + (sectionH || window.innerHeight)}px`, position: 'relative' }}>
@@ -128,24 +122,24 @@ function DesktopMarquee() {
           <span style={{ color: 'var(--fg-28)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase' }}>{t('marquee.selectedWork')}</span>
           <span style={{ height: 1, width: 40, background: 'var(--fg-15)', display: 'block' }} />
         </div>
-        <div style={{ display: 'flex', gap, paddingLeft: 24, transform: `translateX(${-shift1}px)`, willChange: 'transform', transition: 'transform 0.08s linear' }}>
+        <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift1, willChange: 'transform' }}>
           {ROW1.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
               <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
             </div>
           ))}
-        </div>
-        <div style={{ display: 'flex', gap, paddingLeft: 24, transform: `translateX(${shift2}px)`, willChange: 'transform', transition: 'transform 0.08s linear' }}>
+        </motion.div>
+        <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift2, willChange: 'transform' }}>
           {ROW2.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
               <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
             </div>
           ))}
-        </div>
+        </motion.div>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(to right, var(--bg) 0%, transparent 8%, transparent 92%, var(--bg) 100%)' }} />
         <div style={{ position: 'absolute', bottom: 'clamp(20px, 4vh, 40px)', left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: 120, height: 2, borderRadius: 999, background: 'var(--fg-08)', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${progress * 100}%`, background: 'var(--fg-35)', borderRadius: 999, transition: 'width 0.1s linear' }} />
+            <motion.div style={{ height: '100%', width: progressWidth, background: 'var(--fg-35)', borderRadius: 999 }} />
           </div>
         </div>
       </div>

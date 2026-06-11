@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -190,7 +190,7 @@ function FloatingMiniPlayer({ show, playing, trackIdx, analyserRef, onPause, onP
   progress: number;
 }) {
   const track = PLAYLIST[trackIdx];
-  return ReactDOM.createPortal(
+  return createPortal(
     <AnimatePresence>
       {show && (
         <motion.div

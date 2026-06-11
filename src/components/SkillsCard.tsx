@@ -92,25 +92,6 @@ const SkillsCard = () => {
   };
 
   const TRANSLATED = SKILLS.map(s => ({ ...s, desc: t(`skills.cards.${s.id}`, s.desc) }))
-  const dynamicStyles = SKILLS.map(s => `
-    .skills-card-wrapper .anchor:has(.p${s.num}:hover),
-    .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} {
-      --theme: ${s.theme};
-      --accent: ${s.accent};
-      --font-main: ${s.font};
-      --rx: ${s.rx};
-      --ry: ${s.ry};
-      --ring-rot: ${s.rot};
-      --tx: ${s.tx};
-      --ty: ${s.ty};
-      --op: ${s.op};
-    }
-    .skills-card-wrapper .anchor:has(.p${s.num}:hover) .${s.id},
-    .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} .${s.id} {
-      display: flex;
-      opacity: 1;
-    }
-  `).join('\n');
 
   return (
     <div className="skills-card-wrapper relative flex justify-center items-center overflow-visible mx-auto">
@@ -162,7 +143,32 @@ const SkillsCard = () => {
           </div>
         </div>
       </div>
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{__html: SKILLS_CARD_CSS}} />
+    </div>
+  );
+}
+
+const DYNAMIC_STYLES = SKILLS.map(s => `
+  .skills-card-wrapper .anchor:has(.p${s.num}:hover),
+  .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} {
+    --theme: ${s.theme};
+    --accent: ${s.accent};
+    --font-main: ${s.font};
+    --rx: ${s.rx};
+    --ry: ${s.ry};
+    --ring-rot: ${s.rot};
+    --tx: ${s.tx};
+    --ty: ${s.ty};
+    --op: ${s.op};
+  }
+  .skills-card-wrapper .anchor:has(.p${s.num}:hover) .${s.id},
+  .skills-card-wrapper .anchor:not(:has(.sensors div:hover)).active-card-${s.num} .${s.id} {
+    display: flex;
+    opacity: 1;
+  }
+`).join('\n');
+
+const SKILLS_CARD_CSS = `
         .skills-card-wrapper {
           width: 210px;
           height: 290px;
@@ -254,7 +260,7 @@ const SkillsCard = () => {
           opacity: 1;
         }
 
-        ${dynamicStyles}
+        ${DYNAMIC_STYLES}
 
         .skills-card-wrapper .relic-chassis {
           position: relative;
@@ -478,9 +484,6 @@ const SkillsCard = () => {
           background-size: 100% 4px;
           pointer-events: none;
         }
-      `}} />
-    </div>
-  );
-}
+`;
 
 export default SkillsCard;
