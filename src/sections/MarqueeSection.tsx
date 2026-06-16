@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee/${String(i + 1).padStart(2, '0')}.gif`)
+const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee-webm/${String(i + 1).padStart(2, '0')}.webm`)
 const ROW1 = IMAGES.slice(0, 11)
 const ROW2 = IMAGES.slice(11)
 
@@ -42,7 +42,7 @@ function MobileMarquee() {
         <div className="mq-left" style={{ gap: 12 }}>
           {[...ROW1, ...ROW1].map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)', width: 220, height: 140, background: 'var(--fg-08)', position: 'relative' }}>
-              {preloaded && <img src={src} alt="" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
+              {preloaded && <video src={src} autoPlay muted loop playsInline style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
             </div>
           ))}
         </div>
@@ -52,7 +52,7 @@ function MobileMarquee() {
         <div className="mq-right" style={{ gap: 12 }}>
           {[...ROW2, ...ROW2].map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)', width: 220, height: 140, background: 'var(--fg-08)', position: 'relative' }}>
-              {preloaded && <img src={src} alt="" style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
+              {preloaded && <video src={src} autoPlay muted loop playsInline style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
             </div>
           ))}
         </div>
@@ -125,14 +125,14 @@ function DesktopMarquee() {
         <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift1, willChange: 'transform' }}>
           {ROW1.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+              <video src={src} autoPlay muted loop playsInline style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
             </div>
           ))}
         </motion.div>
         <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift2, willChange: 'transform' }}>
           {ROW2.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <img src={src} alt="" loading="lazy" style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+              <video src={src} autoPlay muted loop playsInline style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
             </div>
           ))}
         </motion.div>
