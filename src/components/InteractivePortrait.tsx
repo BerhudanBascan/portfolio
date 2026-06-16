@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion'
 import Magnet from './Magnet'
 
@@ -6,7 +6,7 @@ const PORTRAIT_URL = '/images/berhudan.png'
 
 const RINGS = [0, 1, 2]
 
-function SonarRing({ delay, isHovered }: { delay: number; isHovered: boolean }) {
+const SonarRing = memo(function SonarRing({ delay, isHovered }: { delay: number; isHovered: boolean }) {
   return (
     <motion.span
       style={{
@@ -29,7 +29,7 @@ function SonarRing({ delay, isHovered }: { delay: number; isHovered: boolean }) 
       } : { duration: 1.0, ease: 'easeOut' }}
     />
   )
-}
+})
 
 export default function InteractivePortrait() {
   const containerRef = useRef<HTMLDivElement>(null)

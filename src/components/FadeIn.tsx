@@ -12,6 +12,21 @@ interface FadeInProps {
   as?: ElementType
 }
 
+const motionElements: Record<string, any> = {
+  div: motion.div,
+  span: motion.span,
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  p: motion.p,
+  section: motion.section,
+  article: motion.article,
+  aside: motion.aside,
+  header: motion.header,
+  footer: motion.footer,
+  nav: motion.nav,
+}
+
 export default function FadeIn({
   children,
   delay = 0,
@@ -22,7 +37,12 @@ export default function FadeIn({
   style,
   as = 'div',
 }: FadeInProps) {
-  const MotionComponent = useMemo(() => motion.create(as as ElementType), [as])
+  const MotionComponent = useMemo(() => {
+    if (typeof as === 'string' && motionElements[as]) {
+      return motionElements[as]
+    }
+    return motion.create(as as ElementType)
+  }, [as])
 
   return (
     <MotionComponent

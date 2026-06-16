@@ -80,22 +80,23 @@ function DesktopMarquee() {
   const [sectionH, setSectionH] = useState(0)
 
   useEffect(() => {
+    let rafId: number
     const update = () => {
-      const w = window.innerWidth
-      setInnerVw(w)
-      if (w < 1024) { setTileW(380); setTileH(244) }
-      else { setTileW(440); setTileH(280) }
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        const w = window.innerWidth
+        setInnerVw(w)
+        setSectionH(window.innerHeight)
+        if (w < 1024) { setTileW(380); setTileH(244) }
+        else { setTileW(440); setTileH(280) }
+      })
     }
     update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
-
-  useEffect(() => {
-    const updateH = () => setSectionH(window.innerHeight)
-    updateH()
-    window.addEventListener('resize', updateH)
-    return () => window.removeEventListener('resize', updateH)
+    window.addEventListener('resize', update, { passive: true })
+    return () => {
+      window.removeEventListener('resize', update)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const { scrollYProgress } = useScroll({
