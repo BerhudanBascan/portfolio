@@ -16,6 +16,7 @@ import ContactSection from './sections/ContactSection'
 export default function App() {
   const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true)
+  const [isFading, setIsFading] = useState(false)
   const handleDone = useCallback(() => setLoading(false), [])
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
@@ -52,23 +53,29 @@ export default function App() {
       })
     }
 
-    i18n.changeLanguage(lang)
+    // Start fading out
+    setIsFading(true)
 
-    if (isAtTop) {
-      // Single scroll-to-top, no loop needed
-      requestAnimationFrame(() => window.scrollTo(0, 0))
-    } else if (anchorEl) {
-      // After language change re-renders settle, restore scroll so anchor is at same position
+    // Wait for fade-out to complete (180ms)
+    setTimeout(() => {
+      i18n.changeLanguage(lang)
+
+      // Wait 2 frames for new language layout to settle before scrolling and fading back in
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          if (!anchorEl || !document.body.contains(anchorEl)) return
-          const newRect = (anchorEl as HTMLElement).getBoundingClientRect()
-          const currentAnchorScrollY = window.scrollY + newRect.top
-          const diff = currentAnchorScrollY - anchorScrollY
-          if (Math.abs(diff) > 0.5) window.scrollBy(0, diff)
+          if (isAtTop) {
+            window.scrollTo(0, 0)
+          } else if (anchorEl && document.body.contains(anchorEl)) {
+            const newRect = (anchorEl as HTMLElement).getBoundingClientRect()
+            const currentAnchorScrollY = window.scrollY + newRect.top
+            const diff = currentAnchorScrollY - anchorScrollY
+            if (Math.abs(diff) > 0.5) window.scrollBy(0, diff)
+          }
+          // Fade back in
+          setIsFading(false)
         })
       })
-    }
+    }, 180)
   }, [i18n])
 
   return (
@@ -79,8 +86,8 @@ export default function App() {
       <motion.div
         style={{ backgroundColor: 'transparent' }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: loading ? 0 : 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        animate={{ opacity: loading ? 0 : (isFading ? 0 : 1) }}
+        transition={{ duration: isFading ? 0.18 : 0.45, ease: [0.25, 0.1, 0.25, 1] }}
         className="flex flex-col w-full"
       >
         <Header />
