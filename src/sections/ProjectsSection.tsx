@@ -57,7 +57,6 @@ const DET: Record<string,D> = {
   '14':{year:'2026',status:'Completed',  desc:'Visually ambitious 3D animated web experience pushing browser-based WebGL through Three.js-inspired GPU-accelerated canvas animations — high-voltage electric arc effects, particle systems, and dynamic lighting at 60fps.',hi:['GPU-accelerated WebGL with custom shaders','High-voltage electric arc and particle effects','Dynamic lighting and bloom post-processing','60fps rendering with requestAnimationFrame','Zero-dependency custom WebGL pipeline']},
 }
 
-
 function ProjectCard({ project, index, isMobile, scrollYProgress }: {
   project: typeof PROJECTS[0]
   index: number
@@ -65,6 +64,7 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
   scrollYProgress: any
 }) {
   const { t } = useTranslation()
+  const [imgFailed, setImgFailed] = useState(false)
 
   const range = [index / TOTAL, Math.min((index + 2) / TOTAL, 1)]
   const scale = useTransform(scrollYProgress, range, [1, 1 - (TOTAL - 1 - index) * 0.025])
@@ -76,6 +76,24 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
 
   const [hovered, setHovered] = useState(false)
   const color = PROJECT_COLORS[index % PROJECT_COLORS.length]
+
+  const getFallbackSvg = (name: string, rgbColor: string) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+      <rect width="100%" height="100%" fill="#121214"/>
+      <defs>
+        <grid id="grid-${index}" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+        </grid>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid-${index})"/>
+      <circle cx="400" cy="250" r="180" fill="rgba(${rgbColor},0.12)" filter="blur(50px)"/>
+      <text x="50%" y="42%" dominant-baseline="middle" text-anchor="middle" fill="rgba(${rgbColor},0.4)" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="4">[ GITHUB REPOSITORY ]</text>
+      <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.5">${name}</text>
+    </svg>`
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+  }
+
+  const imgSrc = imgFailed ? getFallbackSvg(project.name, color) : project.tl
 
   return (
     <div style={{ position: 'sticky', top: isMobile ? 60 : 72, zIndex: index + 1 }}>
@@ -133,8 +151,8 @@ function ProjectCard({ project, index, isMobile, scrollYProgress }: {
             {/* Content: images + text panel */}
             <div style={{ display: 'flex', gap: 'clamp(0.75rem,2vw,1.4rem)', flexDirection: 'row' }}>
               {!isMobile && <div style={{ flex: '0 0 clamp(140px,36%,40%)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem,1.2vw,0.9rem)' }}>
-                <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'top center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(120px,12vw,200px)', display: 'block', opacity: 0.88 }} />
-                <img src={project.tl} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'bottom center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(150px,17vw,270px)', display: 'block', opacity: 0.78 }} />
+                <img src={imgSrc} onError={() => setImgFailed(true)} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'top center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(120px,12vw,200px)', display: 'block', opacity: 0.88 }} />
+                <img src={imgSrc} onError={() => setImgFailed(true)} alt="" loading="lazy" style={{ width: '100%', objectFit: 'cover', objectPosition: 'bottom center', borderRadius: 'clamp(10px,1.6vw,20px)', height: 'clamp(150px,17vw,270px)', display: 'block', opacity: 0.78 }} />
               </div>}
               <div style={{ flex: 1, minWidth: 0, borderRadius: isMobile ? 12 : 'clamp(10px,1.6vw,20px)', padding: isMobile ? '0.75rem' : 'clamp(1rem,2.2vw,1.8rem)', border: '1px solid var(--fg-06)', background: 'var(--fg-06)', display: 'flex', flexDirection: 'column', gap: isMobile ? '0.5rem' : 'clamp(0.7rem,1.5vw,1.1rem)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'relative', zIndex: 1 }}>

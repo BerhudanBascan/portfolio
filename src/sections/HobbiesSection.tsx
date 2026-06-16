@@ -591,16 +591,15 @@ export default function HobbiesSection() {
         </h1>
       </div>
 
-      {hobbiesData.map((hobby, index) => (
-        <div
-          key={`glow-${hobby.id}`}
-          className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] blur-[100px] lg:blur-[180px]"
-          style={{
-            background: `radial-gradient(circle at 50% 50%, ${hobby.color} 0%, transparent 60%)`,
-            opacity: activeIndex === index ? (theme === 'light' ? 0.08 : 0.22) : 0
-          }}
-        />
-      ))}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none transition-all duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] blur-[100px] lg:blur-[180px]"
+        style={{
+          background: activeIndex !== null && hobbiesData[activeIndex]
+            ? `radial-gradient(circle at 50% 50%, ${hobbiesData[activeIndex].color} 0%, transparent 60%)`
+            : 'transparent',
+          opacity: activeIndex !== null ? (theme === 'light' ? 0.08 : 0.22) : 0
+        }}
+      />
 
       <div className="relative z-10 w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-full flex flex-col">
         <div className="mb-12 sm:mb-20 text-center relative z-10">
@@ -653,13 +652,39 @@ export default function HobbiesSection() {
                   onMouseEnter={() => !isMobile && setActiveIndex(index)}
                   onClick={() => isMobile && setActiveIndex(isActive ? null : index)}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveIndex(isActive ? null : index); }}
-                  className={`awwwards-card relative overflow-hidden bg-[var(--card-bg)] border border-[var(--fg-08)] z-10 transition-all duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] will-change-[flex,opacity] outline-none focus-visible:border-[var(--fg-35)] cursor-pointer
+                  className={`awwwards-card relative overflow-hidden bg-[var(--card-bg)] border border-[var(--fg-08)] z-10 transition-[flex,border-color,box-shadow,opacity] duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] will-change-[flex,opacity] outline-none focus-visible:border-[var(--fg-35)] cursor-pointer
                     ${isActive ? 'flex-[6] md:flex-[8] lg:flex-[10] opacity-100 rounded-[1.5rem] lg:rounded-[2.5rem] shadow-[0_0_80px_rgba(0,0,0,0.5)] z-30' : 'flex-[2] opacity-75 hover:opacity-90 rounded-[1rem] lg:rounded-[1.5rem]'}`}
                   style={isActive ? { boxShadow: `0 0 100px ${hobby.color}40, inset 0 0 40px ${hobby.color}20`, borderColor: `${hobby.color}80` } : {}}
                 >
                   <div className={`absolute inset-0 z-10 transition-opacity duration-[1.2s] mix-blend-color pointer-events-none ${isActive ? 'opacity-50' : 'opacity-0'}`} style={{ backgroundColor: hobby.color }} />
-                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] lg:text-[15vw] font-black text-[var(--fg-06)] pointer-events-none transition-all duration-[1.5s] ease-[cubic-bezier(0.19,1,0.22,1)] z-0 select-none ${isActive ? 'scale-150 opacity-0' : 'scale-100 opacity-100'}`}>0{index + 1}</div>
-                  <div className="absolute inset-0 bg-cover bg-center origin-center z-10 pointer-events-none" style={{ backgroundImage: `url(${hobby.image})`, transform: isActive ? 'scale(1)' : 'scale(1.15) translate3d(0,0,0)', filter: isActive ? 'grayscale(0%) brightness(0.7) contrast(1)' : 'grayscale(100%) brightness(0.25) contrast(1.1)', transition: 'transform 1.5s cubic-bezier(0.19,1,0.22,1), filter 1.5s cubic-bezier(0.19,1,0.22,1)' }} />
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] lg:text-[15vw] font-black text-[var(--fg-06)] pointer-events-none transition-[transform,opacity] duration-[1.5s] ease-[cubic-bezier(0.19,1,0.22,1)] z-0 select-none ${isActive ? 'scale-150 opacity-0' : 'scale-100 opacity-100'}`}>0{index + 1}</div>
+                  
+                  {/* High performance double-layer image instead of CSS filter transition */}
+                  <div
+                    className="absolute inset-0 origin-center z-10 pointer-events-none transition-transform duration-[1.5s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+                    style={{
+                      transform: isActive ? 'scale(1)' : 'scale(1.15) translate3d(0,0,0)'
+                    }}
+                  >
+                    {/* Grayscale layer (Static Filter) */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `url(${hobby.image})`,
+                        filter: 'grayscale(100%) brightness(0.25) contrast(1.1)'
+                      }}
+                    />
+                    {/* Colored overlay (Static Filter, GPU-accelerated opacity fade) */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+                      style={{
+                        backgroundImage: `url(${hobby.image})`,
+                        filter: 'grayscale(0%) brightness(0.7) contrast(1)',
+                        opacity: isActive ? 1 : 0
+                      }}
+                    />
+                  </div>
+
                   <div className="absolute inset-0 bg-black/60 transition-opacity duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] z-15 pointer-events-none" style={{ opacity: isActive ? 0 : 0.7 }} />
                   <div className="absolute inset-0 transition-opacity duration-1000 z-20 pointer-events-none" style={{ opacity: isActive ? 0.95 : 0.4 }}>
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent lg:h-[80%] lg:top-auto lg:bottom-0" />
