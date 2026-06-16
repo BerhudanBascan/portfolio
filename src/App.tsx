@@ -29,14 +29,15 @@ export default function App() {
 
     const isAtTop = window.scrollY <= 15
 
-    const elements = document.querySelectorAll('section[id], h1, h2, h3, p, li, button, a')
     let anchorEl: HTMLElement | null = null
-    let anchorOffset = 0
-    const viewportCenter = window.innerHeight / 2
-    let bestDist = Infinity
+    let anchorScrollY = 0
 
     if (!isAtTop) {
-      elements.forEach((el) => {
+      // Only query sections — cheap, small set, avoids iterating hundreds of elements
+      const sections = document.querySelectorAll('section[id]')
+      const viewportCenter = window.innerHeight / 2
+      let bestDist = Infinity
+      sections.forEach((el) => {
         const rect = el.getBoundingClientRect()
         if (rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
           const elCenter = rect.top + rect.height / 2
@@ -44,7 +45,8 @@ export default function App() {
           if (dist < bestDist) {
             bestDist = dist
             anchorEl = el as HTMLElement
-            anchorOffset = rect.top
+            // Store absolute scroll position of the element top
+            anchorScrollY = window.scrollY + rect.top
           }
         }
       })
@@ -53,30 +55,19 @@ export default function App() {
     i18n.changeLanguage(lang)
 
     if (isAtTop) {
-      let count = 0
-      const forceTop = () => {
-        window.scrollTo(0, 0)
-        count++
-        if (count < 15) {
-          requestAnimationFrame(forceTop)
-        }
-      }
-      requestAnimationFrame(forceTop)
+      // Single scroll-to-top, no loop needed
+      requestAnimationFrame(() => window.scrollTo(0, 0))
     } else if (anchorEl) {
-      let count = 0
-      const adjust = () => {
-        if (!anchorEl || !document.body.contains(anchorEl)) return
-        const newRect = anchorEl.getBoundingClientRect()
-        const diff = newRect.top - anchorOffset
-        if (Math.abs(diff) > 0.5) {
-          window.scrollBy(0, diff)
-        }
-        count++
-        if (count < 30) {
-          requestAnimationFrame(adjust)
-        }
-      }
-      requestAnimationFrame(adjust)
+      // After language change re-renders settle, restore scroll so anchor is at same position
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!anchorEl || !document.body.contains(anchorEl)) return
+          const newRect = (anchorEl as HTMLElement).getBoundingClientRect()
+          const currentAnchorScrollY = window.scrollY + newRect.top
+          const diff = currentAnchorScrollY - anchorScrollY
+          if (Math.abs(diff) > 0.5) window.scrollBy(0, diff)
+        })
+      })
     }
   }, [i18n])
 

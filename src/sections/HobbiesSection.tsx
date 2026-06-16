@@ -44,14 +44,18 @@ const IDLE_HEIGHTS = Array.from({ length: BAR_COUNT }).map((_, i) => 0.15 + 0.7 
 function SoundWave({ analyserRef, playing }: { analyserRef: React.RefObject<AnalyserNode | null>; playing: boolean }) {
   const barsRef = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
+  const dataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
 
   useEffect(() => {
     const animate = (ts: number) => {
       rafRef.current = requestAnimationFrame(animate);
       const analyser = analyserRef.current;
       if (analyser && playing) {
-        const data = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(data);
+        if (!dataRef.current || dataRef.current.length !== analyser.frequencyBinCount) {
+          dataRef.current = new Uint8Array(analyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
+        }
+        analyser.getByteFrequencyData(dataRef.current);
+        const data = dataRef.current;
         // Use only lower 60% of spectrum — high bins have near-zero energy in music
         const usableBins = Math.floor(data.length * 0.6);
         const step = usableBins / BAR_COUNT;
@@ -133,14 +137,18 @@ const MINI_IDLE = Array.from({ length: MINI_BARS }).map((_, i) =>
 function MiniWave({ analyserRef, playing }: { analyserRef: React.RefObject<AnalyserNode | null>; playing: boolean }) {
   const barsRef = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
+  const dataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
 
   useEffect(() => {
     const animate = (ts: number) => {
       rafRef.current = requestAnimationFrame(animate);
       const analyser = analyserRef.current;
       if (analyser && playing) {
-        const data = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(data);
+        if (!dataRef.current || dataRef.current.length !== analyser.frequencyBinCount) {
+          dataRef.current = new Uint8Array(analyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
+        }
+        analyser.getByteFrequencyData(dataRef.current);
+        const data = dataRef.current;
         const usable = Math.floor(data.length * 0.6);
         const step = usable / MINI_BARS;
         barsRef.current.forEach((el, i) => {

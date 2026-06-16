@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
 import ContactButton from '../components/ContactButton'
 import { useTranslation } from 'react-i18next'
@@ -18,24 +18,22 @@ const STAT_IMGS = [
 
 function AnimatedParagraph({ text }: { text: string }) {
   const ref = useRef<HTMLParagraphElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.85', 'end 0.2'] })
+  const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
   const words = text.split(' ')
-  const total = words.length
   return (
     <p ref={ref} className="flex flex-wrap" style={{ color: 'var(--fg)', fontSize: 'clamp(1rem, 2vw, 1.5rem)', lineHeight: 1.65, fontWeight: 300 }}>
       {words.map((word, wi) => (
-        <AnimWord key={wi} word={word} progress={scrollYProgress} range={[wi / total, Math.min((wi + 2) / total, 1)]} />
+        <motion.span
+          key={wi}
+          className="mr-[0.3em]"
+          initial={{ opacity: 0.15 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0.15 }}
+          transition={{ duration: 0.4, delay: wi * 0.025, ease: 'easeOut' }}
+        >
+          {word}
+        </motion.span>
       ))}
     </p>
-  )
-}
-
-function AnimWord({ word, progress, range }: { word: string; progress: any; range: number[] }) {
-  const opacity = useTransform(progress, range, [0.15, 1])
-  return (
-    <motion.span style={{ opacity }} className="mr-[0.3em]">
-      {word}
-    </motion.span>
   )
 }
 

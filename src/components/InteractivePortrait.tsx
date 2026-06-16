@@ -63,20 +63,35 @@ export default function InteractivePortrait() {
 
   useEffect(() => {
     if (!isVisible) return
+    let rafId = 0
+    let pendingX = 0
+    let pendingY = 0
+    let hasPending = false
+
     const onMove = (e: MouseEvent) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const dist = Math.hypot(e.clientX - (rect.left + rect.width / 2), e.clientY - (rect.top + rect.height / 2))
-      if (dist < Math.max(rect.width, rect.height) / 2 + 150) {
-        if (!isHoveredRef.current) setIsHovered(true)
-        mouseX.set((e.clientX - rect.left) / rect.width * 2 - 1)
-        mouseY.set((e.clientY - rect.top) / rect.height * 2 - 1)
-      } else if (isHoveredRef.current) {
-        setIsHovered(false)
-      }
+      pendingX = e.clientX
+      pendingY = e.clientY
+      if (hasPending) return
+      hasPending = true
+      rafId = requestAnimationFrame(() => {
+        hasPending = false
+        if (!containerRef.current) return
+        const rect = containerRef.current.getBoundingClientRect()
+        const dist = Math.hypot(pendingX - (rect.left + rect.width / 2), pendingY - (rect.top + rect.height / 2))
+        if (dist < Math.max(rect.width, rect.height) / 2 + 150) {
+          if (!isHoveredRef.current) setIsHovered(true)
+          mouseX.set((pendingX - rect.left) / rect.width * 2 - 1)
+          mouseY.set((pendingY - rect.top) / rect.height * 2 - 1)
+        } else if (isHoveredRef.current) {
+          setIsHovered(false)
+        }
+      })
     }
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
+    window.addEventListener('mousemove', onMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(rafId)
+    }
   }, [mouseX, mouseY, isVisible])
 
   return (
