@@ -8,10 +8,42 @@ const ROW1 = IMAGES.slice(0, 11)
 const ROW2 = IMAGES.slice(11)
 
 // Düşük Güç Modu'nda (Autoplay engellendiğinde) çirkin oynatma butonunu gizleyip 
-// videonun ilk karesini (görsel olarak) temiz bir şekilde gösteren video bileşeni.
+// yerine videonun ilk karesinin JPG fotoğraf versiyonunu gösteren akıllı video bileşeni.
 function SafeVideo({ src, width, height }: { src: string; width: number | string; height: number | string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [playFailed, setPlayFailed] = useState(false)
+
+  const num = src.split('/').pop()?.split('.')[0] || ''
+  const fallbackSrc = `/images/marquee/${num}.jpg`
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    setPlayFailed(false)
+
+    const playPromise = video.play()
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.warn("Autoplay blocked (Low Power Mode). Using JPG fallback:", src, error)
+        setPlayFailed(true)
+      })
+    }
+  }, [src])
+
+  if (playFailed) {
+    return (
+      <img
+        src={fallbackSrc}
+        alt=""
+        style={{ width, height, display: 'block', objectFit: 'cover' }}
+      />
+    )
+  }
+
   return (
     <video
+      ref={videoRef}
       src={src}
       autoPlay
       muted
