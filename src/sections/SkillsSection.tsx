@@ -47,7 +47,7 @@ const AURORA_COLORS = [
 function ServicesAccordion({ services }: { services: any[] }) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const isMobile = useBreakpoint(640)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const toggle = (i: number) => {
     setActiveIdx(prev => prev === i ? null : i)
