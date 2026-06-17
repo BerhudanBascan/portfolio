@@ -7,6 +7,59 @@ const IMAGES = Array.from({ length: 21 }, (_, i) => `/images/marquee-webm/${Stri
 const ROW1 = IMAGES.slice(0, 11)
 const ROW2 = IMAGES.slice(11)
 
+// Düşük Güç Modu'nda (Autoplay engellendiğinde) çirkin oynatma butonunu gizleyip 
+// yerine şık bir minimalist kart yerleştiren akıllı video bileşeni.
+function SafeVideo({ src, width, height }: { src: string; width: number | string; height: number | string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [playFailed, setPlayFailed] = useState(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    setPlayFailed(false)
+
+    // Oynatma denemesi yapıp tarayıcının (Düşük güç modunda) engelleyip engellemediğini yakalarız
+    const playPromise = video.play()
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.warn("Autoplay blocked by OS (Low Power Mode):", src, error)
+        setPlayFailed(true)
+      })
+    }
+  }, [src])
+
+  const num = src.split('/').pop()?.split('.')[0] || ''
+
+  if (playFailed) {
+    // Düşük güç modunda görünecek Awwwards kalitesinde şık dikey degrade placeholder
+    return (
+      <div style={{
+        width, height,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        background: 'linear-gradient(135deg, var(--fg-08) 0%, var(--bg) 100%)',
+        color: 'var(--fg-35)', fontFamily: 'monospace',
+        fontSize: 'clamp(1rem, 3vw, 1.8rem)', fontWeight: 300, letterSpacing: '0.15em',
+      }}>
+        <span>WORK</span>
+        <span style={{ fontSize: '0.75rem', opacity: 0.5, marginTop: 4 }}>#{num}</span>
+      </div>
+    )
+  }
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      style={{ width, height, display: 'block', objectFit: 'cover' }}
+    />
+  )
+}
+
 function MobileMarquee() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
@@ -42,7 +95,7 @@ function MobileMarquee() {
         <div className="mq-left" style={{ gap: 12 }}>
           {[...ROW1, ...ROW1].map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)', width: 220, height: 140, background: 'var(--fg-08)', position: 'relative' }}>
-              {preloaded && <video src={src} autoPlay muted loop playsInline style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
+              {preloaded && <SafeVideo src={src} width={220} height={140} />}
             </div>
           ))}
         </div>
@@ -52,7 +105,7 @@ function MobileMarquee() {
         <div className="mq-right" style={{ gap: 12 }}>
           {[...ROW2, ...ROW2].map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 16, overflow: 'hidden', boxShadow: '0 6px 24px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)', width: 220, height: 140, background: 'var(--fg-08)', position: 'relative' }}>
-              {preloaded && <video src={src} autoPlay muted loop playsInline style={{ width: 220, height: 140, display: 'block', objectFit: 'cover' }} />}
+              {preloaded && <SafeVideo src={src} width={220} height={140} />}
             </div>
           ))}
         </div>
@@ -126,14 +179,14 @@ function DesktopMarquee() {
         <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift1, willChange: 'transform' }}>
           {ROW1.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <video src={src} autoPlay muted loop playsInline style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+              <SafeVideo src={src} width={tileW} height={tileH} />
             </div>
           ))}
         </motion.div>
         <motion.div style={{ display: 'flex', gap, paddingLeft: 24, x: shift2, willChange: 'transform' }}>
           {ROW2.map((src, i) => (
             <div key={i} style={{ flexShrink: 0, borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.45)', border: '1px solid var(--fg-06)' }}>
-              <video src={src} autoPlay muted loop playsInline style={{ width: tileW, height: tileH, display: 'block', objectFit: 'cover' }} />
+              <SafeVideo src={src} width={tileW} height={tileH} />
             </div>
           ))}
         </motion.div>
