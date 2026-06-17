@@ -42,13 +42,35 @@ const WAVE_COLORS = Array.from({ length: BAR_COUNT }).map((_, i) => `hsl(${(i * 
 const IDLE_HEIGHTS = Array.from({ length: BAR_COUNT }).map((_, i) => 0.15 + 0.7 * Math.abs(Math.sin((i / BAR_COUNT) * Math.PI)));
 
 function SoundWave({ analyserRef, playing }: { analyserRef: React.RefObject<AnalyserNode | null>; playing: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const barsRef = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
   const dataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Intersection Observer: Dalgalar ekranda görünmüyorsa çizimi durdurarak işlemciyi rahatlatır
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, { threshold: 0.01 });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const animate = (ts: number) => {
       rafRef.current = requestAnimationFrame(animate);
+
+      // 1. Ekran dışındaysa VEYA 
+      // 2. Akordeon gibi ağır bir sayfa geçişi aktifse CPU yükünü sıfırlamak için çizimi es geç
+      if (!isVisible || (window as any).__audioVisualizerThrottled) {
+        return;
+      }
+
       const analyser = analyserRef.current;
       if (analyser && playing) {
         if (!dataRef.current || dataRef.current.length !== analyser.frequencyBinCount) {
@@ -75,10 +97,10 @@ function SoundWave({ analyserRef, playing }: { analyserRef: React.RefObject<Anal
     };
     rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [analyserRef, playing]);
+  }, [analyserRef, playing, isVisible]);
 
   return (
-    <div className="flex items-end justify-between gap-[3px] h-16 w-full opacity-90 mx-auto px-4 z-10 relative">
+    <div ref={containerRef} className="flex items-end justify-between gap-[3px] h-16 w-full opacity-90 mx-auto px-4 z-10 relative">
       {WAVE_COLORS.map((color, i) => (
         <div key={i} ref={el => { barsRef.current[i] = el; }} className="flex-1 rounded-t-sm origin-bottom"
           style={{ backgroundColor: color, height: '100%', willChange: 'transform' }} />
@@ -142,6 +164,12 @@ function MiniWave({ analyserRef, playing }: { analyserRef: React.RefObject<Analy
   useEffect(() => {
     const animate = (ts: number) => {
       rafRef.current = requestAnimationFrame(animate);
+
+      // Ağır akordeon açılma anında mini dalgaların çizimini dondurarak ses kesilmesini önler
+      if ((window as any).__audioVisualizerThrottled) {
+        return;
+      }
+
       const analyser = analyserRef.current;
       if (analyser && playing) {
         if (!dataRef.current || dataRef.current.length !== analyser.frequencyBinCount) {

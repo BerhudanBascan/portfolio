@@ -47,7 +47,29 @@ const AURORA_COLORS = [
 function ServicesAccordion({ services }: { services: any[] }) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const isMobile = useBreakpoint(640)
-  const toggle = (i: number) => setActiveIdx(prev => prev === i ? null : i)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const toggle = (i: number) => {
+    setActiveIdx(prev => prev === i ? null : i)
+
+    // Sesi korumak amacıyla geçiş animasyonu süresince görselleştiriciyi yavaşlat / dondur
+    ;(window as any).__audioVisualizerThrottled = true
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      ;(window as any).__audioVisualizerThrottled = false
+    }, isMobile ? 300 : 1500) // Animasyon süresi + emniyet payı
+  }
+
+  // Bileşen kapandığında zamanlayıcıyı temizle
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        ;(window as any).__audioVisualizerThrottled = false
+      }
+    }
+  }, [])
 
   return (
     <div className="relative w-full">
@@ -142,6 +164,7 @@ function ServicesAccordion({ services }: { services: any[] }) {
                       filter:  { duration: 1.0, ease: 'easeOut', delay: 0.2 },
                     }}
                     className="overflow-hidden"
+                    style={{ willChange: 'height, opacity, filter', transform: 'translate3d(0,0,0)' }} // GPU-accelerated layers
                   >
                     <div style={{ paddingBottom: '28px', paddingLeft: 'calc(0.7rem + 20px + 12px)' }}>
                       <p style={{ color: 'var(--fg)', opacity: 0.6, fontSize: 'clamp(0.88rem, 1.6vw, 1.15rem)', lineHeight: 1.75, marginBottom: 20, maxWidth: '65ch' }}>
