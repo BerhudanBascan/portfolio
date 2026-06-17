@@ -8,48 +8,10 @@ const ROW1 = IMAGES.slice(0, 11)
 const ROW2 = IMAGES.slice(11)
 
 // Düşük Güç Modu'nda (Autoplay engellendiğinde) çirkin oynatma butonunu gizleyip 
-// yerine şık bir minimalist kart yerleştiren akıllı video bileşeni.
+// videonun ilk karesini (görsel olarak) temiz bir şekilde gösteren video bileşeni.
 function SafeVideo({ src, width, height }: { src: string; width: number | string; height: number | string }) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [playFailed, setPlayFailed] = useState(false)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    setPlayFailed(false)
-
-    // Oynatma denemesi yapıp tarayıcının (Düşük güç modunda) engelleyip engellemediğini yakalarız
-    const playPromise = video.play()
-    if (playPromise !== undefined) {
-      playPromise.catch((error) => {
-        console.warn("Autoplay blocked by OS (Low Power Mode):", src, error)
-        setPlayFailed(true)
-      })
-    }
-  }, [src])
-
-  const num = src.split('/').pop()?.split('.')[0] || ''
-
-  if (playFailed) {
-    // Düşük güç modunda görünecek Awwwards kalitesinde şık dikey degrade placeholder
-    return (
-      <div style={{
-        width, height,
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        background: 'linear-gradient(135deg, var(--fg-08) 0%, var(--bg) 100%)',
-        color: 'var(--fg-35)', fontFamily: 'monospace',
-        fontSize: 'clamp(1rem, 3vw, 1.8rem)', fontWeight: 300, letterSpacing: '0.15em',
-      }}>
-        <span>WORK</span>
-        <span style={{ fontSize: '0.75rem', opacity: 0.5, marginTop: 4 }}>#{num}</span>
-      </div>
-    )
-  }
-
   return (
     <video
-      ref={videoRef}
       src={src}
       autoPlay
       muted

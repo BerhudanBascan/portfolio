@@ -82,3 +82,15 @@ section[id] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* iOS Safari Düşük Güç Modu'nda engellenen otomatik oynatma videolarının 
+   üzerindeki çirkin 'Play' (Oynat) butonunu tamamen gizler.
+   Böylece video oynamasa bile ilk karesi tertemiz bir fotoğraf/mockup olarak durur. */
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+video::-webkit-media-controls {
+  display: none !important;
+}
+
