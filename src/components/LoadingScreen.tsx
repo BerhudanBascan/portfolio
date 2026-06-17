@@ -33,7 +33,7 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
     }
   }, [onDone])
 
-  // Dairesel rozet metni (Güncellendi)
+  // Dairesel rozet metni
   const textStr = "SOFTWARE DEVELOPER • BERHUDAN BASCAN • "
   
   return (
@@ -41,12 +41,12 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
       {phase !== 'out' ? (
         <motion.div
           key="loading"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }} // 0.2s parlamayı önlemek için 1 yapıldı (Ekran anında siyah başlar)
           animate={{ opacity: 1 }}
           exit={{ 
             opacity: 0, 
             scale: 1.1, 
-            filter: "blur(20px)",
+            // iOS Safari'de kasma ve parlama yapmaması için blur kaldırıldı
             transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } 
           }}
           style={{ 
@@ -78,7 +78,7 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
               whiteSpace: 'nowrap', pointerEvents: 'none',
               fontSize: '25vw', fontWeight: 900, lineHeight: 1,
               color: 'transparent',
-              WebkitTextStroke: `1px rgba(215, 226, 234, 0.15)`, // Görünürlüğü artırıldı (0.04 -> 0.15)
+              WebkitTextStroke: `1px rgba(215, 226, 234, 0.15)`,
               zIndex: 0
             }}
           >
@@ -115,11 +115,11 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
             transition={{ duration: 1.2, type: 'spring', bounce: 0.3 }}
             style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, perspective: 1200 }}
           >
-            {/* Dairesel Dönen Metin (Dış Rozet) */}
+            {/* Dairesel Dönen Metin (Dış Rozet - Genişliği mobil uyumlu hale getirildi) */}
             <motion.div
               animate={{ rotateZ: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              style={{ position: 'absolute', width: 340, height: 340, opacity: 0.4, zIndex: 1 }}
+              style={{ position: 'absolute', width: 'clamp(280px, 80vw, 340px)', height: 'clamp(280px, 80vw, 340px)', opacity: 0.4, zIndex: 1 }}
             >
               <svg viewBox="0 0 100 100" width="100%" height="100%">
                 <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
@@ -131,19 +131,29 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
               </svg>
             </motion.div>
 
-            {/* ULTRA WOW: 3 Boyutlu (3D) Jiroskopik Halkalar */}
-            <motion.div style={{ position: 'absolute', width: 280, height: 280, zIndex: 1, transformStyle: 'preserve-3d' }}>
+            {/* ULTRA 3D Jiroskopik Halkalar (Genişlikler mobil uyumlu yapıldı ve 3D çakışma hatası giderildi) */}
+            <motion.div style={{ position: 'absolute', width: 'clamp(230px, 65vw, 280px)', height: 'clamp(230px, 65vw, 280px)', zIndex: 1, transformStyle: 'preserve-3d' }}>
               {/* Düz Halka */}
               <motion.svg animate={{ rotateZ: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} style={{ position: 'absolute', inset: 0, opacity: 0.2 }} viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="48" fill="none" stroke={B} strokeWidth="0.2" strokeDasharray="1 3" />
               </motion.svg>
-              {/* X Ekseninde Eğik Halka (Tilted X) */}
-              <motion.svg animate={{ rotateZ: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} style={{ position: 'absolute', inset: 0, opacity: 0.5, transform: 'rotateX(65deg)' }} viewBox="0 0 100 100">
+              {/* X Ekseninde Eğik Halka (Framer Motion rotateX ile çakışma giderildi) */}
+              <motion.svg 
+                animate={{ rotateZ: -360 }} 
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }} 
+                style={{ position: 'absolute', inset: 0, opacity: 0.5, rotateX: 65 }} 
+                viewBox="0 0 100 100"
+              >
                 <circle cx="50" cy="50" r="48" fill="none" stroke={B} strokeWidth="0.5" strokeDasharray="10 20" />
                 <circle cx="50" cy="50" r="44" fill="none" stroke={B} strokeWidth="1" strokeDasharray="2 98" />
               </motion.svg>
-              {/* Y Ekseninde Eğik Halka (Tilted Y) */}
-              <motion.svg animate={{ rotateZ: 360 }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} style={{ position: 'absolute', inset: 0, opacity: 0.3, transform: 'rotateY(65deg)' }} viewBox="0 0 100 100">
+              {/* Y Ekseninde Eğik Halka (Framer Motion rotateY ile çakışma giderildi) */}
+              <motion.svg 
+                animate={{ rotateZ: 360 }} 
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }} 
+                style={{ position: 'absolute', inset: 0, opacity: 0.3, rotateY: 65 }} 
+                viewBox="0 0 100 100"
+              >
                 <circle cx="50" cy="50" r="48" fill="none" stroke={B} strokeWidth="0.4" strokeDasharray="30 70" />
               </motion.svg>
             </motion.div>
@@ -170,7 +180,7 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ marginTop: 80, display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 2 }}
+            style={{ marginTop: 'clamp(30px, 6vh, 80px)', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 2 }} // Mobil dikey taşma engellendi
           >
             {/* Holografik (RGB Split) Efektli Dev Yüzdelik Sayaç */}
             <div style={{ display: 'flex', alignItems: 'flex-start', color: '#FFF', lineHeight: 0.8, marginBottom: 20, textShadow: '2px 0px 4px rgba(0,255,255,0.2), -2px 0px 4px rgba(255,0,255,0.2)' }}>
